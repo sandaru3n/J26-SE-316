@@ -1,10 +1,30 @@
 import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 
+// C4 — Code Quality & Vulnerability Auditor
+import AuditProgress from './features/code-audit/pages/AuditProgress.jsx'
+import PatchReview from './features/code-audit/pages/PatchReview.jsx'
+import RepositoryAudit from './features/code-audit/pages/RepositoryAudit.jsx'
+import VulnerabilityReport from './features/code-audit/pages/VulnerabilityReport.jsx'
+
 function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      {/* C4 — Code Quality & Vulnerability Auditor */}
+      <Route path="/code-audit" element={<RepositoryAudit />} />
+      <Route path="/code-audit/progress" element={<AuditProgress />} />
+      <Route path="/code-audit/report" element={<VulnerabilityReport />} />
+      <Route path="/code-audit/patches" element={<PatchReview />} />
+    </Routes>
+  )
+}
+
+function Home() {
   const [count, setCount] = useState(0)
 
   return (
