@@ -1,0 +1,17 @@
+# ScamTrace C3 - Social Media & Web Visual Threat Analyzer
+# Phase 1: OCR + image preprocessing (no ML frameworks yet)
+
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+pydantic>=2.7
+pydantic-settings>=2.3
+
+Pillow>=10.4
+numpy>=1.26
+ImageHash>=4.3
+pytesseract>=0.3.10
+
+# Testing
+pytest>=8.0
+httpx>=0.27

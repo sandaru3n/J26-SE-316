@@ -1,0 +1,130 @@
+"""Centralized configuration for the social-visual-analyzer service.
+
+All values can be overridden with environment variables or a ``.env`` file
+placed in the service root (see ``.env.example``).
+"""
+
+from __future__ import annotations
+
+import re
+from functools import lru_cache
+from pathlib import Path
+
+from pydantic import Field, field_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+SERVICE_ROOT: Path = Path(__file__).resolve().parent.parent
+
+ALLOWED_EXTENSIONS: frozenset[str] = frozenset({".jpg", ".jpeg", ".png", ".webp"})
+ALLOWED_FORMATS: frozenset[str] = frozenset({"JPEG", "PNG", "WEBP"})
+
+PIPELINE_VERSION = "phase1-ocr-preprocessing-v1"
+
+_LANGUAGE_SPEC_PATTERN = re.compile(r"^[A-Za-z_]+(\+[A-Za-z_]+)*$")
+
+
+class Settings(BaseSettings):
+    """Runtime settings for Phase 1 (OCR + image preprocessing)."""
+
+    model_config = SettingsConfigDict(
+        env_file=SERVICE_ROOT / ".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
+
+    service_name: str = "social-visual-analyzer"
+    log_level: str = "INFO"
+
+    data_dir: Path = Field(default=SERVICE_ROOT / "data")
+
+    max_image_size_mb: float = Field(default=10, gt=0)
+    max_image_width: int = Field(default=10000, gt=0)
+    max_image_height: int = Field(default=10000, gt=0)
+
+    processed_max_width: int = Field(default=1024, gt=0)
+    processed_max_height: int = Field(default=1024, gt=0)
+    processed_background_color: tuple[int, int, int] = (255, 255, 255)
+
+    phash_hash_size: int = Field(default=8, ge=4)
+    phash_near_duplicate_threshold: int = Field(default=5, ge=0)
+
+    ocr_engine: str = "tesseract"
+    ocr_languages: str = "eng+sin+tam"
+    ocr_fallback_language: str = "eng"
+    tesseract_cmd: str = ""
+    ocr_min_word_confidence: float = Field(default=0, ge=0, le=100)
+    ocr_low_confidence_warning: float = Field(default=60, ge=0, le=100)
+    ocr_psm: int = Field(default=3, ge=0, le=13)
+    ocr_oem: int = Field(default=3, ge=0, le=3)
+    ocr_timeout_seconds: int = Field(default=60, ge=0)
+    ocr_max_side: int = Field(default=3000, gt=0)
+
+    @field_validator("data_dir")
+    @classmethod
+    def _resolve_data_dir(cls, value: Path) -> Path:
+        """Resolve relative data paths against the service root, not the CWD."""
+        path = Path(value)
+        if not path.is_absolute():
+            path = SERVICE_ROOT / path
+        return path.resolve()
+
+    @field_validator("ocr_languages", "ocr_fallback_language")
+    @classmethod
+    def _validate_language_spec(cls, value: str) -> str:
+        value = value.strip()
+        if not _LANGUAGE_SPEC_PATTERN.fullmatch(value):
+            raise ValueError("OCR languages must look like 'eng' or 'eng+sin+tam'")
+        return value
+
+    @field_validator("tesseract_cmd")
+    @classmethod
+    def _strip_tesseract_cmd(cls, value: str) -> str:
+        return value.strip().strip('"')
+
+    @property
+    def max_image_size_bytes(self) -> int:
+        return int(self.max_image_size_mb * 1024 * 1024)
+
+    @property
+    def raw_dir(self) -> Path:
+        return self.data_dir / "raw"
+
+    @property
+    def processed_dir(self) -> Path:
+        return self.data_dir / "processed"
+
+    @property
+    def rejected_dir(self) -> Path:
+        return self.data_dir / "rejected"
+
+    @property
+    def annotations_dir(self) -> Path:
+        return self.data_dir / "annotations"
+
+    @property
+    def ocr_results_path(self) -> Path:
+        return self.annotations_dir / "ocr_results.jsonl"
+
+    @property
+    def image_hashes_path(self) -> Path:
+        return self.annotations_dir / "image_hashes.json"
+
+    @property
+    def rejected_images_path(self) -> Path:
+        return self.annotations_dir / "rejected_images.jsonl"
+
+    def ensure_directories(self) -> None:
+        """Create the data directory layout if it does not exist yet."""
+        for directory in (
+            self.raw_dir,
+            self.processed_dir,
+            self.rejected_dir,
+            self.annotations_dir,
+        ):
+            directory.mkdir(parents=True, exist_ok=True)
+
+
+@lru_cache
+def get_settings() -> Settings:
+    """Return the process-wide settings instance."""
+    return Settings()
