@@ -1,0 +1,20 @@
+{
+  "SCAM_0001": {
+    "file": "data/processed/SCAM_0001_b5e9ab4000ab.png",
+    "phash": "bf3cc1d1332c6c1c",
+    "algorithm": "phash",
+    "hash_size": 8,
+    "sha256": "ee1ebc16224110affcd05f0c1946a3dedcfc1f2247b91b9ae0e368d4d0941d16",
+    "duplicate_of": null,
+    "created_at": "2026-10-06T18:40:25.816335+00:00"
+  },
+  "SCAM_0002": {
+    "file": "data/processed/SCAM_0002_9af5bdcc3e43.png",
+    "phash": "bf3cc1d1332c6c1c",
+    "algorithm": "phash",
+    "hash_size": 8,
+    "sha256": "ee1ebc16224110affcd05f0c1946a3dedcfc1f2247b91b9ae0e368d4d0941d16",
+    "duplicate_of": "SCAM_0001",
+    "created_at": "2026-10-06T18:44:48.999500+00:00"
+  }
+}
