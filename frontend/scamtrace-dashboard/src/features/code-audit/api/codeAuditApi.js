@@ -61,3 +61,50 @@ export async function getServiceHealth() {
   if (!response.ok) throw new CodeAuditApiError('Health check failed', response.status)
   return response.json()
 }
+
+async function requestJson(url, fallbackMessage) {
+  let response
+  try {
+    response = await fetch(url)
+  } catch {
+    throw new CodeAuditApiError(
+      'Backend is unavailable. Please make sure the analysis service is running.',
+      0
+    )
+  }
+  let data = null
+  try {
+    data = await response.json()
+  } catch {
+    // non-JSON body
+  }
+  if (!response.ok) {
+    const detail = data && data.detail
+    throw new CodeAuditApiError(
+      (typeof detail === 'string' && detail) || fallbackMessage,
+      response.status
+    )
+  }
+  return data
+}
+
+/**
+ * GET /scans/{scanId}/findings[?severity=...]
+ * @param {string} scanId
+ * @param {string|null} severity CRITICAL | HIGH | MEDIUM | LOW | null for all
+ */
+export function getFindings(scanId, severity = null) {
+  const query = severity ? `?severity=${encodeURIComponent(severity)}` : ''
+  return requestJson(
+    `${API_BASE_URL}/scans/${encodeURIComponent(scanId)}/findings${query}`,
+    'Unable to load security findings.'
+  )
+}
+
+/** GET /findings/{findingId} */
+export function getFinding(findingId) {
+  return requestJson(
+    `${API_BASE_URL}/findings/${encodeURIComponent(findingId)}`,
+    'Unable to load finding details.'
+  )
+}

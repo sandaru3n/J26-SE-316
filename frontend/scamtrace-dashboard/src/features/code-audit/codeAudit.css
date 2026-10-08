@@ -271,6 +271,294 @@
   font-family: Consolas, ui-monospace, monospace;
 }
 
+/* ------------------------- Static security overview ------------------- */
+
+.ca-security {
+  color: var(--ca-text);
+}
+
+.ca-sev-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ca-sev-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px 14px;
+  background: var(--ca-surface-2);
+  border: 1px solid var(--ca-border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.ca-sev-card:hover {
+  border-color: var(--ca-accent);
+}
+
+.ca-sev-card--active {
+  border-color: var(--ca-accent);
+  background: rgba(79, 140, 255, 0.12);
+}
+
+.ca-sev-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ca-text-muted);
+}
+
+.ca-sev-card__count {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ca-text);
+}
+
+.ca-sev-card--critical .ca-sev-card__count { color: #ff5d5d; }
+.ca-sev-card--high .ca-sev-card__count { color: #ff9950; }
+.ca-sev-card--medium .ca-sev-card__count { color: #ffd34f; }
+.ca-sev-card--low .ca-sev-card__count { color: #6fb7ff; }
+
+/* ------------------------------ Severity badge ------------------------ */
+
+.ca-sev-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.ca-sev-badge--critical {
+  color: #ff5d5d;
+  background: rgba(255, 93, 93, 0.12);
+  border: 1px solid rgba(255, 93, 93, 0.45);
+}
+
+.ca-sev-badge--high {
+  color: #ff9950;
+  background: rgba(255, 153, 80, 0.12);
+  border: 1px solid rgba(255, 153, 80, 0.45);
+}
+
+.ca-sev-badge--medium {
+  color: #ffd34f;
+  background: rgba(255, 211, 79, 0.12);
+  border: 1px solid rgba(255, 211, 79, 0.45);
+}
+
+.ca-sev-badge--low {
+  color: #6fb7ff;
+  background: rgba(111, 183, 255, 0.12);
+  border: 1px solid rgba(111, 183, 255, 0.45);
+}
+
+.ca-sev-badge--info {
+  color: var(--ca-text-muted);
+  background: rgba(139, 150, 177, 0.12);
+  border: 1px solid rgba(139, 150, 177, 0.45);
+}
+
+/* ------------------------------ Findings table ------------------------ */
+
+.ca-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--ca-border);
+  border-radius: 8px;
+}
+
+.ca-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.ca-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ca-text-muted);
+  background: var(--ca-surface-2);
+  border-bottom: 1px solid var(--ca-border);
+  white-space: nowrap;
+}
+
+.ca-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ca-border);
+  color: var(--ca-text);
+  vertical-align: middle;
+}
+
+.ca-table tbody tr {
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.ca-table tbody tr:hover {
+  background: rgba(79, 140, 255, 0.07);
+}
+
+.ca-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ca-table__row--selected td {
+  background: rgba(79, 140, 255, 0.12);
+}
+
+.ca-table__title {
+  font-weight: 600;
+}
+
+.ca-table__file {
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--ca-text-muted);
+  word-break: break-all;
+}
+
+/* ------------------------------ Finding details ----------------------- */
+
+.ca-detail {
+  margin-top: 20px;
+  background: var(--ca-surface-2);
+  border: 1px solid var(--ca-border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.ca-detail__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ca-detail__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ca-text);
+}
+
+.ca-detail__close {
+  background: none;
+  border: 1px solid var(--ca-border);
+  border-radius: 6px;
+  color: var(--ca-text-muted);
+  cursor: pointer;
+  padding: 4px 9px;
+  font-size: 13px;
+}
+
+.ca-detail__close:hover {
+  color: var(--ca-text);
+  border-color: var(--ca-accent);
+}
+
+.ca-detail__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+.ca-detail__grid dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ca-text-muted);
+  margin-bottom: 4px;
+}
+
+.ca-detail__grid dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ca-text);
+}
+
+.ca-detail__file {
+  font-family: Consolas, ui-monospace, monospace;
+  word-break: break-all;
+}
+
+.ca-detail__section {
+  margin-bottom: 14px;
+}
+
+.ca-detail__section h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ca-text-muted);
+}
+
+.ca-detail__section p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ca-text);
+  line-height: 1.5;
+}
+
+.ca-detail__rule {
+  display: inline-block;
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--ca-text);
+  background: var(--ca-surface);
+  border: 1px solid var(--ca-border);
+  border-radius: 5px;
+  padding: 4px 8px;
+  word-break: break-all;
+}
+
+.ca-detail__code {
+  margin: 0;
+  padding: 12px 14px;
+  background: #0b0f18;
+  border: 1px solid var(--ca-border);
+  border-radius: 8px;
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ca-text);
+  overflow-x: auto;
+  text-align: left;
+  white-space: pre;
+}
+
+.ca-detail__note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ca-text-muted);
+  font-style: italic;
+}
+
+.ca-empty {
+  margin: 0;
+  padding: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ca-text-muted);
+  background: var(--ca-surface-2);
+  border: 1px dashed var(--ca-border);
+  border-radius: 8px;
+}
+
 @media (max-width: 520px) {
   .ca-page {
     padding: 28px 14px 60px;
