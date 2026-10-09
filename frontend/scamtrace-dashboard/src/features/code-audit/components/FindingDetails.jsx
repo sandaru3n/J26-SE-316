@@ -43,9 +43,25 @@ export default function FindingDetails({ finding, loading, onClose }) {
         </div>
         <div>
           <dt>Detected By</dt>
-          <dd>{finding.source === 'SEMGREP' ? 'Semgrep' : finding.source}</dd>
+          <dd>
+            {finding.source === 'SEMGREP'
+              ? 'Semgrep'
+              : finding.source === 'AST_CODE_QUALITY'
+                ? 'AST Code Quality'
+                : finding.source}
+          </dd>
         </div>
       </dl>
+
+      {finding.metric && (
+        <div className="ca-detail__section">
+          <h4>Metric</h4>
+          <p>
+            {finding.metric.name}: {finding.metric.value} (threshold:{' '}
+            {finding.metric.threshold})
+          </p>
+        </div>
+      )}
 
       <div className="ca-detail__section">
         <h4>Description</h4>
@@ -61,6 +77,56 @@ export default function FindingDetails({ finding, loading, onClose }) {
         <div className="ca-detail__section">
           <h4>Code</h4>
           <pre className="ca-detail__code">{finding.code_snippet}</pre>
+        </div>
+      )}
+
+      {finding.ast_context && (
+        <div className="ca-detail__section">
+          <h4>Code Context</h4>
+          <dl className="ca-detail__grid ca-context">
+            {finding.ast_context.context_level === 'FUNCTION' && (
+              <>
+                <div>
+                  <dt>Function</dt>
+                  <dd>{finding.ast_context.function_name}</dd>
+                </div>
+                <div>
+                  <dt>Lines</dt>
+                  <dd>
+                    {finding.ast_context.function_start_line}–
+                    {finding.ast_context.function_end_line}
+                  </dd>
+                </div>
+                <div>
+                  <dt>Parameters</dt>
+                  <dd>{finding.ast_context.parameter_count}</dd>
+                </div>
+                <div>
+                  <dt>Function Length</dt>
+                  <dd>{finding.ast_context.function_length}</dd>
+                </div>
+                <div>
+                  <dt>Nesting Depth</dt>
+                  <dd>{finding.ast_context.max_nesting_depth}</dd>
+                </div>
+              </>
+            )}
+            {finding.ast_context.context_level === 'CLASS' && (
+              <div>
+                <dt>Class</dt>
+                <dd>{finding.ast_context.class_name}</dd>
+              </div>
+            )}
+            <div>
+              <dt>Context Level</dt>
+              <dd>{finding.ast_context.context_level}</dd>
+            </div>
+          </dl>
+          {finding.ast_context.calls?.length > 0 && (
+            <p className="ca-context__calls">
+              Calls: {finding.ast_context.calls.join(', ')}
+            </p>
+          )}
         </div>
       )}
 
