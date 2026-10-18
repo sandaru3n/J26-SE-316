@@ -13,7 +13,7 @@ const META = {
 const STATUS_TONE = { ok: 'green', failed: 'red', skipped: 'slate' }
 
 /** One modality: status, summary, top evidence, its model arm(s); behavior shows its evidence chain. */
-export default function ModalityCard({ name, modality, chain }) {
+export default function ModalityCard({ name, modality, chain, actions }) {
   const meta = META[name]
   const Icon = meta.icon
   if (!modality) return null
@@ -24,7 +24,10 @@ export default function ModalityCard({ name, modality, chain }) {
           <Icon className="h-4 w-4 text-[color:var(--c2-accent)]" aria-hidden="true" />
           {meta.title}
         </h3>
-        <Chip tone={STATUS_TONE[modality.status] || 'slate'}>{modality.status}</Chip>
+        <span className="flex items-center gap-1.5">
+          <Chip tone={STATUS_TONE[modality.status] || 'slate'}>{modality.status}</Chip>
+          {actions}
+        </span>
       </header>
       <p className="font-mono text-[0.6875rem] uppercase tracking-wider text-[color:var(--c2-fg-faint)]">{meta.part}</p>
       {modality.reason && <p className="text-sm text-[color:var(--c2-sus-hi)]">{defangText(modality.reason)}</p>}

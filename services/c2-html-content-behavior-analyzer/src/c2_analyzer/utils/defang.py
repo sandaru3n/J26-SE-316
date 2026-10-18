@@ -94,7 +94,7 @@ def defang_text(text: str | None) -> str | None:
 
 # Fields of a stored AnalysisResponse that hold human-readable text (may name domains).
 _TEXT_KEYS = frozenset(
-    {"title", "detail", "evidence", "summary", "text", "status_reason", "code", "note"}
+    {"title", "detail", "evidence", "summary", "text", "status_reason", "code", "note", "example"}
 )
 _URL_KEYS = frozenset({"submitted_url", "final_url"})
 
@@ -113,7 +113,7 @@ def defang_analysis(response: dict[str, Any]) -> dict[str, Any]:
         if isinstance(value, list):
             if key == "redirect_hosts":
                 return [defang_host(item) if isinstance(item, str) else item for item in value]
-            if key in ("top_evidence", "warnings"):
+            if key in ("top_evidence", "warnings", "cues"):
                 return [defang_text(item) if isinstance(item, str) else item for item in value]
             return [walk(item) for item in value]
         if isinstance(value, str):

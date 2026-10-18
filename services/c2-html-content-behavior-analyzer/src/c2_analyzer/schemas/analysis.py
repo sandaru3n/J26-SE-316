@@ -161,6 +161,21 @@ class ArmResult(BaseModel):
     fusion_weight: float | None = None  # renormalized weight used for THIS request
 
 
+class IntentEvidence(BaseModel):
+    """One inferred intent of the page (behavior: AST source->sink pattern; content: cue words).
+
+    Added in v1 without a schema bump: optional, empty for older stored scans.
+    """
+
+    intent: str  # behavior pattern id (behavior_patterns.yaml) or taxonomy intent id
+    display: str | None = None
+    method: Literal["ast_source_sink", "cue_words"]
+    severity: str | None = None  # behavior only: highest severity behind the intent
+    count: int = 0  # behavior: occurrences; content: text segments with a cue
+    cues: list[str] = Field(default_factory=list)  # content: distinct cue phrases matched
+    example: str | None = None  # short, PII-masked, tag-free evidence
+
+
 class ModalityResult(BaseModel):
     """dom / content / behavior: did it run, what did it say."""
 
@@ -169,6 +184,10 @@ class ModalityResult(BaseModel):
     summary: str | None = None
     top_evidence: list[str] = Field(default_factory=list)
     arms: list[ArmResult] = Field(default_factory=list)
+    # Optional additions (backward compatible): inferred intents + counters for the dashboard.
+    intents: list[IntentEvidence] = Field(default_factory=list)
+    intent_method: str | None = None  # how ``intents`` were obtained (honest provenance)
+    stats: dict[str, float] = Field(default_factory=dict)
 
 
 class Modalities(BaseModel):

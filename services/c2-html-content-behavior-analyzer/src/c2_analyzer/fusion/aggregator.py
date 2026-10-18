@@ -18,8 +18,14 @@ from __future__ import annotations
 import re
 
 from c2_analyzer.content.extractor import content_rules, has_urgency
+from c2_analyzer.content.taxonomy import BENIGN, load_taxonomy
 from c2_analyzer.dom.dictionary import specs as dom_specs
-from c2_analyzer.schemas.analysis import SEVERITY_RANK, AnalysisFinding, EvidenceStep
+from c2_analyzer.schemas.analysis import (
+    SEVERITY_RANK,
+    AnalysisFinding,
+    EvidenceStep,
+    IntentEvidence,
+)
 from c2_analyzer.schemas.behavior import BehaviorResult
 from c2_analyzer.schemas.content import PageText
 from c2_analyzer.schemas.dom import DomResult
@@ -150,6 +156,93 @@ def content_findings(
             )
         )
     return findings
+
+
+BEHAVIOR_INTENT_METHOD = "static AST source->sink patterns (Part 8, never executed)"
+CONTENT_INTENT_METHOD = (
+    "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)"
+)
+MAX_INTENT_CUES = 5
+
+
+def behavior_intents(result: BehaviorResult, limit: int) -> list[IntentEvidence]:
+    """Part 8 findings grouped by pattern: the behavioral intents the page's code shows."""
+    grouped: dict[str, IntentEvidence] = {}
+    for finding in result.findings:  # most severe first
+        intent = grouped.get(finding.pattern_id)
+        if intent is None:
+            grouped[finding.pattern_id] = IntentEvidence(
+                intent=finding.pattern_id,
+                display=finding.name,
+                method="ast_source_sink",
+                severity=finding.severity,
+                count=finding.count,
+                example=safe_evidence(finding.message, limit),
+            )
+            continue
+        intent.count += finding.count
+        if SEVERITY_RANK[finding.severity] > SEVERITY_RANK[intent.severity or "info"]:
+            intent.severity = finding.severity
+    return list(grouped.values())
+
+
+def behavior_stats(result: BehaviorResult) -> dict[str, float]:
+    """Counters behind the behavior intents (scripts, sources, sinks, flows)."""
+    summary = result.summary
+    return {
+        "scripts_analyzed": summary.scripts_analyzed,
+        "scripts_lexical": summary.scripts_lexical,
+        "library_scripts_skipped": summary.library_scripts_skipped,
+        "sources_total": summary.sources_total,
+        "sinks_total": summary.sinks_total,
+        "flows_total": summary.flows_total,
+        "flows_external": sum(bool(flow.sink_is_external) for flow in result.flows),
+        "behavior_risk_score": float(result.behavior_risk_score),
+    }
+
+
+def content_intents(text: PageText, limit: int) -> list[IntentEvidence]:
+    """Social-engineering intents suggested by the taxonomy's cue words (en / si / ta).
+
+    PRELIMINARY: cue words only suggest (Part 5B weak labelling); the intent-level model
+    is Part 6B. Benign is never listed - no cue simply means no intent evidence.
+    """
+    taxonomy = load_taxonomy()
+    found: dict[str, IntentEvidence] = {}
+    for segment in text.segments:
+        if segment.field == "hidden":
+            continue
+        for intent_id, cues in taxonomy.cue_hits(segment.text).items():
+            if intent_id == BENIGN:
+                continue
+            intent = found.setdefault(
+                intent_id,
+                IntentEvidence(
+                    intent=intent_id,
+                    display=intent_id.replace("_", " "),
+                    method="cue_words",
+                    example=safe_evidence(segment.text, limit),
+                ),
+            )
+            intent.count += 1
+            for cue in cues:
+                if cue not in intent.cues and len(intent.cues) < MAX_INTENT_CUES:
+                    intent.cues.append(cue)
+    order = {name: index for index, name in enumerate(taxonomy.priority)}
+    return sorted(found.values(), key=lambda item: order.get(item.intent, len(order)))
+
+
+def content_stats(text: PageText) -> dict[str, float]:
+    """Counters behind the content modality (segments, language confidence, scripts)."""
+    ratios = text.language.script_ratios
+    return {
+        "segments": len(text.segments),
+        "page_text_chars": text.page_text_chars,
+        "language_confidence": round(float(text.language.confidence), 4),
+        "si_script_ratio": round(float(ratios.get("si", 0.0)), 4),
+        "ta_script_ratio": round(float(ratios.get("ta", 0.0)), 4),
+        "latin_script_ratio": round(float(ratios.get("latin", 0.0)), 4),
+    }
 
 
 def rank(findings: list[AnalysisFinding], cap: int) -> tuple[list[AnalysisFinding], int]:

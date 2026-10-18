@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link2, Play, ScanLine, Square, Workflow } from 'lucide-react'
+import { Link2, Play, ScanLine, Square } from 'lucide-react'
 import { analyze } from '../api/c2Api.js'
-import PipelineStages from '../components/PipelineStages.jsx'
+import PipelineCard from '../components/PipelineCard.jsx'
 import ResultView from '../components/ResultView.jsx'
 import { Panel, SegmentedControl, StateBox } from '../components/ui.jsx'
 import { DEMO_EXAMPLES, demoAnalyze } from '../demo/demoData.js'
@@ -183,12 +183,17 @@ export default function C2Scan() {
       </Panel>
 
       {run.state !== 'idle' && (
-        <Panel title="Pipeline" icon={Workflow}>
-          <p className="sr-only" role="status">
-            {running ? 'Analyzing…' : run.state === 'done' ? 'Analysis complete.' : ''}
-          </p>
-          <PipelineStages running={running} startedAt={run.startedAt} result={run.result} target={run.target} />
-        </Panel>
+        <PipelineCard
+          running={running}
+          startedAt={run.startedAt}
+          result={run.result}
+          target={run.target}
+          status={
+            <p className="sr-only" role="status">
+              {running ? 'Analyzing…' : run.state === 'done' ? 'Analysis complete.' : ''}
+            </p>
+          }
+        />
       )}
 
       {run.state === 'error' && (

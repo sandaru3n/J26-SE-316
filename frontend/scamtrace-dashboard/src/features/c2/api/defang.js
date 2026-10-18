@@ -39,3 +39,25 @@ export function defangUrl(url) {
   const [, scheme, host, rest] = match
   return `${SCHEMES[scheme.toLowerCase()]}://${defangHost(host)}${rest}`
 }
+
+// Mirrors utils/defang.py::defang_analysis: text fields defanged, URLs defanged, ids kept.
+const TEXT_KEYS = new Set(['title', 'detail', 'evidence', 'summary', 'text', 'status_reason', 'code', 'note', 'example', 'reason'])
+const URL_KEYS = new Set(['submitted_url', 'final_url', 'url'])
+const TEXT_LIST_KEYS = new Set(['top_evidence', 'warnings', 'cues'])
+
+/** A deep copy of an AnalysisResponse that is safe to save / share (used by "Export JSON"). */
+export function defangAnalysis(value, key = null) {
+  if (Array.isArray(value)) {
+    if (key === 'redirect_hosts') return value.map((item) => (typeof item === 'string' ? defangHost(item) : item))
+    if (TEXT_LIST_KEYS.has(key)) return value.map((item) => (typeof item === 'string' ? defangText(item) : item))
+    return value.map((item) => defangAnalysis(item))
+  }
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([name, item]) => [name, defangAnalysis(item, name)]))
+  }
+  if (typeof value === 'string') {
+    if (URL_KEYS.has(key)) return defangUrl(value)
+    if (TEXT_KEYS.has(key)) return defangText(value)
+  }
+  return value
+}

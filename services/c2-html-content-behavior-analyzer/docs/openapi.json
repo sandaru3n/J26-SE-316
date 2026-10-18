@@ -3287,6 +3287,74 @@
         "title": "InputField",
         "description": "One <input>, <select> or <textarea>."
       },
+      "IntentEvidence": {
+        "properties": {
+          "intent": {
+            "type": "string",
+            "title": "Intent"
+          },
+          "display": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display"
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "ast_source_sink",
+              "cue_words"
+            ],
+            "title": "Method"
+          },
+          "severity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Severity"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "default": 0
+          },
+          "cues": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Cues"
+          },
+          "example": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Example"
+          }
+        },
+        "type": "object",
+        "required": [
+          "intent",
+          "method"
+        ],
+        "title": "IntentEvidence",
+        "description": "One inferred intent of the page (behavior: AST source->sink pattern; content: cue words).\n\nAdded in v1 without a schema bump: optional, empty for older stored scans."
+      },
       "JavascriptUrl": {
         "properties": {
           "tag": {
@@ -3786,6 +3854,31 @@
             },
             "type": "array",
             "title": "Arms"
+          },
+          "intents": {
+            "items": {
+              "$ref": "#/components/schemas/IntentEvidence"
+            },
+            "type": "array",
+            "title": "Intents"
+          },
+          "intent_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intent Method"
+          },
+          "stats": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Stats"
           }
         },
         "type": "object",

@@ -329,6 +329,46 @@
   animation: c2-enter 0.35s ease-out both;
 }
 
+/* pipeline flowchart (AnalysisFlow): connectors drawn over the lanes, under the nodes */
+.c2-edge-base {
+  fill: none;
+  stroke: var(--c2-border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+.c2-edge-lit {
+  fill: none;
+  stroke: var(--c2-accent-solid);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  transition: stroke-dashoffset 0.45s ease-out;
+}
+.c2-edge-lit.c2-edge-muted {
+  stroke: var(--c2-border-stronger);
+  stroke-width: 2;
+}
+.c2-edge-lit.c2-edge-failed {
+  stroke: var(--c2-sus-solid);
+}
+.c2-edge-head-base { fill: var(--c2-border-strong); }
+.c2-edge-head-lit { fill: var(--c2-accent-solid); }
+.c2-edge-head-muted { fill: var(--c2-border-stronger); }
+
+.c2-flow-node {
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.c2-flow-focus {
+  transform: scale(1.06);
+  border-color: var(--c2-accent-solid);
+  box-shadow: 0 0 0 3px var(--c2-accent-ring), 0 8px 24px rgba(7, 28, 140, 0.12);
+}
+
+/* full-detail popup */
+.c2-dialog::backdrop {
+  background: rgba(7, 12, 40, 0.55);
+}
+
 @keyframes c2-fade {
   0%, 100% { opacity: 0.25; }
   50% { opacity: 1; }

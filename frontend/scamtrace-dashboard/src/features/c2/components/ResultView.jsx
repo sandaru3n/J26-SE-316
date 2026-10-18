@@ -1,10 +1,14 @@
 import { AlertTriangle, Brain, CloudOff, FileQuestion, Gauge, ListChecks, ShieldAlert } from 'lucide-react'
 import { defangText } from '../api/defang.js'
 import { CLASS_LABELS, LANGUAGE_LABELS, formatTime } from '../constants.js'
+import { ExpandButton } from './DetailDialog.jsx'
+import EvidenceBoard from './EvidenceBoard.jsx'
 import FindingList from './FindingList.jsx'
 import ModalityCard from './ModalityCard.jsx'
+import NoveltyStrip from './NoveltyStrip.jsx'
 import { ArmContributions, ProbabilityBars } from './ProbabilityBars.jsx'
 import RiskGauge from './RiskGauge.jsx'
+import { FindingsDetail, FusionDetail, ModalityDetail, VerdictDetail } from './SectionDetails.jsx'
 import VerdictBadge from './VerdictBadge.jsx'
 import { Chip, DefangedUrl, Panel } from './ui.jsx'
 
@@ -109,29 +113,33 @@ export default function ResultView({ result }) {
   const topFeatures = result.explanation?.top_features || []
   return (
     <div className="flex flex-col gap-4">
-      <Panel title="Verdict" icon={Gauge}>
+      <Panel title="Verdict" icon={Gauge} actions={<ExpandButton title="Verdict" subtitle="Verdict, input, warnings, timings and versions" render={() => <VerdictDetail result={result} />} />}>
         <Header result={result} />
       </Panel>
       {noVerdict && <NoVerdictState result={result} />}
 
-      <Panel title="Why? — findings by severity" icon={ListChecks}>
+      <NoveltyStrip result={result} />
+
+      <EvidenceBoard result={result} />
+
+      <Panel title="Why? — findings by severity" icon={ListChecks} actions={<ExpandButton title="Findings by severity" render={() => <FindingsDetail result={result} />} />}>
         <FindingList findings={result.findings} total={result.findings_total} omitted={result.findings_omitted} />
       </Panel>
 
       {result.status !== 'unreachable' && (
         <div className="grid gap-4 xl:grid-cols-3">
-          <ModalityCard name="dom" modality={result.modalities?.dom} />
-          <ModalityCard name="content" modality={result.modalities?.content} />
-          <ModalityCard name="behavior" modality={result.modalities?.behavior} chain={behaviorChain} />
+          <ModalityCard name="dom" modality={result.modalities?.dom} actions={<ExpandButton title="DOM structure" subtitle="All evidence of this modality" render={() => <ModalityDetail name="dom" result={result} />} />} />
+          <ModalityCard name="content" modality={result.modalities?.content} actions={<ExpandButton title="Content & language" subtitle="All evidence of this modality" render={() => <ModalityDetail name="content" result={result} />} />} />
+          <ModalityCard name="behavior" modality={result.modalities?.behavior} actions={<ExpandButton title="JS behavior" subtitle="All evidence of this modality" render={() => <ModalityDetail name="behavior" result={result} />} />} chain={behaviorChain} />
         </div>
       )}
 
       {Object.keys(result.class_probabilities || {}).length > 0 && (
         <div className="grid gap-4 lg:grid-cols-2">
-          <Panel title="Fused class probabilities" icon={Brain}>
+          <Panel title="Fused class probabilities" icon={Brain} actions={<ExpandButton title="Tri-modal fusion" subtitle="N3 — fused 5-class probabilities, contributions, thresholds" render={() => <FusionDetail result={result} />} />}>
             <ProbabilityBars probabilities={result.class_probabilities} highlight={result.explanation?.explained_class} />
           </Panel>
-          <Panel title="Per-arm contribution" icon={Brain}>
+          <Panel title="Per-arm contribution" icon={Brain} actions={<ExpandButton title="Tri-modal fusion" subtitle="N3 — fused 5-class probabilities, contributions, thresholds" render={() => <FusionDetail result={result} />} />}>
             <ArmContributions explanation={result.explanation} modalities={result.modalities} />
             {topFeatures.length > 0 && (
               <details className="mt-3 text-sm">

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { getScan } from '../api/c2Api.js'
+import PipelineCard from '../components/PipelineCard.jsx'
 import ResultView from '../components/ResultView.jsx'
 import { StateBox } from '../components/ui.jsx'
 import { loadDemo } from '../demo/demoData.js'
@@ -34,7 +35,12 @@ export default function C2ScanDetail() {
       <h2 className="font-mono text-lg text-[color:var(--c2-fg-strong)]">Scan #{scanId}</h2>
       {!data && loading && <StateBox state="loading" message="Loading the stored analysis…" />}
       {error && <StateBox state="error" message={error.message} onRetry={error.status === 404 ? undefined : reload} />}
-      {data && !error && <ResultView result={data} />}
+      {data && !error && (
+        <>
+          <PipelineCard result={data} />
+          <ResultView result={data} />
+        </>
+      )}
     </div>
   )
 }

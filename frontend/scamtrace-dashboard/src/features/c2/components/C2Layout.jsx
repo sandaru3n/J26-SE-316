@@ -6,6 +6,7 @@ import { C2_BASE_URL } from '../api/c2Api.js'
 import DemoModeProvider from '../context/DemoModeProvider.jsx'
 import { useC2Theme } from '../hooks/useC2Theme.js'
 import { useDemoMode } from '../hooks/useDemoMode.js'
+import { DetailDialogProvider } from './DetailDialog.jsx'
 import { StateBox } from './ui.jsx'
 import '../c2.css'
 
@@ -136,9 +137,11 @@ export default function C2Layout() {
         <div className="c2-console min-h-[calc(100vh-70px)] font-inter" data-c2-theme={theme}>
           <SectionHeader theme={theme} onThemeChange={setTheme} />
           <div className="mx-auto max-w-[1400px] px-4 py-5 md:px-6">
-            <Suspense fallback={<StateBox state="loading" message="Loading…" />}>
-              <Outlet />
-            </Suspense>
+            <DetailDialogProvider>
+              <Suspense fallback={<StateBox state="loading" message="Loading…" />}>
+                <Outlet />
+              </Suspense>
+            </DetailDialogProvider>
           </div>
         </div>
       </DemoModeProvider>

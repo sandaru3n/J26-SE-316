@@ -11,6 +11,8 @@ fixtures never hold a clickable scam link.
 
   python scripts/export_ui_fixtures.py --out <dashboard>/src/features/c2/fixtures
   (<dashboard> = ../../frontend/scamtrace-dashboard)
+  --analyses-only: rewrite only analyses.json (the Scan page answers); history / stats /
+  research fixtures are kept as they are (no results database needed).
 
 Needs the trained v0.3 models and, for the feed / history / stats fixtures, demo scans in
 the results database (python scripts/demo_ingest.py).
@@ -51,6 +53,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--out", type=Path, required=True, help="fixtures folder")
     parser.add_argument("--version", default="v0.3")
+    parser.add_argument("--analyses-only", action="store_true", help="only rewrite analyses.json")
     args = parser.parse_args()
     out = args.out.resolve()
     out.mkdir(parents=True, exist_ok=True)
@@ -95,6 +98,9 @@ def main() -> None:
     analyses["unreachable"] = analyze({"url": UNREACHABLE_URL, "source": "user"})
     print(f"unreachable: {analyses['unreachable']['status']}")
     write(out / "analyses.json", analyses)
+    if args.analyses_only:
+        print(f"done (analyses only) -> {out}")
+        return
 
     scans = client.get("/api/v1/scans", params={"limit": 200, "source": "threatradar_push"})
     items = scans.json()["items"]

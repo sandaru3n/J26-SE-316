@@ -43,8 +43,14 @@ from c2_analyzer.dataset.quality import check_page
 from c2_analyzer.dom.dictionary import dictionary_hash
 from c2_analyzer.dom.pipeline import extract_dom_features
 from c2_analyzer.fusion.aggregator import (
+    BEHAVIOR_INTENT_METHOD,
+    CONTENT_INTENT_METHOD,
     behavior_findings,
+    behavior_intents,
+    behavior_stats,
     content_findings,
+    content_intents,
+    content_stats,
     dom_findings,
     rank,
     safe_evidence,
@@ -546,6 +552,9 @@ class Orchestrator:
             summary=summary,
             top_evidence=[f.evidence or f.title for f in findings[:3]],
             arms=[run.arms["text_tfidf"], run.arms["text_xlmr"]],
+            intents=content_intents(text, self.evidence_chars),
+            intent_method=CONTENT_INTENT_METHOD,
+            stats=content_stats(text),
         )
 
     def _behavior(self, run: _Run, page) -> None:
@@ -575,6 +584,9 @@ class Orchestrator:
             summary=summary,
             top_evidence=[f.detail for f in findings[:3]],
             arms=[run.arms["behavior"]],
+            intents=behavior_intents(behavior, self.evidence_chars),
+            intent_method=BEHAVIOR_INTENT_METHOD,
+            stats=behavior_stats(behavior),
         )
 
     def _fetch_findings(self, run: _Run, outcome) -> None:
