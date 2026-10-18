@@ -183,10 +183,11 @@ class IngestWorker:
         try:
             await self._analyze(job)
         except ModelsUnavailable as error:
-            # Not the URL's fault: give the job back without counting the attempt.
+            # Not the URL's fault: give the job back without counting the attempt (first,
+            # so whoever sees the error also sees the job queued again).
+            await asyncio.to_thread(self.store.release, job.id)
             self._state = "waiting_for_models"
             self.last_error = str(error)
-            await asyncio.to_thread(self.store.release, job.id)
             await self.sleep(MODELS_RETRY_SECONDS)
         except asyncio.CancelledError:
             raise

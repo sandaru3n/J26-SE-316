@@ -237,3 +237,6 @@ class ReadyResponse(BaseModel):
     arms: dict[str, dict[str, Any]] = Field(default_factory=dict)
     model_versions: dict[str, str | None] = Field(default_factory=dict)
     load_ms: float | None = None
+    # Scan-history database {backend: sqlite | postgresql, ok, error}. Reported only:
+    # /analyze works without it, so it does not change ``ready``.
+    results_store: dict[str, Any] | None = None

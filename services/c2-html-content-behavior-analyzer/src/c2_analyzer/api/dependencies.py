@@ -5,20 +5,28 @@ Part 9: Preliminary tri-modal output (fusion + FastAPI).
 
 from __future__ import annotations
 
+import logging
 import threading
 import time
 from functools import lru_cache
 
+from fastapi import Request
+
 from c2_analyzer.api.dev_data import DevDataset
 from c2_analyzer.api.guards import RateLimiter, ResultCache
-from c2_analyzer.config import Settings, get_settings, resolve_path
+from c2_analyzer.config import Settings, get_settings
 from c2_analyzer.fusion.live_fetch import analyze_config
 from c2_analyzer.fusion.orchestrator import Orchestrator
 from c2_analyzer.ingest.events import EventBus
 from c2_analyzer.ingest.service import IngestService
 from c2_analyzer.ingest.worker import IngestWorker
 from c2_analyzer.nlp.inference import TextModelRegistry
-from c2_analyzer.store.repository import ResultsStore
+from c2_analyzer.store.repository import ResultsStore, StoreUnavailable, store_target
+
+log = logging.getLogger(__name__)
+# An unreachable PostgreSQL is not retried on every request (connect timeout 5 s).
+STORE_RETRY_SECONDS = 15.0
+_store_failure: list[tuple[float, StoreUnavailable]] = []
 
 
 def settings_dependency() -> Settings:
@@ -127,8 +135,21 @@ def get_orchestrator() -> Orchestrator:
 
 @lru_cache
 def get_results_store() -> ResultsStore:
-    """The shared results database (RESULTS_DB, default data/c2_results.db)."""
-    return ResultsStore(resolve_path(get_settings().results_db))
+    """The shared results database: PostgreSQL if DATABASE_URL is set, else the SQLite
+    file RESULTS_DB (default data/c2_results.db).
+
+    An unreachable PostgreSQL raises ``StoreUnavailable`` (API: 503). Failures are not
+    cached by lru_cache, so a later call connects once the server is back (at most one
+    attempt per STORE_RETRY_SECONDS)."""
+    if _store_failure and time.monotonic() - _store_failure[0][0] < STORE_RETRY_SECONDS:
+        raise _store_failure[0][1]
+    try:
+        store = ResultsStore(store_target())
+    except StoreUnavailable as error:
+        _store_failure[:] = [(time.monotonic(), error)]
+        raise
+    _store_failure.clear()
+    return store
 
 
 @lru_cache
@@ -140,6 +161,17 @@ def get_event_bus() -> EventBus:
 def get_ingest_service() -> IngestService:
     """Queue + history bookkeeping. Tests replace it with ``dependency_overrides``."""
     return IngestService(get_results_store(), get_event_bus())
+
+
+def optional_history(request: Request) -> IngestService | None:
+    """The history for ``/analyze``: None while the results store is unavailable, so a
+    user's check is still answered (just not saved). Honours test overrides."""
+    provider = request.app.dependency_overrides.get(get_ingest_service, get_ingest_service)
+    try:
+        return provider()
+    except StoreUnavailable as error:
+        log.warning("scan history not saved: %s", error)
+        return None
 
 
 @lru_cache

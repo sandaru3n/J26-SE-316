@@ -161,6 +161,7 @@ def start_server(port: int, xlmr: bool, db_path: Path, timeout: float = 180) -> 
         "XLMR_ENABLED": "true" if xlmr else "false",
         "INGEST_WORKER_ENABLED": "false",
         "RESULTS_DB": str(db_path),
+        "DATABASE_URL": "",  # throw-away SQLite file, never the real PostgreSQL store
         "APP_ENV": "production",
     }
     code = f"from c2_analyzer.fusion.perf import serve; serve({port})"

@@ -4508,6 +4508,18 @@
               }
             ],
             "title": "Load Ms"
+          },
+          "results_store": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Results Store"
           }
         },
         "type": "object",

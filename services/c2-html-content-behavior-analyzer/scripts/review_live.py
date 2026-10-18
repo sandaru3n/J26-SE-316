@@ -22,9 +22,9 @@ import argparse
 import os
 from pathlib import Path
 
-from c2_analyzer.config import get_labels, get_settings, project_root, resolve_path
+from c2_analyzer.config import get_labels, project_root
 from c2_analyzer.ingest.review import check_label, describe_item, export_confirmed
-from c2_analyzer.store.repository import REVIEW_STATES, ResultsStore
+from c2_analyzer.store.repository import REVIEW_STATES, ResultsStore, store_target
 
 DEFAULT_EXPORT = Path("data/feeds/live_review_urls.csv")
 
@@ -107,7 +107,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description=__doc__.splitlines()[0], formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("--db", type=Path, help="results database (default RESULTS_DB)")
+    parser.add_argument(
+        "--db", type=Path, help="SQLite file (default: DATABASE_URL if set, else RESULTS_DB)"
+    )
     commands = parser.add_subparsers(dest="command", required=True)
     show = commands.add_parser("list", help="show the review queue")
     show.add_argument("--state", choices=[*REVIEW_STATES, "all"], default="pending")
@@ -121,7 +123,7 @@ def main() -> None:
     export.add_argument("--include-demo", action="store_true", help="also demo scans")
     args = parser.parse_args()
 
-    store = ResultsStore(args.db or resolve_path(get_settings().results_db))
+    store = ResultsStore(args.db or store_target())
     try:
         {"list": cmd_list, "review": cmd_review, "export": cmd_export}[args.command](store, args)
     finally:

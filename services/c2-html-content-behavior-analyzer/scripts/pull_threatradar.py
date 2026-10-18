@@ -21,11 +21,11 @@ import os
 from datetime import date
 from pathlib import Path
 
-from c2_analyzer.config import get_settings, project_root, resolve_path
+from c2_analyzer.config import project_root
 from c2_analyzer.dataset.feeds import THREATRADAR_SOURCES
 from c2_analyzer.ingest.pull import pull_threatradar
 from c2_analyzer.ingest.service import IngestService
-from c2_analyzer.store.repository import ResultsStore
+from c2_analyzer.store.repository import ResultsStore, describe_store, store_target
 
 
 def parse_sources(text: str) -> tuple[str, ...]:
@@ -52,12 +52,14 @@ def main() -> None:
         help=f"comma list of {','.join(THREATRADAR_SOURCES)} (default all)",
     )
     parser.add_argument("--limit", type=int, help="queue at most N new URLs")
-    parser.add_argument("--db", type=Path, help="results database (default RESULTS_DB)")
+    parser.add_argument(
+        "--db", type=Path, help="SQLite file (default: DATABASE_URL if set, else RESULTS_DB)"
+    )
     args = parser.parse_args()
     data_dir = args.dir.resolve()
     db = args.db.resolve() if args.db else None
     os.chdir(project_root())
-    db = db or resolve_path(get_settings().results_db)
+    db = db or store_target()
 
     store = ResultsStore(db)
     try:
@@ -65,7 +67,7 @@ def main() -> None:
             data_dir, IngestService(store), args.since, args.sources, args.limit
         )
         queued = report.queued
-        print(f"ThreatRadar pull from {data_dir} -> {db}")
+        print(f"ThreatRadar pull from {data_dir} -> {describe_store(db)}")
         print(f"  rows read:        {report.read}")
         print(f"  queued (new):     {queued.accepted}")
         print(f"  duplicates:       {queued.duplicates} (analysed in the last 24 h)")

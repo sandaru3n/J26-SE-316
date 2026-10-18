@@ -18,21 +18,26 @@ the API from a browser, only with GET / POST and a JSON body; nothing else is ex
 
 from __future__ import annotations
 
+import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from c2_analyzer import __version__
-from c2_analyzer.api.dependencies import get_engine, get_worker
+from c2_analyzer.api.dependencies import get_engine, get_ingest_service, get_worker
 from c2_analyzer.api.ingest_routes import router as ingest_router
 from c2_analyzer.api.routes import router
 from c2_analyzer.api.security import BodySizeLimitMiddleware, SecurityHeadersMiddleware
 from c2_analyzer.config import get_settings, load_yaml_config
 from c2_analyzer.constants import SERVICE_NAME
 from c2_analyzer.schemas.analysis import ReadyResponse
+from c2_analyzer.store.repository import StoreUnavailable
 from c2_analyzer.utils.url import domain_method
+
+log = logging.getLogger(__name__)
 
 DEFAULT_MAX_BODY_BYTES = 5 * 1024 * 1024
 
@@ -47,11 +52,25 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         resolve_engine(app).start()
         # Part 9 B-2: the ingest worker analyses queued ThreatRadar URLs in this process.
         if get_settings().ingest_worker_enabled:
-            worker = app.dependency_overrides.get(get_worker, get_worker)()
-            await worker.start()
+            try:
+                worker = app.dependency_overrides.get(get_worker, get_worker)()
+            except StoreUnavailable as error:  # /analyze still works; /ready shows why
+                log.error("ingest worker not started: %s", error)
+            else:
+                await worker.start()
     yield
     if worker is not None:
         await worker.stop()
+
+
+def store_health(app: FastAPI) -> dict | None:
+    """The results store's {backend, ok, error} for /ready (never raises)."""
+    try:
+        service = app.dependency_overrides.get(get_ingest_service, get_ingest_service)()
+    except StoreUnavailable as error:
+        return {"backend": "postgresql", "ok": False, "error": str(error)}
+    store = getattr(service, "store", None)
+    return store.health() if hasattr(store, "health") else None
 
 
 def resolve_engine(app: FastAPI):
@@ -124,11 +143,17 @@ def create_app(app_env: str | None = None, warm_up: bool = True) -> FastAPI:
             )
         else:
             answer = orchestrator.models.ready()
+        answer = answer.model_copy(update={"results_store": store_health(app)})
         return Response(
             answer.model_dump_json(),
             status_code=200 if answer.ready else 503,
             media_type="application/json",
         )
+
+    @app.exception_handler(StoreUnavailable)
+    def store_unavailable(request: Request, error: StoreUnavailable) -> JSONResponse:
+        """History / ingest / dashboard endpoints while PostgreSQL cannot be reached."""
+        return JSONResponse({"detail": str(error)}, status_code=503)
 
     app.include_router(router)
     app.include_router(ingest_router)

@@ -26,7 +26,7 @@ It returns one unified JSON result: `verdict`, `risk_score`, per-modality result
 | 6 | XLM-R content classification (6A: page level) | `nlp/` | `train_xlmr.py`, `evaluate_xlmr.py` |
 | 7 | Static JavaScript intent analyzer | `js_analyzer/` | `analyze_js.py` |
 | 8 | Behavioral intent mapping (sources → sinks) | `behavior/` | `map_behavior.py` |
-| 9 | Tri-modal fusion + ablation (9A) · URL analysis engine + `/api/v1/analyze` (9B-1) · ThreatRadar ingestion, results store, dashboard APIs (9B-2) | `fusion/`, `api/`, `ingest/`, `store/` | `run_ablation.py`, `calibrate_verdict.py`, `evaluate_verdict.py`, `export_openapi.py`, `run_api.py`, `pull_threatradar.py`, `review_live.py`, `demo_ingest.py` |
+| 9 | Tri-modal fusion + ablation (9A) · URL analysis engine + `/api/v1/analyze` (9B-1) · ThreatRadar ingestion, results store, dashboard APIs (9B-2) | `fusion/`, `api/`, `ingest/`, `store/` | `run_ablation.py`, `calibrate_verdict.py`, `evaluate_verdict.py`, `export_openapi.py`, `run_api.py`, `pull_threatradar.py`, `review_live.py`, `demo_ingest.py`, `migrate_sqlite_to_postgres.py` |
 
 ## Setup
 
@@ -742,9 +742,26 @@ python scripts/demo_ingest.py [--count 20 --no-xlmr | --clear]  # demo history f
 
 - **Push → queue → worker.** `POST /api/v1/ingest` (≤ 500 URLs, `X-C2-Ingest-Key` checked in constant time; no key configured → 503) validates each URL (http/https, ≤ 2,048 chars; allow-listed sites from `threatradar_rules.yaml` skipped), queues it and answers **202** at once. A bad URL is listed in `rejected` and does not fail the batch. The **worker** is an asyncio task inside the API process (it shares the loaded models: XLM-R is not loaded twice) and analyses the queue with the 9B-1 engine: 2 at a time, 1 job start/s, 45 s per job. Transient fetch errors (timeout, connection, 5xx, 429) are retried with exponential backoff (3 attempts), while 404 / SSRF refusals are final. Jobs left `running` by a crash are re-queued on start (the queue lives in SQLite, not in memory).
 - **Dedupe.** The same normalized URL analysed in the last 24 h (with a page verdict) or still queued → a `skipped_duplicate` job that reuses that result. The daily **pull** queues only URLs C2 has *never* seen (same Part 1 parsers as `collect.py import --feed threatradar`, no keyword rule needed).
-- **Results store** (`store/`, SQLite `data/c2_results.db`, git-ignored, WAL, schema migrations via `PRAGMA user_version`): `scan_jobs`, `scan_results` (full AnalysisResponse JSON, never HTML), `review_queue`. Users' `/api/v1/analyze` checks are stored too (source = the request's `source`); a storage error never fails `/analyze`.
+- **Results store** (`store/`): `scan_jobs`, `scan_results` (full AnalysisResponse JSON, never HTML), `review_queue`. Users' `/api/v1/analyze` checks are stored too (source = the request's `source`); a storage error never fails `/analyze`. Two backends, one repository (`store/repository.py`): **SQLite** `data/c2_results.db` (default; git-ignored, WAL, migrations via `PRAGMA user_version`) or **PostgreSQL** when `DATABASE_URL` is set (see below).
 - **Never auto-trained on.** Malicious results, and Suspicious ones with risk ≥ 70 (`configs/ingest.yaml`), go to the review queue. Only labels a person **confirms** are exported, as `url,label,language_hint,source,notes` rows (Telegram / Reddit → `social_media_report`, otherwise `other`; notes carry the analysis id). They enter the dataset through the normal Part 1 pipeline. Feeding the model's own verdicts back as labels would turn its mistakes into "truth".
 - **Read APIs** (CORS from `CORS_ORIGINS`): `GET /api/v1/scans` (filters `source, verdict (none = no verdict), threat_class, since, q`, cursor pagination), `GET /api/v1/scans/{id}` (stored AnalysisResponse), `GET /api/v1/stats/overview?window=24h|7d|30d` (by verdict / status / class / source / language, top flagged domains + imitated brands, per-hour series (per day for 30d), queue, review queue, worker), `GET /api/v1/feed/stream` (Server-Sent Events, `event: scan` per finished scan), `GET /api/v1/research/summary` (dataset, ablation rows with bootstrap CIs, operating points, model versions, read from existing reports only). **Every URL / domain is defanged** (`hxxps://example[.]com`) and no page HTML ever leaves C2.
+
+### PostgreSQL results store (optional)
+
+Set `DATABASE_URL=postgresql://<user>:<password>@localhost:5432/<database>` in `.env` (the database must exist). C2 then uses PostgreSQL **instead of** `RESULTS_DB`. Leave it empty to stay on SQLite. Nothing else changes: same API answers, same scripts (`review_live.py`, `pull_threatradar.py`, `demo_ingest.py` follow `DATABASE_URL` too).
+
+```bash
+pip install -r requirements.txt                       # adds psycopg[binary] + psycopg-pool
+python scripts/migrate_sqlite_to_postgres.py           # copy data/c2_results.db -> DATABASE_URL (safe to re-run)
+python scripts/migrate_sqlite_to_postgres.py --counts-only   # row counts per table in both databases
+python scripts/run_api.py                              # GET /ready -> "results_store": {"backend": "postgresql", "ok": true}
+```
+
+- **Schema** (`store/pg.py`): the same three tables with PostgreSQL types: `TIMESTAMPTZ` times, `JSONB` for `source_ref` / `top_findings` / `full_response`, `BOOLEAN` demo, `BIGINT` identity ids. Indexes for the queue, URL dedupe, and every `/api/v1/scans` filter (source, verdict, threat class, time). Migrations are append-only steps recorded in `c2_schema_migrations` and run on every start in one transaction under an advisory lock, so they are safe to run twice or from two processes at once.
+- **Why psycopg 3, not SQLAlchemy:** the repository's ~25 hand-written queries stay one text for both databases (`?` → `%s`). Only row locking (`FOR UPDATE SKIP LOCKED`, so two C2 processes never claim the same job) and the type adapters differ, and those adapters return rows in the SQLite shape (ISO-text timestamps, JSON text), so callers did not change.
+- **Copy script** (`store/sqlite_to_pg.py`): keeps the original ids (dashboard links, review notes), inserts with `ON CONFLICT DO NOTHING` (a re-run inserts 0 and never overwrites a newer PostgreSQL row), runs in one transaction, opens SQLite read-only, then moves the id sequence past the copied ids. If PostgreSQL already holds *different* jobs under the same ids, it refuses and copies nothing.
+- **PostgreSQL down** (wrong password, service stopped): C2 still starts and `/api/v1/analyze` still answers (the check is just not saved). History / ingest / dashboard endpoints answer **503** with the reason, `/ready` shows `results_store.ok: false` (models decide `ready`), the worker is not started, and C2 tries to connect again at most every 15 s. It never falls back to SQLite silently. The connection string is never logged or returned. Errors name only the database, host and PostgreSQL's reason.
+- **Tests:** SQLite by default. With `TEST_DATABASE_URL=postgresql://...` (a scratch database: each test creates and drops its own schema), `tests/test_store_postgres.py` also checks that PostgreSQL answers exactly like SQLite, the types / indexes, repeated and concurrent migrations, two processes claiming jobs, and the copy script. `C2_TEST_STORE=postgres` runs the whole `tests/test_ingest.py` suite on PostgreSQL.
 
 Demo on this laptop (`demo_ingest.py`, 68 v0.3 test pages, 4 arms, 53 s): 28 Legitimate / 14 Suspicious / 26 Malicious, 32 items in the review queue.
 
@@ -753,7 +770,7 @@ Demo on this laptop (`demo_ingest.py`, 68 v0.3 test pages, 4 arms, 53 s): 28 Leg
 | Method | Path | Status |
 |---|---|---|
 | GET | `/health` | ✅ returns `{"status": "ok", "service": "c2"}` (liveness) |
-| GET | `/ready` | ✅ Part 9 B-1: 200 + arms / model versions once every model is loaded, 503 while loading or broken |
+| GET | `/ready` | ✅ Part 9 B-1: 200 + arms / model versions once every model is loaded, 503 while loading or broken; `results_store` = `{backend: sqlite\|postgresql, ok, error}` (reported only) |
 | POST | `/api/v1/dom-features` | ✅ Part 3: same body → `DomResult` (52-feature vector in dictionary order + evidence). No `url` → `base_url_known = 0` and external features 0 |
 | POST | `/api/v1/preprocess` | ✅ Part 2: body `{"html": "...", "url": "..." or null}` → `ParsedPage` JSON (same as the stored files). `url` is never fetched. Body > 5 MB → `413` |
 | POST | `/api/v1/js-analysis` | ✅ Part 7: same body → `JsAnalysisResult` (detections with line numbers / arguments / masked snippets, scripts with obfuscation stats, external scripts, js_v1 features). Nothing is executed or downloaded |
@@ -821,7 +838,7 @@ data/
   raw/<label>/      collected HTML (git-ignored)
   metadata/         dataset_schema.json, manual_urls_template.csv, manifests/ (tracked); metadata.csv, candidates.csv, review/ (git-ignored)
   feeds/            downloaded feed files (git-ignored)
-  c2_results.db     Part 9 B-2 scan history + queue + review queue (SQLite, git-ignored)
+  c2_results.db     Part 9 B-2 scan history + queue + review queue (SQLite, git-ignored; unused when DATABASE_URL is set)
   tmp/              pages being saved by the collector (git-ignored, emptied automatically)
   interim/          after dedup (git-ignored)
   processed/        parsed_html/<version>/ (Part 2 JSON + TXT), dom_features, text, js, behavior (git-ignored)

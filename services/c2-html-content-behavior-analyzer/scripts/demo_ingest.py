@@ -18,8 +18,9 @@ import os
 import time
 from pathlib import Path
 
-from c2_analyzer.config import get_settings, project_root, resolve_path
+from c2_analyzer.config import project_root
 from c2_analyzer.ingest.demo import clear_demo, run_demo
+from c2_analyzer.store.repository import describe_store, store_target
 
 
 def main() -> None:
@@ -29,15 +30,19 @@ def main() -> None:
     parser.add_argument("--count", type=int, help="at most N test pages (default all)")
     parser.add_argument("--no-xlmr", action="store_true", help="3 arms (faster, no torch)")
     parser.add_argument("--spread-hours", type=float, default=24.0)
-    parser.add_argument("--db", type=Path, help="results database (default RESULTS_DB)")
+    parser.add_argument(
+        "--db", type=Path, help="SQLite file (default: DATABASE_URL if set, else RESULTS_DB)"
+    )
     parser.add_argument("--clear", action="store_true", help="delete demo rows and stop")
     args = parser.parse_args()
 
-    db = args.db or resolve_path(get_settings().results_db)
+    db = args.db or store_target()
     if args.clear:
-        print(f"removed {clear_demo(db)} demo scan(s) from {db}")
+        print(f"removed {clear_demo(db)} demo scan(s) from {describe_store(db)}")
         return
-    print(f"Demo scans -> {db} (version {args.version}, html mode, nothing fetched)")
+    print(
+        f"Demo scans -> {describe_store(db)} (version {args.version}, html mode, nothing fetched)"
+    )
     started = time.perf_counter()
     verdicts = run_demo(
         db, args.version, args.count, xlmr=not args.no_xlmr, spread_hours=args.spread_hours

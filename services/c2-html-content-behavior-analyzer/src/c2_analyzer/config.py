@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     # Part 9 B-2 (ThreatRadar ingestion): SQLite results store, shared secret for
     # POST /api/v1/ingest (empty = ingest disabled, 503), background worker on/off.
     results_db: Path = Path("data/c2_results.db")
+    # Optional PostgreSQL results store (postgresql://user:pass@host:5432/db). Set = it is
+    # used INSTEAD of RESULTS_DB; empty = the SQLite file. Secret: never logged.
+    database_url: SecretStr = SecretStr("")
     ingest_api_key: SecretStr = SecretStr("")
     ingest_worker_enabled: bool = True
 

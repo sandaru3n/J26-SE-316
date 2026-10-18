@@ -17,10 +17,10 @@ from pydantic import BaseModel, ConfigDict, Field
 from c2_analyzer.api.dependencies import (
     AnalysisEngine,
     get_engine,
-    get_ingest_service,
     get_rate_limiter,
     get_result_cache,
     get_text_models,
+    optional_history,
 )
 from c2_analyzer.api.guards import RateLimiter, ResultCache
 from c2_analyzer.behavior.pipeline import behavior_for_html
@@ -275,7 +275,8 @@ def text_prediction(request: ContentRequest, models: TextModelsDep) -> TextPredi
 
 EngineDep = Annotated[AnalysisEngine, Depends(get_engine)]  # tests override get_engine
 CacheDep = Annotated[ResultCache, Depends(get_result_cache)]
-HistoryDep = Annotated[IngestService, Depends(get_ingest_service)]  # Part 9 B-2
+# Part 9 B-2: None while the results store is unavailable (the check is still answered)
+HistoryDep = Annotated[IngestService | None, Depends(optional_history)]
 
 
 def require_json(request: Request) -> None:
@@ -351,7 +352,8 @@ def analyze(
         hit = cache.get(body.url)
         if hit is not None:
             answer = {**hit, "cached": True, "request_id": body.request_id}
-            history.record_user_check(body, AnalysisResponse.model_validate(answer))
+            if history is not None:
+                history.record_user_check(body, AnalysisResponse.model_validate(answer))
             return _json(answer)
     try:
         orchestrator = engine.get()
@@ -363,7 +365,8 @@ def analyze(
         return _json(late.response.model_dump_json(), status_code=504)
     if body.mode == "url" and result.status in ("ok", "inconclusive"):
         cache.put(result.model_dump(mode="json"), body.url, result.input.final_url)
-    history.record_user_check(body, result)
+    if history is not None:
+        history.record_user_check(body, result)
     return _json(result.model_dump_json())
 
 

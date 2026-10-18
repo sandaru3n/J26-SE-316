@@ -2,7 +2,8 @@
 
 No network: the analysis engine is a fake that returns prepared AnalysisResponses (or the
 real 9B-1 orchestrator with synthetic model arms, in html mode, for the "no raw HTML"
-check). Every store is an in-memory SQLite database.
+check). Every store is an in-memory SQLite database - or, with C2_TEST_STORE=postgres and
+TEST_DATABASE_URL, a fresh PostgreSQL schema (same tests, other backend).
 """
 
 from __future__ import annotations
@@ -50,6 +51,7 @@ from c2_analyzer.schemas.analysis import (
 from c2_analyzer.store.db import SCHEMA_VERSION, connect
 from c2_analyzer.store.repository import ResultsStore
 from c2_analyzer.utils.defang import defang_analysis, defang_host, defang_text, defang_url
+from tests.pg_helpers import fresh_schema_url, ingest_tests_on_postgres
 
 KEY = "s3cret-test-key"
 ALLOW = ("youtube.com", "google.com")
@@ -171,14 +173,19 @@ def worker_config(**overrides) -> IngestConfig:
     return IngestConfig(**{**values, **overrides})
 
 
+def store_target() -> str:
+    """In-memory SQLite, or a fresh PostgreSQL schema when C2_TEST_STORE=postgres."""
+    return fresh_schema_url() if ingest_tests_on_postgres() else ":memory:"
+
+
 def make_service(clock=None, config: IngestConfig | None = None, bus=None) -> IngestService:
-    store = ResultsStore(":memory:", clock=clock or Clock())
+    store = ResultsStore(store_target(), clock=clock or Clock())
     return IngestService(store, bus or EventBus(), config or worker_config(), allow_list=ALLOW)
 
 
 def realtime_service(**config) -> IngestService:
     """Store with the real clock (the worker compares retry times with 'now')."""
-    store = ResultsStore(":memory:")
+    store = ResultsStore(store_target())
     return IngestService(store, EventBus(), worker_config(**config), allow_list=ALLOW)
 
 
@@ -377,7 +384,7 @@ def test_worker_processes_the_queue_respecting_concurrency():
     orchestrator = FakeOrchestrator(delay=0.15)
     worker = IngestWorker(service, FakeEngine(orchestrator), service.config)
     service.enqueue([UrlItem(f"https://site{i}.com/") for i in range(6)], "threatradar_push")
-    run_worker(worker, lambda: statuses(service) == {"done": 6})
+    run_worker(worker, lambda: statuses(service) == {"done": 6} and worker.processed == 6)
     assert statuses(service) == {"done": 6}
     assert orchestrator.max_active == 2  # never more than `concurrency` at once
     assert worker.processed == 6 and worker.status().state == "stopped"
@@ -403,7 +410,8 @@ def test_transient_errors_are_retried_then_fail():
     orchestrator = FakeOrchestrator(lambda url: timeout)
     worker = IngestWorker(service, FakeEngine(orchestrator), service.config)
     job_id = service.enqueue([UrlItem("https://slow.com/")], "threatradar_push").job_ids[0]
-    run_worker(worker, lambda: statuses(service) == {"failed": 1})
+    # the DB row is written in a thread before the worker counts it: wait for both
+    run_worker(worker, lambda: statuses(service) == {"failed": 1} and worker.failed == 1)
     job = service.store.job(job_id)
     assert job["status"] == "failed" and job["attempts"] == 3
     assert "gave up after 3 attempt(s): timeout" in job["error"]
@@ -455,11 +463,11 @@ def test_a_crashing_analysis_does_not_stop_the_worker():
 
 
 def test_models_not_loaded_gives_the_job_back_without_counting():
-    service = realtime_service()
+    service = realtime_service(concurrency=1)  # a 2nd slot would re-claim the job at once
     worker = IngestWorker(service, FakeEngine(error="loading failed"), service.config)
 
-    async def fast_sleep(seconds):
-        await asyncio.sleep(min(seconds, 0.01))
+    async def fast_sleep(seconds):  # long enough that the test stops before a re-claim
+        await asyncio.sleep(min(seconds, 0.5))
 
     worker.sleep = fast_sleep
     job_id = service.enqueue([UrlItem("https://wait.com/")], "threatradar_push").job_ids[0]
@@ -831,7 +839,7 @@ def test_user_checks_are_stored_and_storage_errors_never_fail_analyze():
         def insert_finished(self, *args, **kwargs):
             raise sqlite3.OperationalError("disk I/O error")
 
-    broken = IngestService(Broken(":memory:"), EventBus(), worker_config(), allow_list=ALLOW)
+    broken = IngestService(Broken(store_target()), EventBus(), worker_config(), allow_list=ALLOW)
     client = api(broken, engine=engine)
     assert client.post("/api/v1/analyze", json={"html": NEWS_HTML}).status_code == 200
 
