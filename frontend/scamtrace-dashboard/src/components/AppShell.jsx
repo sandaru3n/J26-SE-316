@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import {
   ChevronDown,
   ChevronRight,
-  Code,
   FolderGit2,
   History,
   Images,
@@ -26,17 +25,12 @@ const NAV_LINKS = [
   { to: '/url-analyzer', label: 'Threat Analysis', icon: ScanSearch },
   { to: '/c2', label: 'C2 · Content & Behavior', icon: Radar },
   { to: '/social-visual-analysis', label: 'Social Visual Analysis', icon: Images },
-  { to: '/code-audit', label: 'Repository Audit', icon: Code, projects: true },
+  { to: '/code-audit', label: 'Repository Audit', projects: true },
   { to: '/history', label: 'History', icon: History },
   { to: '/profile', label: 'Profile', icon: UserRound },
 ]
 
-const SIDEBAR_PROJECT_LIMIT = 3
-
-function initials(name = '') {
-  const parts = name.trim().split(/\s+/).filter(Boolean)
-  return ((parts[0]?.[0] || '') + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase() || '?'
-}
+const SIDEBAR_PROJECT_LIMIT = 2
 
 function navClass({ isActive }) {
   return `group flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition ${
@@ -50,7 +44,7 @@ function subLinkClass(active) {
   }`
 }
 
-function ProjectsNav({ icon: Icon, label, to, onNavigate }) {
+function ProjectsNav({ label, to, onNavigate }) {
   const { pathname } = useLocation()
   const inAudit = pathname.startsWith('/code-audit')
   const [open, setOpen] = useState(inAudit)
@@ -64,7 +58,6 @@ function ProjectsNav({ icon: Icon, label, to, onNavigate }) {
     <div>
       <div className="flex items-center gap-1">
         <NavLink to={to} className={() => `${navClass({ isActive: inAudit })} flex-1`} onClick={onNavigate}>
-          <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
           <span>{label}</span>
         </NavLink>
         <button
@@ -112,7 +105,7 @@ function ProjectsNav({ icon: Icon, label, to, onNavigate }) {
 }
 
 function Sidebar({ onNavigate }) {
-  const { user, isAdmin, logout } = useAuth()
+  const { isAdmin, logout } = useAuth()
   const navigate = useNavigate()
   const [leaving, setLeaving] = useState(false)
 
@@ -139,7 +132,7 @@ function Sidebar({ onNavigate }) {
         <nav className="flex flex-col gap-1 px-4 py-2" aria-label="Main navigation">
           <span className="mb-1 px-2 text-[0.6875rem] font-bold uppercase tracking-wider text-st-outline">Navigation</span>
           {links.map(({ to, label, icon: Icon, end, projects }) => projects ? (
-            <ProjectsNav key={to} to={to} label={label} icon={Icon} onNavigate={onNavigate} />
+            <ProjectsNav key={to} to={to} label={label} onNavigate={onNavigate} />
           ) : (
             <NavLink key={to} to={to} end={end} className={navClass} onClick={onNavigate}>
               <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
@@ -149,26 +142,12 @@ function Sidebar({ onNavigate }) {
         </nav>
       </div>
 
-      <div className="flex flex-col gap-3 p-4">
-        <div className="flex items-center justify-between gap-2 rounded-lg bg-st-low p-2.5">
-          <div className="flex min-w-0 items-center gap-2">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-st-navy text-xs font-bold text-white">
-              {initials(user?.name)}
-            </span>
-            <div className="min-w-0 leading-tight">
-              <p className="truncate text-xs font-semibold text-st-ink">{user?.name}</p>
-              <p className="truncate text-[0.6875rem] text-st-outline">{user?.email}</p>
-            </div>
-          </div>
-          <span className="shrink-0 rounded-full bg-st-fixed px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wider text-st-navy">
-            {user?.role}
-          </span>
-        </div>
+      <div className="p-4">
         <button
           type="button"
           onClick={handleLogout}
           disabled={leaving}
-          className="flex items-center justify-center gap-2 rounded-lg bg-st-error px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#93000a] disabled:opacity-60"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-st-error px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#93000a] disabled:opacity-60"
         >
           <LogOut className="h-4 w-4" aria-hidden="true" /> {leaving ? 'Signing out…' : 'Logout'}
         </button>
