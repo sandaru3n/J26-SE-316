@@ -1,0 +1,19 @@
+{
+  "version": "v0.3",
+  "part": "Part 10 - PP1 evaluation",
+  "note": "frozen for PP1",
+  "split_fingerprint": "7d9ae69bbae3f5c699c022eb4ef74334ac49c4e95d68f30f9d480c9e55324f4f",
+  "cv_folds_fingerprint": "b86537d5071c8ac2eaca6f0000129e5b5ea3528c1e74b71a20365c840cd620a5",
+  "manifest_fingerprint": "7a620c3b7ea05f42747d1a418a0663befa62a7c6ade6335f4557b52fda77cc26",
+  "n_train": 322,
+  "n_val": 69,
+  "n_test": 68,
+  "classes": [
+    "benign",
+    "phishing",
+    "fake_ecommerce",
+    "crypto_scam",
+    "malware_delivery"
+  ],
+  "created_at": "2026-10-20T07:54:26+05:30"
+}

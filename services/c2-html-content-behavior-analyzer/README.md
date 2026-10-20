@@ -27,6 +27,7 @@ It returns one unified JSON result: `verdict`, `risk_score`, per-modality result
 | 7 | Static JavaScript intent analyzer | `js_analyzer/` | `analyze_js.py` |
 | 8 | Behavioral intent mapping (sources → sinks) | `behavior/` | `map_behavior.py` |
 | 9 | Tri-modal fusion + ablation (9A) · URL analysis engine + `/api/v1/analyze` (9B-1) · ThreatRadar ingestion, results store, dashboard APIs (9B-2) | `fusion/`, `api/`, `ingest/`, `store/` | `run_ablation.py`, `calibrate_verdict.py`, `evaluate_verdict.py`, `export_openapi.py`, `run_api.py`, `pull_threatradar.py`, `review_live.py`, `demo_ingest.py`, `migrate_sqlite_to_postgres.py` |
+| 10 | PP1 evaluation (consolidates saved baseline results, trains nothing) | `evaluation/` | `pp1_evaluation.py` |
 
 ## Setup
 
@@ -720,6 +721,15 @@ python scripts/bench_api.py --version v0.3 --skip-fetch   # concurrency only, no
 - **Fairness**: Sri Lankan SME / local benign sites are **not** flagged more (Suspicious-or-worse 0/9 SME, 6/42 other LK vs 51/176 non-LK); foreign-language ("other") benign pages are (17/44 = 38.6 % vs English 21.8 %, Fisher p = 0.031). Tagging rule in the report.
 - **Performance** (this laptop, one process): end-to-end (fetch + analysis) p95 4.0 s with XLM-R / 3.5 s without (≤ 5 s met); throughput 1.5 req/s with XLM-R, 3.3 without - 50 URLs/s needs horizontal scaling (report lists what has to move out of the process). The benchmark server uses a throw-away results DB under `data/tmp/`.
 - Requirement → implementation → evidence: [`docs/requirements_traceability.md`](docs/requirements_traceability.md).
+
+## PP1 evaluation (Part 10)
+
+```bash
+python scripts/pp1_evaluation.py --freeze     # once: data/splits/v0.3/pp1_eval.json (frozen PP1 set)
+python scripts/pp1_evaluation.py              # -> reports/pp1/pp1_evaluation.{md,json} + figures/ (~15 s)
+```
+
+Trains and re-fits nothing: DOM-only (Part 4), Content-only = Text TF-IDF and Text XLM-R (Part 6A, plus the 3-seed mean ± std), Behavior-only (Part 8) and the Part 9A tri-modal model (reference row) are scored from their SAVED predictions (`data/processed/fusion/v0.3/oof_*.csv`, `models/xlmr/v0.3/seed_*/predictions.jsonl`, `reports/ablation/v0.3/test_predictions.csv`); a missing file skips that row. Every run re-verifies the v0.3 manifest and refuses a split that differs from `pp1_eval.json` (other versions only with an explicit `--version`). The report has the class / language / class × language distributions (test, CV pool, all; n < 5 flagged), CV (mean ± std over the 5 grouped folds) and test metrics with bootstrap CIs, per-class and per-language results, confusion matrices, a cross-check against the Part reports (315 numbers, 0 mismatches on v0.3) and findings / limitations generated from those numbers only.
 
 ## ThreatRadar ingestion & dashboard APIs
 

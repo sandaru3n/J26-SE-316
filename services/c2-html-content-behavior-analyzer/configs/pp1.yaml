@@ -1,0 +1,45 @@
+# PP1 evaluation (Part 10). Consolidates SAVED results - nothing is trained here.
+#
+# scripts/pp1_evaluation.py --version v0.3 [--freeze]
+#   1. data/splits/<v>/pp1_eval.json pins the evaluation set (split + CV-folds fingerprint)
+#   2. distributions, metrics from saved predictions, cross-check against each Part's report
+#   3. reports/pp1/  (pp1_evaluation.md / .json, figures/)
+
+version: v0.3              # the frozen PP1 evaluation set (other versions need --version)
+small_cell: 5              # distribution cells with n < 5 are flagged
+min_language_support: 10   # per-language results below this n carry a small-n flag (as Part 6A)
+tolerance: 1.0e-6          # |ours - reported| above this = a mismatch
+
+# Report rows, in order. source: oof = data/processed/fusion/<v>/oof_<arm>.csv (CV = OOF of
+# train+val, test = the arm's final model); ablation = the Part 9A final model (test labels
+# from reports/ablation/<v>/test_predictions.csv, CV from ablation.json).
+rows:
+  dom:
+    display: DOM-only
+    part: Part 4
+    source: oof
+    part_report: reports/dom_baseline
+  text_tfidf:
+    display: Content-only (Text TF-IDF)
+    part: Part 6A
+    source: oof
+    part_report: reports/text_baseline
+  text_xlmr:
+    display: Content-only (Text XLM-R)
+    part: Part 6A
+    source: oof
+    part_report: reports/xlmr
+  behavior:
+    display: Behavior-only
+    part: Part 8
+    source: oof
+    part_report: reports/behavior_baseline
+  tri:
+    display: Tri-modal fusion (reference)
+    part: Part 9A
+    source: ablation
+
+paths:
+  reports_dir: reports/pp1
+  ablation_dir: reports/ablation
+  xlmr_models_dir: models/xlmr

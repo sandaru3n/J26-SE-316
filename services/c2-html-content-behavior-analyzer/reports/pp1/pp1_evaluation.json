@@ -1,0 +1,4979 @@
+{
+  "version": "v0.3",
+  "part": "Part 10 - PP1 evaluation",
+  "rule": "consolidated from saved predictions; no model was trained or re-fitted",
+  "frozen": {
+    "version": "v0.3",
+    "part": "Part 10 - PP1 evaluation",
+    "note": "frozen for PP1",
+    "split_fingerprint": "7d9ae69bbae3f5c699c022eb4ef74334ac49c4e95d68f30f9d480c9e55324f4f",
+    "cv_folds_fingerprint": "b86537d5071c8ac2eaca6f0000129e5b5ea3528c1e74b71a20365c840cd620a5",
+    "manifest_fingerprint": "7a620c3b7ea05f42747d1a418a0663befa62a7c6ade6335f4557b52fda77cc26",
+    "n_train": 322,
+    "n_val": 69,
+    "n_test": 68,
+    "classes": [
+      "benign",
+      "phishing",
+      "fake_ecommerce",
+      "crypto_scam",
+      "malware_delivery"
+    ],
+    "created_at": "2026-10-20T07:54:26+05:30"
+  },
+  "manifest_check": {
+    "version": "v0.3",
+    "files_checked": 459,
+    "missing": 0,
+    "changed": 0,
+    "ok": true,
+    "fingerprint": "7a620c3b7ea05f42747d1a418a0663befa62a7c6ade6335f4557b52fda77cc26"
+  },
+  "classes": [
+    "benign",
+    "phishing",
+    "fake_ecommerce",
+    "crypto_scam",
+    "malware_delivery"
+  ],
+  "distributions": {
+    "test": {
+      "n": 68,
+      "by_class": {
+        "benign": {
+          "n": 34,
+          "pct": 0.5
+        },
+        "phishing": {
+          "n": 13,
+          "pct": 0.19117647058823528
+        },
+        "fake_ecommerce": {
+          "n": 8,
+          "pct": 0.11764705882352941
+        },
+        "crypto_scam": {
+          "n": 4,
+          "pct": 0.058823529411764705
+        },
+        "malware_delivery": {
+          "n": 9,
+          "pct": 0.1323529411764706
+        }
+      },
+      "by_language": {
+        "en": {
+          "n": 51,
+          "pct": 0.75
+        },
+        "si": {
+          "n": 1,
+          "pct": 0.014705882352941176
+        },
+        "ta": {
+          "n": 1,
+          "pct": 0.014705882352941176
+        },
+        "mixed": {
+          "n": 1,
+          "pct": 0.014705882352941176
+        },
+        "other": {
+          "n": 14,
+          "pct": 0.20588235294117646
+        }
+      },
+      "class_by_language": {
+        "benign": {
+          "en": 25,
+          "si": 1,
+          "ta": 1,
+          "mixed": 0,
+          "other": 7
+        },
+        "phishing": {
+          "en": 12,
+          "si": 0,
+          "ta": 0,
+          "mixed": 0,
+          "other": 1
+        },
+        "fake_ecommerce": {
+          "en": 5,
+          "si": 0,
+          "ta": 0,
+          "mixed": 0,
+          "other": 3
+        },
+        "crypto_scam": {
+          "en": 4,
+          "si": 0,
+          "ta": 0,
+          "mixed": 0,
+          "other": 0
+        },
+        "malware_delivery": {
+          "en": 5,
+          "si": 0,
+          "ta": 0,
+          "mixed": 1,
+          "other": 3
+        }
+      },
+      "small_cell_threshold": 5,
+      "small_cells": [
+        {
+          "class": "benign",
+          "language": "si",
+          "n": 1
+        },
+        {
+          "class": "benign",
+          "language": "ta",
+          "n": 1
+        },
+        {
+          "class": "benign",
+          "language": "mixed",
+          "n": 0
+        },
+        {
+          "class": "phishing",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "phishing",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "phishing",
+          "language": "mixed",
+          "n": 0
+        },
+        {
+          "class": "phishing",
+          "language": "other",
+          "n": 1
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "mixed",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "other",
+          "n": 3
+        },
+        {
+          "class": "crypto_scam",
+          "language": "en",
+          "n": 4
+        },
+        {
+          "class": "crypto_scam",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "crypto_scam",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "crypto_scam",
+          "language": "mixed",
+          "n": 0
+        },
+        {
+          "class": "crypto_scam",
+          "language": "other",
+          "n": 0
+        },
+        {
+          "class": "malware_delivery",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "malware_delivery",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "malware_delivery",
+          "language": "mixed",
+          "n": 1
+        },
+        {
+          "class": "malware_delivery",
+          "language": "other",
+          "n": 3
+        }
+      ],
+      "small_classes": [
+        "crypto_scam"
+      ],
+      "small_languages": [
+        "si",
+        "ta",
+        "mixed"
+      ],
+      "declared_language": {
+        "en": 63,
+        "unknown": 3,
+        "ta": 1,
+        "si": 1
+      }
+    },
+    "cv_pool": {
+      "n": 391,
+      "by_class": {
+        "benign": {
+          "n": 193,
+          "pct": 0.4936061381074169
+        },
+        "phishing": {
+          "n": 74,
+          "pct": 0.18925831202046037
+        },
+        "fake_ecommerce": {
+          "n": 49,
+          "pct": 0.12531969309462915
+        },
+        "crypto_scam": {
+          "n": 25,
+          "pct": 0.0639386189258312
+        },
+        "malware_delivery": {
+          "n": 50,
+          "pct": 0.1278772378516624
+        }
+      },
+      "by_language": {
+        "en": {
+          "n": 279,
+          "pct": 0.7135549872122762
+        },
+        "si": {
+          "n": 6,
+          "pct": 0.015345268542199489
+        },
+        "ta": {
+          "n": 2,
+          "pct": 0.005115089514066497
+        },
+        "mixed": {
+          "n": 17,
+          "pct": 0.043478260869565216
+        },
+        "other": {
+          "n": 87,
+          "pct": 0.22250639386189258
+        }
+      },
+      "class_by_language": {
+        "benign": {
+          "en": 140,
+          "si": 6,
+          "ta": 2,
+          "mixed": 7,
+          "other": 38
+        },
+        "phishing": {
+          "en": 48,
+          "si": 0,
+          "ta": 0,
+          "mixed": 7,
+          "other": 19
+        },
+        "fake_ecommerce": {
+          "en": 33,
+          "si": 0,
+          "ta": 0,
+          "mixed": 1,
+          "other": 15
+        },
+        "crypto_scam": {
+          "en": 18,
+          "si": 0,
+          "ta": 0,
+          "mixed": 1,
+          "other": 6
+        },
+        "malware_delivery": {
+          "en": 40,
+          "si": 0,
+          "ta": 0,
+          "mixed": 1,
+          "other": 9
+        }
+      },
+      "small_cell_threshold": 5,
+      "small_cells": [
+        {
+          "class": "benign",
+          "language": "ta",
+          "n": 2
+        },
+        {
+          "class": "phishing",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "phishing",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "mixed",
+          "n": 1
+        },
+        {
+          "class": "crypto_scam",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "crypto_scam",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "crypto_scam",
+          "language": "mixed",
+          "n": 1
+        },
+        {
+          "class": "malware_delivery",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "malware_delivery",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "malware_delivery",
+          "language": "mixed",
+          "n": 1
+        }
+      ],
+      "small_classes": [],
+      "small_languages": [
+        "ta"
+      ],
+      "declared_language": {
+        "en": 364,
+        "unknown": 15,
+        "si": 9,
+        "ta": 3
+      }
+    },
+    "all": {
+      "n": 459,
+      "by_class": {
+        "benign": {
+          "n": 227,
+          "pct": 0.49455337690631807
+        },
+        "phishing": {
+          "n": 87,
+          "pct": 0.1895424836601307
+        },
+        "fake_ecommerce": {
+          "n": 57,
+          "pct": 0.12418300653594772
+        },
+        "crypto_scam": {
+          "n": 29,
+          "pct": 0.06318082788671024
+        },
+        "malware_delivery": {
+          "n": 59,
+          "pct": 0.12854030501089325
+        }
+      },
+      "by_language": {
+        "en": {
+          "n": 330,
+          "pct": 0.7189542483660131
+        },
+        "si": {
+          "n": 7,
+          "pct": 0.015250544662309368
+        },
+        "ta": {
+          "n": 3,
+          "pct": 0.006535947712418301
+        },
+        "mixed": {
+          "n": 18,
+          "pct": 0.0392156862745098
+        },
+        "other": {
+          "n": 101,
+          "pct": 0.22004357298474944
+        }
+      },
+      "class_by_language": {
+        "benign": {
+          "en": 165,
+          "si": 7,
+          "ta": 3,
+          "mixed": 7,
+          "other": 45
+        },
+        "phishing": {
+          "en": 60,
+          "si": 0,
+          "ta": 0,
+          "mixed": 7,
+          "other": 20
+        },
+        "fake_ecommerce": {
+          "en": 38,
+          "si": 0,
+          "ta": 0,
+          "mixed": 1,
+          "other": 18
+        },
+        "crypto_scam": {
+          "en": 22,
+          "si": 0,
+          "ta": 0,
+          "mixed": 1,
+          "other": 6
+        },
+        "malware_delivery": {
+          "en": 45,
+          "si": 0,
+          "ta": 0,
+          "mixed": 2,
+          "other": 12
+        }
+      },
+      "small_cell_threshold": 5,
+      "small_cells": [
+        {
+          "class": "benign",
+          "language": "ta",
+          "n": 3
+        },
+        {
+          "class": "phishing",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "phishing",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "fake_ecommerce",
+          "language": "mixed",
+          "n": 1
+        },
+        {
+          "class": "crypto_scam",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "crypto_scam",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "crypto_scam",
+          "language": "mixed",
+          "n": 1
+        },
+        {
+          "class": "malware_delivery",
+          "language": "si",
+          "n": 0
+        },
+        {
+          "class": "malware_delivery",
+          "language": "ta",
+          "n": 0
+        },
+        {
+          "class": "malware_delivery",
+          "language": "mixed",
+          "n": 2
+        }
+      ],
+      "small_classes": [],
+      "small_languages": [
+        "ta"
+      ],
+      "declared_language": {
+        "en": 427,
+        "unknown": 18,
+        "si": 10,
+        "ta": 4
+      }
+    }
+  },
+  "rows": [
+    {
+      "key": "dom",
+      "display": "DOM-only",
+      "part": "Part 4",
+      "model": "Random Forest",
+      "sources": [
+        "data/processed/fusion/v0.3/oof_dom.csv"
+      ],
+      "note": null,
+      "cv": {
+        "mean": {
+          "accuracy": 0.7721194417396948,
+          "macro_precision": 0.7121090623824898,
+          "macro_recall": 0.7088701240280187,
+          "macro_f1": 0.7006009011107482,
+          "weighted_f1": 0.7770466263733632,
+          "benign_fpr": 0.16072874493927128,
+          "precision_benign": 0.897520325203252,
+          "recall_benign": 0.8392712550607287,
+          "f1_benign": 0.8648660921836637,
+          "precision_phishing": 0.6711779448621554,
+          "recall_phishing": 0.7961904761904762,
+          "f1_phishing": 0.7249861700165958,
+          "precision_fake_ecommerce": 0.8550000000000001,
+          "recall_fake_ecommerce": 0.7488888888888889,
+          "f1_fake_ecommerce": 0.7898412698412698,
+          "precision_crypto_scam": 0.42597402597402595,
+          "recall_crypto_scam": 0.56,
+          "f1_crypto_scam": 0.475,
+          "precision_malware_delivery": 0.7108730158730159,
+          "recall_malware_delivery": 0.6,
+          "f1_malware_delivery": 0.6483109735122119
+        },
+        "std": {
+          "accuracy": 0.06301317969558377,
+          "macro_precision": 0.07003093710588773,
+          "macro_recall": 0.0788432697390584,
+          "macro_f1": 0.07717277879953352,
+          "weighted_f1": 0.056887270741427465,
+          "benign_fpr": 0.07525283791030264,
+          "precision_benign": 0.03772666129123331,
+          "recall_benign": 0.07525283791030264,
+          "f1_benign": 0.041478779973555084,
+          "precision_phishing": 0.1029036315319164,
+          "recall_phishing": 0.08761904761904762,
+          "f1_phishing": 0.08590634355763961,
+          "precision_fake_ecommerce": 0.04582575694955839,
+          "recall_fake_ecommerce": 0.16932691734709993,
+          "f1_fake_ecommerce": 0.12018546178925972,
+          "precision_crypto_scam": 0.2086734559854773,
+          "recall_crypto_scam": 0.265329983228432,
+          "f1_crypto_scam": 0.22570876022973602,
+          "precision_malware_delivery": 0.13168376803700707,
+          "recall_malware_delivery": 0.06324555320336757,
+          "f1_malware_delivery": 0.08668662287257539
+        },
+        "n_folds": 5
+      },
+      "cv_folds": [
+        {
+          "accuracy": 0.8734177215189873,
+          "macro_precision": 0.8400000000000001,
+          "macro_recall": 0.8564102564102564,
+          "macro_f1": 0.8412881323051554,
+          "weighted_f1": 0.8715873463150922,
+          "benign_fpr": 0.05128205128205132
+        },
+        {
+          "accuracy": 0.6794871794871795,
+          "macro_precision": 0.6273232323232323,
+          "macro_recall": 0.6464468864468864,
+          "macro_f1": 0.6157846128535319,
+          "weighted_f1": 0.7026077397846816,
+          "benign_fpr": 0.28205128205128205
+        },
+        {
+          "accuracy": 0.7564102564102564,
+          "macro_precision": 0.6993650793650794,
+          "macro_recall": 0.7098245614035088,
+          "macro_f1": 0.7031963470319635,
+          "weighted_f1": 0.7599227256761504,
+          "benign_fpr": 0.1842105263157895
+        },
+        {
+          "accuracy": 0.7564102564102564,
+          "macro_precision": 0.6836314363143631,
+          "macro_recall": 0.6365811965811966,
+          "macro_f1": 0.648177261335156,
+          "weighted_f1": 0.7490619030092714,
+          "benign_fpr": 0.1282051282051282
+        },
+        {
+          "accuracy": 0.7948717948717948,
+          "macro_precision": 0.7102255639097744,
+          "macro_recall": 0.6950877192982456,
+          "macro_f1": 0.6945581520279345,
+          "weighted_f1": 0.8020534170816201,
+          "benign_fpr": 0.1578947368421053
+        }
+      ],
+      "test": {
+        "n": 68,
+        "accuracy": 0.8235294117647058,
+        "macro_precision": 0.7822763806066891,
+        "macro_recall": 0.8104323780794369,
+        "macro_f1": 0.7861111111111111,
+        "weighted_f1": 0.8274101307189542,
+        "benign_fpr": 0.17647058823529416,
+        "per_class": {
+          "benign": {
+            "precision": 0.9655172413793104,
+            "recall": 0.8235294117647058,
+            "f1": 0.8888888888888888,
+            "support": 34
+          },
+          "phishing": {
+            "precision": 0.631578947368421,
+            "recall": 0.9230769230769231,
+            "f1": 0.75,
+            "support": 13
+          },
+          "fake_ecommerce": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8
+          },
+          "crypto_scam": {
+            "precision": 0.6,
+            "recall": 0.75,
+            "f1": 0.6666666666666666,
+            "support": 4
+          },
+          "malware_delivery": {
+            "precision": 0.7142857142857143,
+            "recall": 0.5555555555555556,
+            "f1": 0.625,
+            "support": 9
+          }
+        },
+        "confusion_matrix": [
+          [
+            28,
+            3,
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            12,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            3,
+            0,
+            0,
+            5
+          ]
+        ]
+      },
+      "test_macro_f1_ci": {
+        "point": 0.7861111111111111,
+        "ci_low": 0.651710525852065,
+        "ci_high": 0.8910793877930074,
+        "bootstrap_mean": 0.7770891115212372,
+        "bootstrap_std": 0.06343713431875272
+      },
+      "per_language": {
+        "en": {
+          "n": 51,
+          "correct": 42,
+          "accuracy": 0.8235294117647058,
+          "small_n": false
+        },
+        "si": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "ta": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "mixed": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "other": {
+          "n": 14,
+          "correct": 11,
+          "accuracy": 0.7857142857142857,
+          "small_n": false
+        }
+      }
+    },
+    {
+      "key": "text_tfidf",
+      "display": "Content-only (Text TF-IDF)",
+      "part": "Part 6A",
+      "model": "TF-IDF char 2-5 + LogReg",
+      "sources": [
+        "data/processed/fusion/v0.3/oof_text_tfidf.csv"
+      ],
+      "note": null,
+      "cv": {
+        "mean": {
+          "accuracy": 0.779974034404414,
+          "macro_precision": 0.7711648811638585,
+          "macro_recall": 0.6845608894029946,
+          "macro_f1": 0.7061932778174577,
+          "weighted_f1": 0.7745869881339386,
+          "benign_fpr": 0.08798920377867747,
+          "precision_benign": 0.7958664879201983,
+          "recall_benign": 0.9120107962213225,
+          "f1_benign": 0.8491443660810549,
+          "precision_phishing": 0.7808309337721101,
+          "recall_phishing": 0.741904761904762,
+          "f1_phishing": 0.7557234432234432,
+          "precision_fake_ecommerce": 0.8498412698412698,
+          "recall_fake_ecommerce": 0.6888888888888889,
+          "f1_fake_ecommerce": 0.7551461988304093,
+          "precision_crypto_scam": 0.49428571428571433,
+          "recall_crypto_scam": 0.56,
+          "f1_crypto_scam": 0.5111111111111111,
+          "precision_malware_delivery": 0.9349999999999999,
+          "recall_malware_delivery": 0.52,
+          "f1_malware_delivery": 0.6598412698412698
+        },
+        "std": {
+          "accuracy": 0.040405686228691305,
+          "macro_precision": 0.06612486885747823,
+          "macro_recall": 0.06624681976346909,
+          "macro_f1": 0.06518235573950669,
+          "weighted_f1": 0.04314008879439342,
+          "benign_fpr": 0.025848299246792765,
+          "precision_benign": 0.050763130704378635,
+          "recall_benign": 0.025848299246792765,
+          "f1_benign": 0.03311742825701446,
+          "precision_phishing": 0.09918015105909932,
+          "recall_phishing": 0.11835608672690275,
+          "f1_phishing": 0.0906861617187354,
+          "precision_fake_ecommerce": 0.16144222757551766,
+          "recall_fake_ecommerce": 0.15791856003946553,
+          "f1_fake_ecommerce": 0.14445126294960897,
+          "precision_crypto_scam": 0.18970438872635714,
+          "recall_crypto_scam": 0.19595917942265426,
+          "f1_crypto_scam": 0.1744125944030985,
+          "precision_malware_delivery": 0.08306623862918074,
+          "recall_malware_delivery": 0.11661903789690597,
+          "f1_malware_delivery": 0.09581781234199382
+        },
+        "n_folds": 5
+      },
+      "cv_folds": [
+        {
+          "accuracy": 0.810126582278481,
+          "macro_precision": 0.8428030303030303,
+          "macro_recall": 0.7297435897435897,
+          "macro_f1": 0.7752431476569407,
+          "weighted_f1": 0.8045193566799852,
+          "benign_fpr": 0.05128205128205132
+        },
+        {
+          "accuracy": 0.7051282051282052,
+          "macro_precision": 0.6486979450809238,
+          "macro_recall": 0.562930402930403,
+          "macro_f1": 0.589952400380797,
+          "weighted_f1": 0.6920949760607044,
+          "benign_fpr": 0.1282051282051282
+        },
+        {
+          "accuracy": 0.7692307692307693,
+          "macro_precision": 0.8001709401709401,
+          "macro_recall": 0.6642105263157895,
+          "macro_f1": 0.6843889845094664,
+          "weighted_f1": 0.7707643761860629,
+          "benign_fpr": 0.07894736842105265
+        },
+        {
+          "accuracy": 0.8076923076923077,
+          "macro_precision": 0.764009018241443,
+          "macro_recall": 0.735042735042735,
+          "macro_f1": 0.7333333333333333,
+          "weighted_f1": 0.8023504273504274,
+          "benign_fpr": 0.10256410256410253
+        },
+        {
+          "accuracy": 0.8076923076923077,
+          "macro_precision": 0.8001434720229555,
+          "macro_recall": 0.7308771929824561,
+          "macro_f1": 0.748048523206751,
+          "weighted_f1": 0.8032058043925131,
+          "benign_fpr": 0.07894736842105265
+        }
+      ],
+      "test": {
+        "n": 68,
+        "accuracy": 0.8088235294117647,
+        "macro_precision": 0.8212454212454212,
+        "macro_recall": 0.7269105077928607,
+        "macro_f1": 0.7176993681103271,
+        "weighted_f1": 0.78735596632454,
+        "benign_fpr": 0.05882352941176472,
+        "per_class": {
+          "benign": {
+            "precision": 0.8205128205128205,
+            "recall": 0.9411764705882353,
+            "f1": 0.8767123287671232,
+            "support": 34
+          },
+          "phishing": {
+            "precision": 0.7857142857142857,
+            "recall": 0.8461538461538461,
+            "f1": 0.8148148148148148,
+            "support": 13
+          },
+          "fake_ecommerce": {
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1": 0.9333333333333333,
+            "support": 8
+          },
+          "crypto_scam": {
+            "precision": 0.5,
+            "recall": 0.75,
+            "f1": 0.6,
+            "support": 4
+          },
+          "malware_delivery": {
+            "precision": 1.0,
+            "recall": 0.2222222222222222,
+            "f1": 0.36363636363636365,
+            "support": 9
+          }
+        },
+        "confusion_matrix": [
+          [
+            32,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            11,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            5,
+            1,
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "test_macro_f1_ci": {
+        "point": 0.7176993681103271,
+        "ci_low": 0.5690819173369915,
+        "ci_high": 0.8409773647598275,
+        "bootstrap_mean": 0.7094208675658709,
+        "bootstrap_std": 0.07056997256662695
+      },
+      "per_language": {
+        "en": {
+          "n": 51,
+          "correct": 44,
+          "accuracy": 0.8627450980392157,
+          "small_n": false
+        },
+        "si": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "ta": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "mixed": {
+          "n": 1,
+          "correct": 0,
+          "accuracy": 0.0,
+          "small_n": true
+        },
+        "other": {
+          "n": 14,
+          "correct": 9,
+          "accuracy": 0.6428571428571429,
+          "small_n": false
+        }
+      }
+    },
+    {
+      "key": "text_xlmr",
+      "display": "Content-only (Text XLM-R)",
+      "part": "Part 6A",
+      "model": "XLM-R (fine-tuned) (seed 43)",
+      "sources": [
+        "data/processed/fusion/v0.3/oof_text_xlmr.csv"
+      ],
+      "note": null,
+      "cv": {
+        "mean": {
+          "accuracy": 0.7006166828951639,
+          "macro_precision": 0.6856043675107142,
+          "macro_recall": 0.6938261037208406,
+          "macro_f1": 0.6798955005574416,
+          "weighted_f1": 0.7046187619870825,
+          "benign_fpr": 0.2851551956815115,
+          "precision_benign": 0.8072348484848485,
+          "recall_benign": 0.7148448043184886,
+          "f1_benign": 0.7540829390022107,
+          "precision_phishing": 0.6331762664580002,
+          "recall_phishing": 0.660952380952381,
+          "f1_phishing": 0.6433108697013035,
+          "precision_fake_ecommerce": 0.578974358974359,
+          "recall_fake_ecommerce": 0.7333333333333333,
+          "f1_fake_ecommerce": 0.6304242424242423,
+          "precision_crypto_scam": 0.7300000000000001,
+          "recall_crypto_scam": 0.68,
+          "f1_crypto_scam": 0.6951515151515151,
+          "precision_malware_delivery": 0.6786363636363636,
+          "recall_malware_delivery": 0.6799999999999999,
+          "f1_malware_delivery": 0.6765079365079365
+        },
+        "std": {
+          "accuracy": 0.042660814722763035,
+          "macro_precision": 0.03750259593221716,
+          "macro_recall": 0.05875334621370453,
+          "macro_f1": 0.04080275821198674,
+          "weighted_f1": 0.04181833635501231,
+          "benign_fpr": 0.09236094777413591,
+          "precision_benign": 0.0695358144996903,
+          "recall_benign": 0.09236094777413591,
+          "f1_benign": 0.06476943702316355,
+          "precision_phishing": 0.11894467641540296,
+          "recall_phishing": 0.07890405781793518,
+          "f1_phishing": 0.09457683776103482,
+          "precision_fake_ecommerce": 0.12361687115833739,
+          "recall_fake_ecommerce": 0.105409255338946,
+          "f1_fake_ecommerce": 0.05364975008435609,
+          "precision_crypto_scam": 0.08589399151150087,
+          "recall_crypto_scam": 0.2039607805437114,
+          "f1_crypto_scam": 0.14471529314412074,
+          "precision_malware_delivery": 0.10984211057785784,
+          "recall_malware_delivery": 0.039999999999999994,
+          "f1_malware_delivery": 0.06639703599949905
+        },
+        "n_folds": 5
+      },
+      "cv_folds": [
+        {
+          "accuracy": 0.759493670886076,
+          "macro_precision": 0.7096536796536796,
+          "macro_recall": 0.7174358974358974,
+          "macro_f1": 0.7055706741223983,
+          "weighted_f1": 0.7655007255181852,
+          "benign_fpr": 0.17948717948717952
+        },
+        {
+          "accuracy": 0.6410256410256411,
+          "macro_precision": 0.6108771929824561,
+          "macro_recall": 0.6276190476190476,
+          "macro_f1": 0.6156998556998557,
+          "weighted_f1": 0.6496003996003996,
+          "benign_fpr": 0.33333333333333337
+        },
+        {
+          "accuracy": 0.7051282051282052,
+          "macro_precision": 0.7027039627039626,
+          "macro_recall": 0.6231578947368421,
+          "macro_f1": 0.6531242740998838,
+          "weighted_f1": 0.6992465529050894,
+          "benign_fpr": 0.1842105263157895
+        },
+        {
+          "accuracy": 0.7307692307692307,
+          "macro_precision": 0.7049970862470862,
+          "macro_recall": 0.7717948717948717,
+          "macro_f1": 0.7311938099761817,
+          "weighted_f1": 0.735847271512878,
+          "benign_fpr": 0.3076923076923077
+        },
+        {
+          "accuracy": 0.6666666666666666,
+          "macro_precision": 0.6997899159663865,
+          "macro_recall": 0.729122807017544,
+          "macro_f1": 0.6938888888888888,
+          "weighted_f1": 0.6728988603988604,
+          "benign_fpr": 0.42105263157894735
+        }
+      ],
+      "test": {
+        "n": 68,
+        "accuracy": 0.7058823529411765,
+        "macro_precision": 0.6467857142857143,
+        "macro_recall": 0.717684766214178,
+        "macro_f1": 0.6567445887445887,
+        "weighted_f1": 0.6981487140310669,
+        "benign_fpr": 0.23529411764705888,
+        "per_class": {
+          "benign": {
+            "precision": 0.8125,
+            "recall": 0.7647058823529411,
+            "f1": 0.7878787878787878,
+            "support": 34
+          },
+          "phishing": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6153846153846154,
+            "f1": 0.64,
+            "support": 13
+          },
+          "fake_ecommerce": {
+            "precision": 0.5833333333333334,
+            "recall": 0.875,
+            "f1": 0.7,
+            "support": 8
+          },
+          "crypto_scam": {
+            "precision": 0.5714285714285714,
+            "recall": 1.0,
+            "f1": 0.7272727272727273,
+            "support": 4
+          },
+          "malware_delivery": {
+            "precision": 0.6,
+            "recall": 0.3333333333333333,
+            "f1": 0.42857142857142855,
+            "support": 9
+          }
+        },
+        "confusion_matrix": [
+          [
+            26,
+            2,
+            5,
+            0,
+            1
+          ],
+          [
+            2,
+            8,
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            0,
+            7,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0
+          ],
+          [
+            4,
+            2,
+            0,
+            0,
+            3
+          ]
+        ]
+      },
+      "test_macro_f1_ci": {
+        "point": 0.6567445887445887,
+        "ci_low": 0.5142516554747837,
+        "ci_high": 0.7764519728174191,
+        "bootstrap_mean": 0.6487130229198078,
+        "bootstrap_std": 0.06714266303024662
+      },
+      "per_language": {
+        "en": {
+          "n": 51,
+          "correct": 36,
+          "accuracy": 0.7058823529411765,
+          "small_n": false
+        },
+        "si": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "ta": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "mixed": {
+          "n": 1,
+          "correct": 0,
+          "accuracy": 0.0,
+          "small_n": true
+        },
+        "other": {
+          "n": 14,
+          "correct": 10,
+          "accuracy": 0.7142857142857143,
+          "small_n": false
+        }
+      }
+    },
+    {
+      "key": "behavior",
+      "display": "Behavior-only",
+      "part": "Part 8",
+      "model": "Random Forest",
+      "sources": [
+        "data/processed/fusion/v0.3/oof_behavior.csv"
+      ],
+      "note": null,
+      "cv": {
+        "mean": {
+          "accuracy": 0.7005842259006816,
+          "macro_precision": 0.658888228730334,
+          "macro_recall": 0.6154262579525737,
+          "macro_f1": 0.6198821254374565,
+          "weighted_f1": 0.7074975027993703,
+          "benign_fpr": 0.18191632928475035,
+          "precision_benign": 0.7981578947368421,
+          "recall_benign": 0.8180836707152498,
+          "f1_benign": 0.8053498308919996,
+          "precision_phishing": 0.6505623031938821,
+          "recall_phishing": 0.5523809523809523,
+          "f1_phishing": 0.5862805991962001,
+          "precision_fake_ecommerce": 0.9055555555555556,
+          "recall_fake_ecommerce": 0.6466666666666667,
+          "f1_fake_ecommerce": 0.7438556799237913,
+          "precision_crypto_scam": 0.23186813186813188,
+          "recall_crypto_scam": 0.4,
+          "f1_crypto_scam": 0.2864527629233512,
+          "precision_malware_delivery": 0.7082972582972583,
+          "recall_malware_delivery": 0.6599999999999999,
+          "f1_malware_delivery": 0.67747175425194
+        },
+        "std": {
+          "accuracy": 0.04355288460457087,
+          "macro_precision": 0.06923838105044819,
+          "macro_recall": 0.08669674315105894,
+          "macro_f1": 0.07778488901007173,
+          "weighted_f1": 0.04495505065527781,
+          "benign_fpr": 0.06287930065723468,
+          "precision_benign": 0.04659901441065381,
+          "recall_benign": 0.06287930065723468,
+          "f1_benign": 0.028702472592353548,
+          "precision_phishing": 0.08170329725361453,
+          "recall_phishing": 0.09915744826529806,
+          "f1_phishing": 0.046606031734873536,
+          "precision_fake_ecommerce": 0.09229582069908972,
+          "recall_fake_ecommerce": 0.17333333333333334,
+          "f1_fake_ecommerce": 0.14518583210688074,
+          "precision_crypto_scam": 0.14628919527181733,
+          "recall_crypto_scam": 0.21908902300206645,
+          "f1_crypto_scam": 0.16639105200520168,
+          "precision_malware_delivery": 0.12160906967708808,
+          "recall_malware_delivery": 0.04898979485566355,
+          "f1_malware_delivery": 0.06448546077357334
+        },
+        "n_folds": 5
+      },
+      "cv_folds": [
+        {
+          "accuracy": 0.7721518987341772,
+          "macro_precision": 0.7346031746031746,
+          "macro_recall": 0.6979487179487179,
+          "macro_f1": 0.7038847117794487,
+          "weighted_f1": 0.7654182925668601,
+          "benign_fpr": 0.07692307692307687
+        },
+        {
+          "accuracy": 0.6794871794871795,
+          "macro_precision": 0.6464912280701754,
+          "macro_recall": 0.6046886446886447,
+          "macro_f1": 0.6044242202809978,
+          "weighted_f1": 0.6984916192077318,
+          "benign_fpr": 0.20512820512820518
+        },
+        {
+          "accuracy": 0.6923076923076923,
+          "macro_precision": 0.693358395989975,
+          "macro_recall": 0.6112280701754387,
+          "macro_f1": 0.6353969559851913,
+          "weighted_f1": 0.6978372306426606,
+          "benign_fpr": 0.21052631578947367
+        },
+        {
+          "accuracy": 0.6410256410256411,
+          "macro_precision": 0.5321678321678321,
+          "macro_recall": 0.4625641025641025,
+          "macro_f1": 0.47991526545743407,
+          "weighted_f1": 0.6339949824657888,
+          "benign_fpr": 0.15384615384615385
+        },
+        {
+          "accuracy": 0.717948717948718,
+          "macro_precision": 0.6878205128205128,
+          "macro_recall": 0.7007017543859648,
+          "macro_f1": 0.6757894736842106,
+          "weighted_f1": 0.7417453891138103,
+          "benign_fpr": 0.26315789473684215
+        }
+      ],
+      "test": {
+        "n": 68,
+        "accuracy": 0.7352941176470589,
+        "macro_precision": 0.7203030303030304,
+        "macro_recall": 0.6833961789844143,
+        "macro_f1": 0.6823368869936034,
+        "weighted_f1": 0.7554780718257453,
+        "benign_fpr": 0.20588235294117652,
+        "per_class": {
+          "benign": {
+            "precision": 0.8181818181818182,
+            "recall": 0.7941176470588235,
+            "f1": 0.8059701492537313,
+            "support": 34
+          },
+          "phishing": {
+            "precision": 0.75,
+            "recall": 0.6923076923076923,
+            "f1": 0.72,
+            "support": 13
+          },
+          "fake_ecommerce": {
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1": 0.9333333333333333,
+            "support": 8
+          },
+          "crypto_scam": {
+            "precision": 0.2,
+            "recall": 0.5,
+            "f1": 0.2857142857142857,
+            "support": 4
+          },
+          "malware_delivery": {
+            "precision": 0.8333333333333334,
+            "recall": 0.5555555555555556,
+            "f1": 0.6666666666666666,
+            "support": 9
+          }
+        },
+        "confusion_matrix": [
+          [
+            27,
+            2,
+            0,
+            4,
+            1
+          ],
+          [
+            1,
+            9,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            3,
+            1,
+            0,
+            0,
+            5
+          ]
+        ]
+      },
+      "test_macro_f1_ci": {
+        "point": 0.6823368869936034,
+        "ci_low": 0.5512338358813222,
+        "ci_high": 0.8048543662430759,
+        "bootstrap_mean": 0.6771725464024302,
+        "bootstrap_std": 0.06312326065688174
+      },
+      "per_language": {
+        "en": {
+          "n": 51,
+          "correct": 36,
+          "accuracy": 0.7058823529411765,
+          "small_n": false
+        },
+        "si": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "ta": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "mixed": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "other": {
+          "n": 14,
+          "correct": 11,
+          "accuracy": 0.7857142857142857,
+          "small_n": false
+        }
+      }
+    },
+    {
+      "key": "tri",
+      "display": "Tri-modal fusion (reference)",
+      "part": "Part 9A",
+      "model": "DOM+Behavior+Text (TF-IDF + XLM-R) · Late fusion - weighted",
+      "sources": [
+        "reports/ablation/v0.3/test_predictions.csv",
+        "reports/ablation/v0.3/ablation.json"
+      ],
+      "note": "CV read from ablation.json (fold models re-fitted inside Part 9A, fused OOF not saved); macro precision not stored there; macro recall = balanced accuracy",
+      "cv": {
+        "mean": {
+          "macro_f1": 0.7677825830400922,
+          "weighted_f1": 0.7987529317943467,
+          "accuracy": 0.8003894839337878,
+          "balanced_accuracy": 0.7526313218944798,
+          "roc_auc_ovr_macro": 0.9321237658829226,
+          "benign_fpr": 0.10890688259109313,
+          "f1_benign": 0.8559721105905845,
+          "f1_phishing": 0.722769744160178,
+          "f1_fake_ecommerce": 0.7788888888888889,
+          "f1_crypto_scam": 0.7557575757575759,
+          "f1_malware_delivery": 0.7255245958032335,
+          "macro_recall": 0.7526313218944798,
+          "macro_precision": null
+        },
+        "std": {
+          "macro_f1": 0.07330507818707904,
+          "weighted_f1": 0.053747500660418716,
+          "accuracy": 0.055680633860097015,
+          "balanced_accuracy": 0.07377488978694159,
+          "roc_auc_ovr_macro": 0.019133015146343867,
+          "benign_fpr": 0.04439022993694636,
+          "f1_benign": 0.0427567276755708,
+          "f1_phishing": 0.11052144352116705,
+          "f1_fake_ecommerce": 0.07555555555555557,
+          "f1_crypto_scam": 0.1649954781359962,
+          "f1_malware_delivery": 0.10316741570722898,
+          "macro_recall": 0.07377488978694159,
+          "macro_precision": null
+        },
+        "n_folds": 5
+      },
+      "cv_folds": null,
+      "test": {
+        "n": 68,
+        "accuracy": 0.8382352941176471,
+        "macro_precision": 0.8321428571428571,
+        "macro_recall": 0.8154725992961287,
+        "macro_f1": 0.7949299251473165,
+        "weighted_f1": 0.8309334101533591,
+        "benign_fpr": 0.08823529411764708,
+        "per_class": {
+          "benign": {
+            "precision": 0.8857142857142857,
+            "recall": 0.9117647058823529,
+            "f1": 0.8985507246376812,
+            "support": 34
+          },
+          "phishing": {
+            "precision": 0.7333333333333333,
+            "recall": 0.8461538461538461,
+            "f1": 0.7857142857142857,
+            "support": 13
+          },
+          "fake_ecommerce": {
+            "precision": 0.875,
+            "recall": 0.875,
+            "f1": 0.875,
+            "support": 8
+          },
+          "crypto_scam": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "support": 4
+          },
+          "malware_delivery": {
+            "precision": 1.0,
+            "recall": 0.4444444444444444,
+            "f1": 0.6153846153846154,
+            "support": 9
+          }
+        },
+        "confusion_matrix": [
+          [
+            31,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            11,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0
+          ],
+          [
+            3,
+            2,
+            0,
+            0,
+            4
+          ]
+        ]
+      },
+      "test_macro_f1_ci": {
+        "point": 0.7949299251473165,
+        "ci_low": 0.6543665266106443,
+        "ci_high": 0.9061737107921318,
+        "bootstrap_mean": 0.7890911943557214,
+        "bootstrap_std": 0.06336089317579068
+      },
+      "per_language": {
+        "en": {
+          "n": 51,
+          "correct": 43,
+          "accuracy": 0.8431372549019608,
+          "small_n": false
+        },
+        "si": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "ta": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "mixed": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0,
+          "small_n": true
+        },
+        "other": {
+          "n": 14,
+          "correct": 11,
+          "accuracy": 0.7857142857142857,
+          "small_n": false
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "best_per_column": {
+    "accuracy": [
+      "tri"
+    ],
+    "macro_precision": [
+      "tri"
+    ],
+    "macro_recall": [
+      "tri"
+    ],
+    "macro_f1": [
+      "tri"
+    ],
+    "weighted_f1": [
+      "tri"
+    ],
+    "benign_fpr": [
+      "text_tfidf"
+    ]
+  },
+  "best_single_per_column": {
+    "accuracy": [
+      "dom"
+    ],
+    "macro_precision": [
+      "text_tfidf"
+    ],
+    "macro_recall": [
+      "dom"
+    ],
+    "macro_f1": [
+      "dom"
+    ],
+    "weighted_f1": [
+      "dom"
+    ],
+    "benign_fpr": [
+      "text_tfidf"
+    ]
+  },
+  "xlmr_seeds": {
+    "seeds": [
+      "seed_42",
+      "seed_43",
+      "seed_44"
+    ],
+    "per_seed": {
+      "seed_42": {
+        "accuracy": 0.5588235294117647,
+        "macro_precision": 0.5132142857142857,
+        "macro_recall": 0.6174082453494218,
+        "macro_f1": 0.5226310726310726,
+        "weighted_f1": 0.5506889624536683,
+        "benign_fpr": 0.5294117647058824
+      },
+      "seed_43": {
+        "accuracy": 0.7058823529411765,
+        "macro_precision": 0.6467857142857143,
+        "macro_recall": 0.717684766214178,
+        "macro_f1": 0.6567445887445887,
+        "weighted_f1": 0.6981487140310669,
+        "benign_fpr": 0.23529411764705888
+      },
+      "seed_44": {
+        "accuracy": 0.7352941176470589,
+        "macro_precision": 0.64752688172043,
+        "macro_recall": 0.6765585721468075,
+        "macro_f1": 0.6512332112332112,
+        "weighted_f1": 0.7375601522660347,
+        "benign_fpr": 0.20588235294117652
+      }
+    },
+    "summary": {
+      "mean": {
+        "accuracy": 0.6666666666666666,
+        "macro_precision": 0.6025089605734767,
+        "macro_recall": 0.6705505279034693,
+        "macro_f1": 0.6102029575362908,
+        "weighted_f1": 0.66213260958359,
+        "benign_fpr": 0.3235294117647059,
+        "precision_benign": 0.8278225806451612,
+        "recall_benign": 0.676470588235294,
+        "f1_benign": 0.7370802037468703,
+        "precision_phishing": 0.611111111111111,
+        "recall_phishing": 0.717948717948718,
+        "f1_phishing": 0.6534487734487735,
+        "precision_fake_ecommerce": 0.5736111111111112,
+        "recall_fake_ecommerce": 0.875,
+        "f1_fake_ecommerce": 0.687037037037037,
+        "precision_crypto_scam": 0.4444444444444444,
+        "recall_crypto_scam": 0.75,
+        "f1_crypto_scam": 0.5575757575757576,
+        "precision_malware_delivery": 0.5555555555555555,
+        "recall_malware_delivery": 0.3333333333333333,
+        "f1_malware_delivery": 0.4158730158730159
+      },
+      "std": {
+        "accuracy": 0.07719615562756679,
+        "macro_precision": 0.06314159511736588,
+        "macro_recall": 0.04115756395372465,
+        "macro_f1": 0.06196353814896751,
+        "weighted_f1": 0.08042835416340452,
+        "benign_fpr": 0.14607514142893469,
+        "precision_benign": 0.030932089131687195,
+        "recall_benign": 0.14607514142893469,
+        "f1_benign": 0.10365776978640477,
+        "precision_phishing": 0.0785674201318386,
+        "recall_phishing": 0.0725237724293895,
+        "f1_phishing": 0.04519454718614789,
+        "precision_fake_ecommerce": 0.10738545433376502,
+        "recall_fake_ecommerce": 0.0,
+        "f1_fake_ecommerce": 0.07990907040885709,
+        "precision_crypto_scam": 0.09784784131696787,
+        "recall_crypto_scam": 0.2041241452319315,
+        "f1_crypto_scam": 0.13388316384469406,
+        "precision_malware_delivery": 0.1133115447465063,
+        "recall_malware_delivery": 0.09072184232530289,
+        "f1_malware_delivery": 0.10148804675013194
+      },
+      "n_folds": 3
+    },
+    "source": "models/xlmr/v0.3/seed_*/predictions.jsonl"
+  },
+  "paired_vs_tri": {
+    "dom": {
+      "point": 0.008818814036205436,
+      "ci_low": -0.1356884507635792,
+      "ci_high": 0.1410413833793791,
+      "bootstrap_mean": 0.012002082834484128,
+      "bootstrap_std": 0.07002640135008575,
+      "includes_zero": true,
+      "share_a_better": 0.579
+    },
+    "text_tfidf": {
+      "point": 0.07723055703698944,
+      "ci_low": -0.018876588209194974,
+      "ci_high": 0.20081738208599914,
+      "bootstrap_mean": 0.07967032678985057,
+      "bootstrap_std": 0.05546035077341904,
+      "includes_zero": true,
+      "share_a_better": 0.941
+    },
+    "text_xlmr": {
+      "point": 0.1381853364027278,
+      "ci_low": 0.05251002746107167,
+      "ci_high": 0.24867540015967485,
+      "bootstrap_mean": 0.14037817143591355,
+      "bootstrap_std": 0.04961194057034215,
+      "includes_zero": false,
+      "share_a_better": 1.0
+    },
+    "behavior": {
+      "point": 0.11259303815371313,
+      "ci_low": -0.012563301984648495,
+      "ci_high": 0.22684868706580302,
+      "bootstrap_mean": 0.11191864795329118,
+      "bootstrap_std": 0.06143174738209699,
+      "includes_zero": true,
+      "share_a_better": 0.959
+    }
+  },
+  "complementarity": {
+    "rows": [
+      "dom",
+      "text_tfidf",
+      "text_xlmr",
+      "behavior"
+    ],
+    "n": 68,
+    "all_right": 34,
+    "all_wrong": 4,
+    "all_wrong_ids": [
+      "c2_malware_delivery_000018",
+      "c2_malware_delivery_000036",
+      "c2_malware_delivery_000042",
+      "c2_phishing_000106"
+    ],
+    "oracle_accuracy": 0.9411764705882353,
+    "only_right": {
+      "dom": 2,
+      "text_tfidf": 1,
+      "text_xlmr": 1,
+      "behavior": 1
+    },
+    "tri_accuracy": 0.8382352941176471,
+    "tri_right_when_all_singles_wrong": 0
+  },
+  "bootstrap_settings": {
+    "n_resamples": 1000,
+    "seed": 42,
+    "confidence": 0.95
+  },
+  "cross_check": [
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.accuracy",
+      "ours": 0.8235294117647058,
+      "reported": 0.8235294117647058,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_precision",
+      "ours": 0.7822763806066891,
+      "reported": 0.7822763806066891,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_recall",
+      "ours": 0.8104323780794369,
+      "reported": 0.8104323780794369,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1",
+      "ours": 0.7861111111111111,
+      "reported": 0.7861111111111111,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.8274101307189542,
+      "reported": 0.8274101307189542,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.17647058823529416,
+      "reported": 0.17647058823529413,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.precision",
+      "ours": 0.9655172413793104,
+      "reported": 0.9655172413793104,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.recall",
+      "ours": 0.8235294117647058,
+      "reported": 0.8235294117647058,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.f1",
+      "ours": 0.8888888888888888,
+      "reported": 0.8888888888888888,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.631578947368421,
+      "reported": 0.631578947368421,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.9230769230769231,
+      "reported": 0.9230769230769231,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.6,
+      "reported": 0.6,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 0.7142857142857143,
+      "reported": 0.7142857142857143,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.5555555555555556,
+      "reported": 0.5555555555555556,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.625,
+      "reported": 0.625,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          28,
+          3,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          12,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          0,
+          5
+        ]
+      ],
+      "reported": [
+        [
+          28,
+          3,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          12,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          0,
+          5
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.macro_f1",
+      "ours": 0.7006009011107482,
+      "reported": 0.7006009011107482,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.weighted_f1",
+      "ours": 0.7770466263733632,
+      "reported": 0.7770466263733632,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.accuracy",
+      "ours": 0.7721194417396948,
+      "reported": 0.7721194417396948,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.benign_fpr",
+      "ours": 0.16072874493927128,
+      "reported": 0.16072874493927122,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.macro_f1",
+      "ours": 0.07717277879953352,
+      "reported": 0.07717277879953352,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.weighted_f1",
+      "ours": 0.056887270741427465,
+      "reported": 0.056887270741427465,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.accuracy",
+      "ours": 0.06301317969558377,
+      "reported": 0.06301317969558377,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.benign_fpr",
+      "ours": 0.07525283791030264,
+      "reported": 0.07525283791030266,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_low",
+      "ours": 0.651710525852065,
+      "reported": 0.651710525852065,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_high",
+      "ours": 0.8910793877930074,
+      "reported": 0.8910793877930074,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.accuracy",
+      "ours": 0.8088235294117647,
+      "reported": 0.8088235294117647,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_precision",
+      "ours": 0.8212454212454212,
+      "reported": 0.8212454212454212,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_recall",
+      "ours": 0.7269105077928607,
+      "reported": 0.7269105077928607,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1",
+      "ours": 0.7176993681103271,
+      "reported": 0.7176993681103271,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.78735596632454,
+      "reported": 0.78735596632454,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.05882352941176472,
+      "reported": 0.058823529411764705,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.precision",
+      "ours": 0.8205128205128205,
+      "reported": 0.8205128205128205,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.recall",
+      "ours": 0.9411764705882353,
+      "reported": 0.9411764705882353,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.f1",
+      "ours": 0.8767123287671232,
+      "reported": 0.8767123287671232,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.7857142857142857,
+      "reported": 0.7857142857142857,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.8461538461538461,
+      "reported": 0.8461538461538461,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.8148148148148148,
+      "reported": 0.8148148148148148,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 0.9333333333333333,
+      "reported": 0.9333333333333333,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.5,
+      "reported": 0.5,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.6,
+      "reported": 0.6,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.2222222222222222,
+      "reported": 0.2222222222222222,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.36363636363636365,
+      "reported": 0.36363636363636365,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          32,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          11,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          5,
+          1,
+          0,
+          1,
+          2
+        ]
+      ],
+      "reported": [
+        [
+          32,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          11,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          5,
+          1,
+          0,
+          1,
+          2
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.macro_f1",
+      "ours": 0.7061932778174577,
+      "reported": 0.7061932778174577,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.weighted_f1",
+      "ours": 0.7745869881339386,
+      "reported": 0.7745869881339386,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.accuracy",
+      "ours": 0.779974034404414,
+      "reported": 0.779974034404414,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.benign_fpr",
+      "ours": 0.08798920377867747,
+      "reported": 0.08798920377867744,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.macro_f1",
+      "ours": 0.06518235573950669,
+      "reported": 0.06518235573950669,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.weighted_f1",
+      "ours": 0.04314008879439342,
+      "reported": 0.04314008879439342,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.accuracy",
+      "ours": 0.040405686228691305,
+      "reported": 0.040405686228691305,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.benign_fpr",
+      "ours": 0.025848299246792765,
+      "reported": 0.025848299246792782,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_low",
+      "ours": 0.5690819173369915,
+      "reported": 0.5690819173369915,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_high",
+      "ours": 0.8409773647598275,
+      "reported": 0.8409773647598275,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.accuracy",
+      "ours": 0.7058823529411765,
+      "reported": 0.7058823529411765,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_precision",
+      "ours": 0.6467857142857143,
+      "reported": 0.6467857142857143,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_recall",
+      "ours": 0.717684766214178,
+      "reported": 0.717684766214178,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1",
+      "ours": 0.6567445887445887,
+      "reported": 0.6567445887445887,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.6981487140310669,
+      "reported": 0.6981487140310669,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.23529411764705888,
+      "reported": 0.23529411764705882,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.precision",
+      "ours": 0.8125,
+      "reported": 0.8125,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.recall",
+      "ours": 0.7647058823529411,
+      "reported": 0.7647058823529411,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.f1",
+      "ours": 0.7878787878787878,
+      "reported": 0.7878787878787878,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.6153846153846154,
+      "reported": 0.6153846153846154,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.64,
+      "reported": 0.64,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 0.5833333333333334,
+      "reported": 0.5833333333333334,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 0.7,
+      "reported": 0.7,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.5714285714285714,
+      "reported": 0.5714285714285714,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.7272727272727273,
+      "reported": 0.7272727272727273,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 0.6,
+      "reported": 0.6,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.3333333333333333,
+      "reported": 0.3333333333333333,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.42857142857142855,
+      "reported": 0.42857142857142855,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          26,
+          2,
+          5,
+          0,
+          1
+        ],
+        [
+          2,
+          8,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          0,
+          3
+        ]
+      ],
+      "reported": [
+        [
+          26,
+          2,
+          5,
+          0,
+          1
+        ],
+        [
+          2,
+          8,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          0,
+          3
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.macro_f1",
+      "ours": 0.6798955005574416,
+      "reported": 0.6798955005574416,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.weighted_f1",
+      "ours": 0.7046187619870825,
+      "reported": 0.7046187619870825,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.accuracy",
+      "ours": 0.7006166828951639,
+      "reported": 0.7006166828951639,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.benign_fpr",
+      "ours": 0.2851551956815115,
+      "reported": 0.2851551956815115,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.macro_f1",
+      "ours": 0.04080275821198674,
+      "reported": 0.04080275821198674,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.weighted_f1",
+      "ours": 0.04181833635501231,
+      "reported": 0.04181833635501231,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.accuracy",
+      "ours": 0.042660814722763035,
+      "reported": 0.042660814722763035,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.benign_fpr",
+      "ours": 0.09236094777413591,
+      "reported": 0.09236094777413591,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_low",
+      "ours": 0.5142516554747837,
+      "reported": 0.5142516554747837,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_high",
+      "ours": 0.7764519728174191,
+      "reported": 0.7764519728174191,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.accuracy",
+      "ours": 0.7352941176470589,
+      "reported": 0.7352941176470589,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_precision",
+      "ours": 0.7203030303030304,
+      "reported": 0.7203030303030304,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_recall",
+      "ours": 0.6833961789844143,
+      "reported": 0.6833961789844143,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1",
+      "ours": 0.6823368869936034,
+      "reported": 0.6823368869936034,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.7554780718257453,
+      "reported": 0.7554780718257453,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.20588235294117652,
+      "reported": 0.20588235294117646,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.precision",
+      "ours": 0.8181818181818182,
+      "reported": 0.8181818181818182,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.recall",
+      "ours": 0.7941176470588235,
+      "reported": 0.7941176470588235,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.f1",
+      "ours": 0.8059701492537313,
+      "reported": 0.8059701492537313,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.6923076923076923,
+      "reported": 0.6923076923076923,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.72,
+      "reported": 0.72,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 0.9333333333333333,
+      "reported": 0.9333333333333333,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.2,
+      "reported": 0.2,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 0.5,
+      "reported": 0.5,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.2857142857142857,
+      "reported": 0.2857142857142857,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 0.8333333333333334,
+      "reported": 0.8333333333333334,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.5555555555555556,
+      "reported": 0.5555555555555556,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          27,
+          2,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          9,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          3,
+          1,
+          0,
+          0,
+          5
+        ]
+      ],
+      "reported": [
+        [
+          27,
+          2,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          9,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          3,
+          1,
+          0,
+          0,
+          5
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.macro_f1",
+      "ours": 0.6198821254374565,
+      "reported": 0.6198821254374565,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.weighted_f1",
+      "ours": 0.7074975027993703,
+      "reported": 0.7074975027993703,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.accuracy",
+      "ours": 0.7005842259006816,
+      "reported": 0.7005842259006816,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.mean.benign_fpr",
+      "ours": 0.18191632928475035,
+      "reported": 0.18191632928475032,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.macro_f1",
+      "ours": 0.07778488901007173,
+      "reported": 0.07778488901007173,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.weighted_f1",
+      "ours": 0.04495505065527781,
+      "reported": 0.04495505065527781,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.accuracy",
+      "ours": 0.04355288460457087,
+      "reported": 0.04355288460457087,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "cv.std.benign_fpr",
+      "ours": 0.06287930065723468,
+      "reported": 0.06287930065723464,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_low",
+      "ours": 0.5512338358813222,
+      "reported": 0.5512338358813222,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_high",
+      "ours": 0.8048543662430759,
+      "reported": 0.8048543662430759,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.accuracy",
+      "ours": 0.8382352941176471,
+      "reported": 0.8382352941176471,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_precision",
+      "ours": 0.8321428571428571,
+      "reported": 0.8321428571428571,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_recall",
+      "ours": 0.8154725992961287,
+      "reported": 0.8154725992961287,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1",
+      "ours": 0.7949299251473165,
+      "reported": 0.7949299251473165,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.8309334101533591,
+      "reported": 0.8309334101533591,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.08823529411764708,
+      "reported": 0.08823529411764706,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.precision",
+      "ours": 0.8857142857142857,
+      "reported": 0.8857142857142857,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.recall",
+      "ours": 0.9117647058823529,
+      "reported": 0.9117647058823529,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.f1",
+      "ours": 0.8985507246376812,
+      "reported": 0.8985507246376812,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.7333333333333333,
+      "reported": 0.7333333333333333,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.8461538461538461,
+      "reported": 0.8461538461538461,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.7857142857142857,
+      "reported": 0.7857142857142857,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.8,
+      "reported": 0.8,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.4444444444444444,
+      "reported": 0.4444444444444444,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.6153846153846154,
+      "reported": 0.6153846153846154,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          31,
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          11,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          0,
+          4
+        ]
+      ],
+      "reported": [
+        [
+          31,
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          11,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          0,
+          4
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_low",
+      "ours": 0.6543665266106443,
+      "reported": 0.6543665266106443,
+      "ok": true
+    },
+    {
+      "row": "tri",
+      "source": "reports/ablation/v0.3/ablation.json",
+      "metric": "test.macro_f1_ci_high",
+      "ours": 0.9061737107921318,
+      "reported": 0.9061737107921318,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.accuracy",
+      "ours": 0.8235294117647058,
+      "reported": 0.8235294117647058,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.macro_f1",
+      "ours": 0.7861111111111111,
+      "reported": 0.7861111111111111,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.8274101307189542,
+      "reported": 0.8274101307189542,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.17647058823529416,
+      "reported": 0.17647058823529413,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.benign.precision",
+      "ours": 0.9655172413793104,
+      "reported": 0.9655172413793104,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.benign.recall",
+      "ours": 0.8235294117647058,
+      "reported": 0.8235294117647058,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.benign.f1",
+      "ours": 0.8888888888888888,
+      "reported": 0.8888888888888888,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.631578947368421,
+      "reported": 0.631578947368421,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.9230769230769231,
+      "reported": 0.9230769230769231,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.6,
+      "reported": 0.6,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 0.7142857142857143,
+      "reported": 0.7142857142857143,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.5555555555555556,
+      "reported": 0.5555555555555556,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.625,
+      "reported": 0.625,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          28,
+          3,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          12,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          0,
+          5
+        ]
+      ],
+      "reported": [
+        [
+          28,
+          3,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          12,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          0,
+          5
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.mean.macro_f1",
+      "ours": 0.7006009011107482,
+      "reported": 0.7006009011107482,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.mean.weighted_f1",
+      "ours": 0.7770466263733632,
+      "reported": 0.7770466263733632,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.mean.accuracy",
+      "ours": 0.7721194417396948,
+      "reported": 0.7721194417396948,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.mean.benign_fpr",
+      "ours": 0.16072874493927128,
+      "reported": 0.16072874493927122,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.std.macro_f1",
+      "ours": 0.07717277879953352,
+      "reported": 0.07717277879953352,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.std.weighted_f1",
+      "ours": 0.056887270741427465,
+      "reported": 0.056887270741427465,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.std.accuracy",
+      "ours": 0.06301317969558377,
+      "reported": 0.06301317969558377,
+      "ok": true
+    },
+    {
+      "row": "dom",
+      "source": "reports/dom_baseline/v0.3/results.json",
+      "metric": "cv.std.benign_fpr",
+      "ours": 0.07525283791030264,
+      "reported": 0.07525283791030266,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.accuracy",
+      "ours": 0.8088235294117647,
+      "reported": 0.8088235294117647,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.macro_precision",
+      "ours": 0.8212454212454212,
+      "reported": 0.8212454212454212,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.macro_recall",
+      "ours": 0.7269105077928607,
+      "reported": 0.7269105077928607,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.macro_f1",
+      "ours": 0.7176993681103271,
+      "reported": 0.7176993681103271,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.78735596632454,
+      "reported": 0.78735596632454,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.05882352941176472,
+      "reported": 0.058823529411764705,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.benign.precision",
+      "ours": 0.8205128205128205,
+      "reported": 0.8205128205128205,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.benign.recall",
+      "ours": 0.9411764705882353,
+      "reported": 0.9411764705882353,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.benign.f1",
+      "ours": 0.8767123287671232,
+      "reported": 0.8767123287671232,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.7857142857142857,
+      "reported": 0.7857142857142857,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.8461538461538461,
+      "reported": 0.8461538461538461,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.8148148148148148,
+      "reported": 0.8148148148148148,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 0.9333333333333333,
+      "reported": 0.9333333333333333,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.5,
+      "reported": 0.5,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.6,
+      "reported": 0.6,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.2222222222222222,
+      "reported": 0.2222222222222222,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.36363636363636365,
+      "reported": 0.36363636363636365,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          32,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          11,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          5,
+          1,
+          0,
+          1,
+          2
+        ]
+      ],
+      "reported": [
+        [
+          32,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          11,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          5,
+          1,
+          0,
+          1,
+          2
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.mean.macro_f1",
+      "ours": 0.7061932778174577,
+      "reported": 0.7061932778174577,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.mean.weighted_f1",
+      "ours": 0.7745869881339386,
+      "reported": 0.7745869881339386,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.mean.accuracy",
+      "ours": 0.779974034404414,
+      "reported": 0.779974034404414,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.mean.benign_fpr",
+      "ours": 0.08798920377867747,
+      "reported": 0.08798920377867744,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.mean.macro_precision",
+      "ours": 0.7711648811638585,
+      "reported": 0.7711648811638585,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.std.macro_f1",
+      "ours": 0.06518235573950669,
+      "reported": 0.06518235573950669,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.std.weighted_f1",
+      "ours": 0.04314008879439342,
+      "reported": 0.04314008879439342,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.std.accuracy",
+      "ours": 0.040405686228691305,
+      "reported": 0.040405686228691305,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.std.benign_fpr",
+      "ours": 0.025848299246792765,
+      "reported": 0.025848299246792782,
+      "ok": true
+    },
+    {
+      "row": "text_tfidf",
+      "source": "reports/text_baseline/v0.3/results.json",
+      "metric": "cv.std.macro_precision",
+      "ours": 0.06612486885747823,
+      "reported": 0.06612486885747823,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.accuracy",
+      "ours": 0.7058823529411765,
+      "reported": 0.7058823529411765,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.macro_precision",
+      "ours": 0.6467857142857143,
+      "reported": 0.6467857142857143,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.macro_recall",
+      "ours": 0.717684766214178,
+      "reported": 0.717684766214178,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.macro_f1",
+      "ours": 0.6567445887445887,
+      "reported": 0.6567445887445887,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.6981487140310669,
+      "reported": 0.6981487140310669,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.23529411764705888,
+      "reported": 0.23529411764705882,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.benign.precision",
+      "ours": 0.8125,
+      "reported": 0.8125,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.benign.recall",
+      "ours": 0.7647058823529411,
+      "reported": 0.7647058823529411,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.benign.f1",
+      "ours": 0.7878787878787878,
+      "reported": 0.7878787878787878,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.6153846153846154,
+      "reported": 0.6153846153846154,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.64,
+      "reported": 0.64,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 0.5833333333333334,
+      "reported": 0.5833333333333334,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 0.7,
+      "reported": 0.7,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.5714285714285714,
+      "reported": 0.5714285714285714,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.7272727272727273,
+      "reported": 0.7272727272727273,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 0.6,
+      "reported": 0.6,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.3333333333333333,
+      "reported": 0.3333333333333333,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.42857142857142855,
+      "reported": 0.42857142857142855,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          26,
+          2,
+          5,
+          0,
+          1
+        ],
+        [
+          2,
+          8,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          0,
+          3
+        ]
+      ],
+      "reported": [
+        [
+          26,
+          2,
+          5,
+          0,
+          1
+        ],
+        [
+          2,
+          8,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          0,
+          3
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.mean.macro_f1",
+      "ours": 0.6102029575362908,
+      "reported": 0.6102029575362908,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.mean.accuracy",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.mean.benign_fpr",
+      "ours": 0.3235294117647059,
+      "reported": 0.32352941176470584,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.mean.macro_precision",
+      "ours": 0.6025089605734767,
+      "reported": 0.6025089605734767,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.std.macro_f1",
+      "ours": 0.06196353814896751,
+      "reported": 0.06196353814896751,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.std.accuracy",
+      "ours": 0.07719615562756679,
+      "reported": 0.07719615562756679,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.std.benign_fpr",
+      "ours": 0.14607514142893469,
+      "reported": 0.1460751414289347,
+      "ok": true
+    },
+    {
+      "row": "text_xlmr (3 seeds)",
+      "source": "reports/xlmr/v0.3/results.json",
+      "metric": "seeds.test.std.macro_precision",
+      "ours": 0.06314159511736588,
+      "reported": 0.06314159511736588,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.accuracy",
+      "ours": 0.7352941176470589,
+      "reported": 0.7352941176470589,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.macro_f1",
+      "ours": 0.6823368869936034,
+      "reported": 0.6823368869936034,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.weighted_f1",
+      "ours": 0.7554780718257453,
+      "reported": 0.7554780718257453,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.benign_fpr",
+      "ours": 0.20588235294117652,
+      "reported": 0.20588235294117646,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.benign.precision",
+      "ours": 0.8181818181818182,
+      "reported": 0.8181818181818182,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.benign.recall",
+      "ours": 0.7941176470588235,
+      "reported": 0.7941176470588235,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.benign.f1",
+      "ours": 0.8059701492537313,
+      "reported": 0.8059701492537313,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.benign.support",
+      "ours": 34,
+      "reported": 34,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.phishing.precision",
+      "ours": 0.75,
+      "reported": 0.75,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.phishing.recall",
+      "ours": 0.6923076923076923,
+      "reported": 0.6923076923076923,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.phishing.f1",
+      "ours": 0.72,
+      "reported": 0.72,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.phishing.support",
+      "ours": 13,
+      "reported": 13,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.precision",
+      "ours": 1.0,
+      "reported": 1.0,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.recall",
+      "ours": 0.875,
+      "reported": 0.875,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.f1",
+      "ours": 0.9333333333333333,
+      "reported": 0.9333333333333333,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.fake_ecommerce.support",
+      "ours": 8,
+      "reported": 8,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.precision",
+      "ours": 0.2,
+      "reported": 0.2,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.recall",
+      "ours": 0.5,
+      "reported": 0.5,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.f1",
+      "ours": 0.2857142857142857,
+      "reported": 0.2857142857142857,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.crypto_scam.support",
+      "ours": 4,
+      "reported": 4,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.precision",
+      "ours": 0.8333333333333334,
+      "reported": 0.8333333333333334,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.recall",
+      "ours": 0.5555555555555556,
+      "reported": 0.5555555555555556,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.f1",
+      "ours": 0.6666666666666666,
+      "reported": 0.6666666666666666,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.malware_delivery.support",
+      "ours": 9,
+      "reported": 9,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "test.confusion_matrix",
+      "ours": [
+        [
+          27,
+          2,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          9,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          3,
+          1,
+          0,
+          0,
+          5
+        ]
+      ],
+      "reported": [
+        [
+          27,
+          2,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          9,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          3,
+          1,
+          0,
+          0,
+          5
+        ]
+      ],
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.mean.macro_f1",
+      "ours": 0.6198821254374565,
+      "reported": 0.6198821254374565,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.mean.weighted_f1",
+      "ours": 0.7074975027993703,
+      "reported": 0.7074975027993703,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.mean.accuracy",
+      "ours": 0.7005842259006816,
+      "reported": 0.7005842259006816,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.mean.benign_fpr",
+      "ours": 0.18191632928475035,
+      "reported": 0.18191632928475032,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.std.macro_f1",
+      "ours": 0.07778488901007173,
+      "reported": 0.07778488901007173,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.std.weighted_f1",
+      "ours": 0.04495505065527781,
+      "reported": 0.04495505065527781,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.std.accuracy",
+      "ours": 0.04355288460457087,
+      "reported": 0.04355288460457087,
+      "ok": true
+    },
+    {
+      "row": "behavior",
+      "source": "reports/behavior_baseline/v0.3/results.json",
+      "metric": "cv.std.benign_fpr",
+      "ours": 0.06287930065723468,
+      "reported": 0.06287930065723464,
+      "ok": true
+    }
+  ],
+  "mismatches": [],
+  "findings": [
+    "Strongest single modality on test: DOM-only (macro-F1 0.786, 95 % CI [0.652, 0.891]); weakest: Content-only (Text XLM-R) (0.657).",
+    "The ranking depends on the evaluation: on CV (391 pages) the strongest single row is Content-only (Text TF-IDF) (macro-F1 0.706 ± 0.065) and DOM-only reaches 0.701 ± 0.077; the mean ± std ranges overlap.",
+    "benign (test n = 34): best single DOM-only F1 0.89, weakest Content-only (Text XLM-R) 0.79.",
+    "phishing (test n = 13): best single Content-only (Text TF-IDF) F1 0.81, weakest Content-only (Text XLM-R) 0.64.",
+    "fake_ecommerce (test n = 8): best single DOM-only F1 1.00, weakest Content-only (Text XLM-R) 0.70.",
+    "crypto_scam (test n = 4): best single Content-only (Text XLM-R) F1 0.73, weakest Behavior-only 0.29.",
+    "malware_delivery (test n = 9): best single Behavior-only F1 0.67, weakest Content-only (Text TF-IDF) 0.36.",
+    "Benign FPR on test (argmax, 34 benign pages): Content-only (Text TF-IDF) 5.9 %, Tri-modal fusion (reference) 8.8 %, DOM-only 17.6 %, Behavior-only 20.6 %, Content-only (Text XLM-R) 23.5 %. No row meets the ≤ 2 % target at argmax.",
+    "Text XLM-R (final seed) test macro-F1 0.657; over 3 seeds 0.610 ± 0.062, below Text TF-IDF (0.718).",
+    "Complementarity (test, 68 pages, 4 single rows): all right 34, all wrong 4; pages only one row gets right: DOM-only 2, Content-only (Text TF-IDF) 1, Content-only (Text XLM-R) 1, Behavior-only 1. Oracle (any single right) 94.1 % vs tri-modal 83.8 % accuracy.",
+    "Tri-modal reference: test macro-F1 0.795 [0.654, 0.906], benign FPR 8.8 %. Tri-modal minus each single row (paired bootstrap): DOM-only +0.009 [-0.136, +0.141] (CI includes 0); Content-only (Text TF-IDF) +0.077 [-0.019, +0.201] (CI includes 0); Content-only (Text XLM-R) +0.138 [+0.053, +0.249]; Behavior-only +0.113 [-0.013, +0.227] (CI includes 0)."
+  ],
+  "limitations": [
+    "Small test set: 68 pages. Test macro-F1 95 % CIs are 0.24, 0.27, 0.26, 0.25, 0.25 wide (rows in table order); one page moves accuracy by 1.5 points.",
+    "The tri-modal gain over DOM-only, Content-only (Text TF-IDF), Behavior-only is not established: those paired-bootstrap CIs include 0.",
+    "Few test pages per threat class (benign 34, phishing 13, fake_ecommerce 8, crypto_scam 4, malware_delivery 9); per-class F1 of the small classes changes by large steps with one page.",
+    "Few non-English test pages: si 1, ta 1, mixed 1, other 14 (Part 5A detected language). Per-language accuracy for si / ta / mixed is anecdotal; no Sinhala / Tamil claim can be made from this test set.",
+    "The tri-modal CV row is read from the Part 9A ablation (fused OOF was not saved); its CV macro precision is not available. The fusion's arm OOF came from arm models that saw the fusion's held-out fold (standard stacking, not fully nested).",
+    "Part 6B (intent-level text classification) is pending; Content-only here is the page-level 6A classifier.",
+    "Behavior-only is a page-class classifier over static-JS / behavior features; the behavior pattern detection-rate evaluation (real-page benchmark) is preliminary (small n) and is not part of these numbers.",
+    "All metrics are at argmax. The benign-FPR operating point (≤ 2 % on OOF) of the Part 9A / 9B reports is not re-evaluated here."
+  ]
+}
