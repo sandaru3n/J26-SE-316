@@ -1,10 +1,29 @@
 """Domain Generation Algorithm (DGA) Statistical Analysis & Detection Engine.
 
-Calculates domain-label Shannon entropy, character distributions, consonant/vowel patterns,
-n-gram transition frequencies, and statistical anomaly scores to identify procedurally generated
-domain names utilized in command-and-control (C2) and botnet infrastructure.
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - LAYER 3: DGA DETECTOR
+=============================================================================
+This module detects procedurally generated domain names created by Domain
+Generation Algorithms (DGAs).
 
-Explicitly distinguishes suspicious algorithmic generation from confirmed malicious activity.
+What is a DGA and Why Do Attackers Use Them?
+- Traditional malware used hardcoded IP addresses or domain names for Command &
+  Control (C2) communication. Security teams easily blocked those static addresses.
+- Modern malware families (e.g., Conficker, Necurs, Mirai, Gameover Zeus) employ DGAs:
+  mathematical algorithms seeded with the current date or pseudo-random keys that generate
+  hundreds or thousands of pseudo-random domain names every day (e.g., "xrqmbptw79.biz").
+- The infected victim machines and the attacker's server both run the same algorithm.
+  The attacker only needs to register ONE of the daily domains to establish control,
+  making proactive domain takedowns extremely difficult.
+
+How We Detect DGAs Without Running Malware:
+1. Shannon Entropy: Random character strings exhibit much higher entropy (> 3.6 bits/char)
+   than natural words ("google", "secure-bank").
+2. Vowel-to-Consonant Ratio: English words typically contain 35% - 45% vowels.
+   DGAs often output unpronounceable consonant clusters (e.g., "zxcvbnm", vowel ratio < 0.15).
+3. Bigram Perplexity (Rarity): Natural language relies on common two-letter pairs ("th", "er", "in").
+   DGAs produce letter transitions rarely or never seen in authentic languages (e.g., "qx", "zj", "vf").
+4. Hexadecimal Hashes: Identifies MD5/SHA-like hex labels used by crypto-mining botnets.
 """
 
 from __future__ import annotations
@@ -19,7 +38,8 @@ import tldextract
 from app.config import get_settings
 from app.schemas.url_schema import DgaAnalysisFeatures
 
-# English standard bigram frequency matrix subset (common transitions)
+# Common English two-letter combinations (bigrams) derived from natural language corpora.
+# In authentic words, letter pairs like "th", "he", "in", and "er" occur frequently.
 COMMON_ENGLISH_BIGRAMS = {
     "th", "he", "in", "er", "an", "re", "on", "at", "en", "nd",
     "ti", "es", "or", "te", "of", "ed", "is", "it", "al", "ar",
@@ -29,12 +49,17 @@ COMMON_ENGLISH_BIGRAMS = {
     "ly", "wa", "so", "no", "ta", "ut", "ge", "wi", "pe", "lo"
 }
 
+# Regex to identify purely hexadecimal labels (10+ characters of 0-9, a-f)
 HEX_LABEL_PATTERN = re.compile(r'^[0-9a-fA-F]{10,}$')
 VOWELS = set("aeiou")
 
 
 def calculate_entropy(text: str) -> float:
-    """Calculate Shannon entropy in bits per character."""
+    """Calculate Shannon entropy in bits per character.
+    
+    Formula: -Sum(p(x) * log2(p(x)))
+    Higher values indicate greater character randomness.
+    """
     if not text:
         return 0.0
     length = len(text)
@@ -47,6 +72,9 @@ def calculate_bigram_rarity(label: str) -> float:
     """Calculate the fraction of bigrams in the label that are improbable in natural language.
 
     Returns value between 0.0 (all common natural bigrams) and 1.0 (all rare/random bigrams).
+    Example:
+    - 'bank' -> pairs: 'ba', 'an', 'nk' -> common in English -> low rarity score (~0.0 - 0.3)
+    - 'xqzb' -> pairs: 'xq', 'qz', 'zb' -> rare/impossible in English -> high rarity score (~1.0)
     """
     clean_alpha = "".join(c for c in label.lower() if c.isalpha())
     if len(clean_alpha) < 2:

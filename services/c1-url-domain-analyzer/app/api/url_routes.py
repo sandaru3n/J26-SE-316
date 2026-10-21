@@ -1,8 +1,30 @@
-"""API routes for URL feature extraction, domain intelligence, and threat infrastructure."""
+"""API routes for URL feature extraction, domain intelligence, and threat infrastructure.
+
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - REST API ROUTING
+=============================================================================
+This module defines the HTTP REST API endpoints for Component C1.
+
+Architecture Overview:
+- Master Endpoint: `/analyze-url` (and `/api/v1/analyze-url`)
+  Triggers the complete 4-layer analysis pipeline and synthesizes all signals into
+  a single explainable risk score and operational verdict.
+- Specialized Sub-Endpoints:
+  `/api/v1/domain-intelligence`    -> Runs Layer 2 (WHOIS/RDAP, DNS, and reputation)
+  `/api/v1/dga-analysis`           -> Runs Layer 3 (Domain Generation Algorithm detection)
+  `/api/v1/redirect-analysis`      -> Runs Layer 3 (Safe HTTP redirect follower & shortener tracer)
+  `/api/v1/threat-infrastructure`  -> Combines DGA and redirect analysis
+  `/api/v1/extract-features`       -> Extracts raw 57-dimensional lexical vector
+  `/api/v1/ml-predict`             -> Runs inference with the trained Random Forest classifier
+  `/api/v1/explain-risk`           -> Returns explainable risk factors and dynamic weights
+  `/api/v1/scoring-weights`        -> Returns nominal baseline weights and rationales
+"""
 
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, status
+
+# Import specialized analyzer engines
 from app.analyzers.dga_analyzer import DgaAnalyzer
 from app.analyzers.domain_intelligence import DomainIntelligenceAnalyzer
 from app.analyzers.lexical_analyzer import UrlLexicalAnalyzer
@@ -23,9 +45,10 @@ from app.schemas.url_schema import (
 )
 from app.ml.model_service import get_ml_service
 
+# Create FastAPI router instance
 router = APIRouter(tags=["URL, Domain & Threat Infrastructure Intelligence"])
 
-
+# Instantiate singleton analyzer services for reuse across incoming requests
 lexical_analyzer = UrlLexicalAnalyzer()
 domain_intelligence_analyzer = DomainIntelligenceAnalyzer()
 dga_analyzer = DgaAnalyzer()
@@ -34,6 +57,9 @@ threat_infra_analyzer = ThreatInfrastructureAnalyzer()
 ml_service = get_ml_service()
 
 
+# =============================================================================
+# MASTER ANALYSIS ENDPOINT (Full Multi-Layer Pipeline)
+# =============================================================================
 @router.post(
     "/analyze-url",
     response_model=CompleteUrlDomainAnalysisResult,
@@ -47,10 +73,45 @@ ml_service = get_ml_service()
 async def analyze_url(payload: UrlAnalysisRequest) -> CompleteUrlDomainAnalysisResult:
     """Analyze a URL without executing or rendering destination webpages.
 
-    Integrates:
-    - Layer 1: Lexical URL Features
-    - Layer 2: Domain Intelligence (RDAP/WHOIS age, DNS infrastructure, reputation)
-    - Layer 3: Threat Infrastructure (DGA statistical analysis, URL shorteners, controlled redirect chains)
+    How the analysis pipeline executes:
+    1. Validation: Ensures the target URL string is non-empty and well-formed.
+    2. Layer 1 (Lexical): Extracts 57 structural, entropy, homoglyph, and keyword features.
+    3. Layer 2 (Domain Intel): Queries DNS records and RDAP/WHOIS for domain age (NRD detection).
+    4. Layer 3 (Threat Infra): Inspects DGA likelihood and safely traces redirect chains (with SSRF protection).
+    5. Layer 4 (ML & Fusion): Evaluates the Random Forest model, dynamically renormalizes weights,
+       applies collinearity dampening, and produces the final risk score and verdict.
+    """
+    # Reject empty URL submissions
+    if not payload.url or not payload.url.strip():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="URL field cannot be empty.",
+        )
+
+    # Execute full multi-layer scan asynchronously
+    result = await domain_intelligence_analyzer.analyze_full(payload.url)
+
+    # Optionally persist result if MongoDB is connected; fails silently if offline
+    save_scan_result(result.model_dump())
+
+    return result
+
+
+# =============================================================================
+# SPECIALIZED LAYER 2 ENDPOINT: Domain Intelligence
+# =============================================================================
+@router.post(
+    "/api/v1/domain-intelligence",
+    response_model=DomainIntelligenceReport,
+    summary="Extract Domain Intelligence (RDAP/WHOIS, DNS, and Threat Reputation)",
+)
+async def analyze_domain_only(payload: UrlAnalysisRequest) -> DomainIntelligenceReport:
+    """Analyze domain registration, DNS records, and infrastructure reputation only.
+    
+    This endpoint isolates Layer 2 of the pipeline:
+    - Queries public RDAP/WHOIS to calculate domain age and flag Newly Registered Domains (NRDs).
+    - Resolves DNS records (A, AAAA, MX, NS, TXT) and detects fast-flux botnet turnover.
+    - Checks threat intelligence blocklists.
     """
     if not payload.url or not payload.url.strip():
         raise HTTPException(
@@ -58,40 +119,29 @@ async def analyze_url(payload: UrlAnalysisRequest) -> CompleteUrlDomainAnalysisR
             detail="URL field cannot be empty.",
         )
 
-    result = await domain_intelligence_analyzer.analyze_full(payload.url)
-
-    # Optionally persist result if database is connected
-    save_scan_result(result.model_dump())
-
-    return result
-
-
-@router.post(
-    "/api/v1/domain-intelligence",
-    response_model=DomainIntelligenceReport,
-    summary="Extract Domain Intelligence (RDAP/WHOIS, DNS, and Threat Reputation)",
-)
-async def analyze_domain_only(payload: UrlAnalysisRequest) -> DomainIntelligenceReport:
-    """Analyze domain registration, DNS records, and infrastructure reputation only."""
-    if not payload.url or not payload.url.strip():
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="URL field cannot be empty.",
-        )
-
+    # Extract clean domain name from URL before querying network services
     features = lexical_analyzer.extract_features(payload.url)
     target_domain = features.registered_domain or features.hostname or payload.url.strip()
 
     return await domain_intelligence_analyzer.analyze_domain(target_domain)
 
 
+# =============================================================================
+# SPECIALIZED LAYER 3 ENDPOINT: Domain Generation Algorithm (DGA) Analysis
+# =============================================================================
 @router.post(
     "/api/v1/dga-analysis",
     response_model=DgaAnalysisFeatures,
     summary="Analyze Domain Generation Algorithm (DGA) statistical features",
 )
 async def analyze_dga_only(payload: UrlAnalysisRequest) -> DgaAnalysisFeatures:
-    """Evaluate DGA entropy, vowel-consonant ratios, and algorithmic likelihood on domain label."""
+    """Evaluate DGA entropy, vowel-consonant ratios, and algorithmic likelihood on domain label.
+    
+    This endpoint isolates the DGA statistical engine:
+    - Measures Shannon entropy of the domain label (e.g. bits per character).
+    - Evaluates vowel-to-consonant distribution and bigram perplexity.
+    - Distinguishes human-readable dictionary words from algorithmically generated botnet labels.
+    """
     if not payload.url or not payload.url.strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -104,13 +154,22 @@ async def analyze_dga_only(payload: UrlAnalysisRequest) -> DgaAnalysisFeatures:
     return dga_analyzer.analyze(target_domain)
 
 
+# =============================================================================
+# SPECIALIZED LAYER 3 ENDPOINT: Controlled HTTP Redirect Resolution
+# =============================================================================
 @router.post(
     "/api/v1/redirect-analysis",
     response_model=RedirectChainFeatures,
     summary="Controlled HTTP redirect chain resolution and URL shortener analysis",
 )
 async def analyze_redirect_only(payload: UrlAnalysisRequest) -> RedirectChainFeatures:
-    """Trace HTTP redirect hops with strict SSRF validation and hop limits."""
+    """Trace HTTP redirect hops with strict SSRF validation and hop limits.
+    
+    Security Controls:
+    - Unshortens URLs (bit.ly, tinyurl.com, etc.) to uncover the hidden destination.
+    - Enforces SSRF defense: aborts immediately if a hop attempts to route to private IP ranges (127.0.0.1, 10.0.0.0/8).
+    - Prevents denial-of-service by capping the maximum redirects at 8 hops.
+    """
     if not payload.url or not payload.url.strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -120,13 +179,16 @@ async def analyze_redirect_only(payload: UrlAnalysisRequest) -> RedirectChainFea
     return await redirect_resolver.resolve(payload.url)
 
 
+# =============================================================================
+# CONSOLIDATED LAYER 3 ENDPOINT: Threat Infrastructure
+# =============================================================================
 @router.post(
     "/api/v1/threat-infrastructure",
     response_model=ThreatInfrastructureReport,
     summary="Consolidated Threat Infrastructure report (DGA + Redirect Chains)",
 )
 async def analyze_threat_infrastructure_only(payload: UrlAnalysisRequest) -> ThreatInfrastructureReport:
-    """Evaluate DGA algorithmic generation and controlled redirect infrastructure."""
+    """Evaluate DGA algorithmic generation and controlled redirect infrastructure in one call."""
     if not payload.url or not payload.url.strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -139,13 +201,20 @@ async def analyze_threat_infrastructure_only(payload: UrlAnalysisRequest) -> Thr
     return await threat_infra_analyzer.analyze(payload.url, target_domain)
 
 
+# =============================================================================
+# FEATURE EXTRACTION ENDPOINT: Raw 57-Dimensional Feature Vector
+# =============================================================================
 @router.post(
     "/api/v1/extract-features",
     response_model=UrlLexicalFeatures,
     summary="Extract raw URL lexical features dictionary for ML pipelines",
 )
 async def extract_features(payload: UrlAnalysisRequest) -> UrlLexicalFeatures:
-    """Extract raw structured features from URL for machine learning model pipelines."""
+    """Extract raw structured features from URL for machine learning model pipelines.
+    
+    Performs purely static lexical analysis (no network lookups, no HTML execution).
+    Used by training scripts, ML pipelines, and dataset generation pipelines.
+    """
     if not payload.url or not payload.url.strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -155,13 +224,20 @@ async def extract_features(payload: UrlAnalysisRequest) -> UrlLexicalFeatures:
     return lexical_analyzer.extract_features(payload.url)
 
 
+# =============================================================================
+# MACHINE LEARNING INFERENCE ENDPOINT: Random Forest Classifier
+# =============================================================================
 @router.post(
     "/api/v1/ml-predict",
     response_model=MlPredictionResult,
     summary="Direct Machine Learning classifier prediction",
 )
 async def ml_predict(payload: UrlAnalysisRequest) -> MlPredictionResult:
-    """Classify a URL using the loaded machine learning model without running full multi-layer scans."""
+    """Classify a URL using the loaded machine learning model without running full multi-layer scans.
+    
+    Transforms the URL into a feature vector and passes it through the trained
+    Random Forest model to output a malicious probability (0.0 to 1.0) and predicted class.
+    """
     if not payload.url or not payload.url.strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -171,6 +247,9 @@ async def ml_predict(payload: UrlAnalysisRequest) -> MlPredictionResult:
     return ml_service.predict(payload.url)
 
 
+# =============================================================================
+# MODEL STATUS & METADATA ENDPOINT
+# =============================================================================
 @router.get(
     "/api/v1/ml-model-status",
     summary="Get active ML model metadata and operational status",
@@ -184,13 +263,23 @@ async def ml_model_status():
     }
 
 
+# =============================================================================
+# EXPLAINABLE RISK ASSESSMENT ENDPOINT (Core Research Contribution 4)
+# =============================================================================
 @router.post(
     "/api/v1/explain-risk",
     response_model=ExplainableRiskAssessment,
     summary="Direct Explainable Multi-Channel Risk Assessment",
 )
 async def explain_risk_assessment(payload: UrlAnalysisRequest) -> ExplainableRiskAssessment:
-    """Execute full multi-layer scan and return detailed explainable risk scoring breakdown."""
+    """Execute full multi-layer scan and return detailed explainable risk scoring breakdown.
+    
+    Returns the complete research audit trail:
+    - Active renormalized weights across all 8 channels (Research Contribution 3).
+    - Ranked contributing risk factors (with positive impact penalties or mitigating credits).
+    - Epistemic evidence breakdown separating empirical facts, heuristics, and ML predictions (Contribution 4).
+    - Transparent documentation of any external service limitations or timeouts.
+    """
     if not payload.url or not payload.url.strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -206,12 +295,19 @@ async def explain_risk_assessment(payload: UrlAnalysisRequest) -> ExplainableRis
     return full_res.risk_assessment
 
 
+# =============================================================================
+# SCORING CONFIGURATION & TRANSPARENCY ENDPOINT
+# =============================================================================
 @router.get(
     "/api/v1/scoring-weights",
     summary="Retrieve configurable risk scoring weights, rationale, and thresholds",
 )
 async def get_scoring_weights():
-    """Retrieve nominal scoring configuration weights, rationales, and classification thresholds."""
+    """Retrieve nominal scoring configuration weights, rationales, and classification thresholds.
+    
+    Used by the frontend dashboard to display the dynamic weights comparison chart
+    (Nominal baseline vs Effective dynamically renormalized weights).
+    """
     settings = get_settings()
     return {
         "engine_version": settings.risk_engine_version,

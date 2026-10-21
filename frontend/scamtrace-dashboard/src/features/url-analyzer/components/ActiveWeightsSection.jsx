@@ -1,3 +1,24 @@
+/**
+ * ============================================================================
+ * COMPONENT 1: FRONTEND UI - ACTIVE WEIGHTS VISUALIZATION (Contribution 3)
+ * ============================================================================
+ * This component visualizes Core Research Contribution 3:
+ * "Availability-Aware Analysis for Missing Domain Metadata & Dynamic Weight Renormalization"
+ *
+ * What This Component Demonstrates:
+ * 1. Weight Transparency: Shows the user exactly how much mathematical weight
+ *    was assigned to each of the 8 intelligence channels for the evaluated URL.
+ * 2. Dynamic Renormalization Telemetry:
+ *    - If an external service timed out (e.g. RDAP rate limited or WHOIS private),
+ *      that channel is marked 'EXCLUDED' (0% effective weight).
+ *    - The remaining 'ACTIVE' channels scale up proportionally so their effective
+ *      sum ALWAYS equals 100%.
+ * 3. Interactive Visualizations:
+ *    - Donut Chart: Shows proportional contribution of active channels.
+ *    - Bar Chart: Side-by-side comparison of Baseline Nominal Weight vs Effective Weight.
+ * 4. Channel Status Cards: 8 detailed telemetry cards showing raw sub-scores and deltas.
+ */
+
 import React, { useState } from 'react';
 import {
   Sliders,
@@ -26,6 +47,7 @@ import {
   RenormalizationBarChart,
 } from './AnalysisCharts.jsx';
 
+// Icon mapping corresponding to the 8 cybersecurity intelligence channels
 const CHANNEL_ICONS = {
   domain_registration: Globe,
   lexical_structural: Fingerprint,
@@ -43,6 +65,7 @@ export default function ActiveWeightsSection({
   isDark = true,
   className = '',
 }) {
+  // Toggle state between Donut Chart view and Comparative Bar Chart view
   const [activeViewTab, setActiveViewTab] = useState('donut'); // 'donut' | 'bars'
 
   if (!riskAssessment) return null;

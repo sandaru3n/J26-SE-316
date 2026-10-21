@@ -1,3 +1,29 @@
+/**
+ * ============================================================================
+ * COMPONENT 1: FRONTEND UI - SOC INTELLIGENT URL & DOMAIN ANALYZER
+ * ============================================================================
+ * This is the primary dashboard interface for Component C1 in ScamTrace.
+ * It provides a Security Operations Center (SOC) grade cybersecurity analytics
+ * interface to inspect URLs, domains, and attack infrastructure.
+ *
+ * Page Architecture & Data Flow:
+ * 1. User Input & Dispatch:
+ *    - The user enters a suspicious URL in the search bar.
+ *    - `handleAnalyze()` dispatches a POST request to C1's backend `/analyze-url`.
+ * 2. Executive Overview (Top Section):
+ *    - Radial Risk Gauge: Displays the composite 0-100 risk score.
+ *    - Final Operational Verdict Badge: SAFE, SUSPICIOUS, PHISHING, or MALICIOUS.
+ *    - 4-Layer Pipeline Tracker: Real-time status cards for each inspection stage.
+ * 3. 4-Layer Intelligence Pipeline Tabs (Middle Section):
+ *    - Tab 1 (Layer 1): URL Lexical & Syntax (57 features, Shannon entropy, homoglyphs).
+ *    - Tab 2 (Layer 2): Domain & DNS Intelligence (WHOIS/RDAP age, NRD detection, DNS records).
+ *    - Tab 3 (Layer 3): Threat Infrastructure (DGA botnet patterns, redirect chains, SSRF checks).
+ *    - Tab 4 (Layer 4): ML & Explainable Risk (Random Forest inference, XAI factor attribution).
+ * 4. Ground Truth & Telemetry (Bottom Section):
+ *    - Evaluated Target Asset: Detailed breakdown of the analyzed domain, scheme, and path.
+ *    - Core Research Contribution 3: Dynamic Weight Renormalization visualization section.
+ */
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -200,8 +226,12 @@ export default function UrlAnalyzer() {
       try {
         // Direct C1 service call
         response = await axios.post(`${c1Url}/analyze-url`, { url: targetUrl });
-      } catch {
-        // Fallback to API Gateway
+      } catch (c1Err) {
+        // If C1 responded with an HTTP status (e.g. 400 Bad Request), surface C1's error directly
+        if (c1Err.response) {
+          throw c1Err;
+        }
+        // Fallback to API Gateway only if direct C1 service connection was refused
         const gwRes = await axios.post(`${gatewayUrl}/api/analyze`, { url: targetUrl });
         response = { data: gwRes.data.component_results?.c1_url_domain || gwRes.data };
       }

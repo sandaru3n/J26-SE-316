@@ -23,7 +23,13 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import joblib
 import numpy as np
 import pandas as pd
-from lightgbm import LGBMClassifier
+try:
+    from lightgbm import LGBMClassifier
+    _HAS_LIGHTGBM = True
+except Exception:  # pragma: no cover
+    LGBMClassifier = None
+    _HAS_LIGHTGBM = False
+
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import (
@@ -37,7 +43,13 @@ from sklearn.metrics import (
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
-from xgboost import XGBClassifier
+
+try:
+    from xgboost import XGBClassifier
+    _HAS_XGBOOST = True
+except Exception:  # pragma: no cover
+    XGBClassifier = None
+    _HAS_XGBOOST = False
 
 from app.ml.dataset_loader import DatasetLoader, DatasetSplits
 from app.ml.feature_extractor import FEATURE_NAMES, MlFeatureExtractor
@@ -276,7 +288,9 @@ class MlTrainingPipeline:
                 ),
                 False,
             ),
-            "xgboost": (
+        }
+        if _HAS_XGBOOST and XGBClassifier is not None:
+            all_models["xgboost"] = (
                 "XGBoost",
                 XGBClassifier(
                     n_estimators=100,
@@ -286,8 +300,9 @@ class MlTrainingPipeline:
                     eval_metric="logloss",
                 ),
                 False,
-            ),
-            "lightgbm": (
+            )
+        if _HAS_LIGHTGBM and LGBMClassifier is not None:
+            all_models["lightgbm"] = (
                 "LightGBM",
                 LGBMClassifier(
                     n_estimators=100,
@@ -298,8 +313,8 @@ class MlTrainingPipeline:
                     verbose=-1,
                 ),
                 False,
-            ),
-        }
+            )
+
         if model_selection == "random_forest":
             # Train both baseline and improved models for direct comparative evaluation
             return {
@@ -308,6 +323,10 @@ class MlTrainingPipeline:
             }
         elif model_selection in all_models:
             return {model_selection: all_models[model_selection]}
+        elif model_selection in ("xgboost", "lightgbm") and model_selection not in all_models:
+            raise ImportError(
+                f"Model type '{model_selection}' requested but the required library is not installed or platform C++ runtime is missing. Install via pip install {model_selection}."
+            )
         return all_models
 
     def _calibrate_decision_threshold(

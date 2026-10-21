@@ -1,11 +1,32 @@
 """Domain Registration & WHOIS/RDAP Intelligence Analyzer.
 
-Extracts domain registration metadata, creation/expiration dates, registrar details,
-and detects newly registered domains (NRDs) via public RDAP (Registration Data Access Protocol)
-with fallback to python-whois.
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - LAYER 2: REGISTRATION
+=============================================================================
+This module inspects domain registration records (WHOIS / RDAP) to calculate
+domain age and identify Newly Registered Domains (NRDs).
 
-Adheres strictly to the requirement that unavailable or rate-limited registration data
-is NOT interpreted as evidence of malicious activity.
+Why Domain Registration Age is a Critical Security Signal (Contribution 2):
+- Over 70% of active phishing and scam sites are hosted on domains registered
+  less than 30 days prior.
+- Malicious actors purchase cheap disposable domains, deploy landing pages,
+  send mass scam messages, and abandon the domains once blacklisted.
+- Conversely, well-established domains (> 2 years old like apple.com or github.com)
+  have extensive trust history and receive mitigating credits to avoid false alarms.
+
+Protocol Information (RDAP vs WHOIS):
+- Traditional WHOIS operates on raw TCP port 43 with free-form unstructured text.
+- RDAP (Registration Data Access Protocol, RFC 7480-7484) is the modern successor
+  standardized by ICANN. It delivers structured JSON over standard HTTPS (port 443).
+- This module queries public RDAP bootstrap servers first, with automated fallback
+  to python-whois if needed.
+
+Core Research Contribution 3 Principle:
+- In the real world, RDAP/WHOIS queries frequently fail due to registrar rate limits,
+  network timeouts, or strict privacy redaction (GDPR masking).
+- Our system STRICTLY ensures that unavailable or timed-out registration data is
+  NEVER penalized as malicious evidence. Missing evidence triggers dynamic weight
+  renormalization rather than false accusations!
 """
 
 from __future__ import annotations
@@ -27,7 +48,7 @@ from app.schemas.url_schema import DomainRegistrationFeatures
 
 logger = logging.getLogger(__name__)
 
-# Known privacy/proxy service strings
+# Known privacy/proxy service strings indicating masked owner information
 PRIVACY_INDICATORS = {
     "privacy", "proxy", "whoisguard", "withheld", "redacted",
     "domains by proxy", "private protect", "identity protect",
@@ -36,7 +57,11 @@ PRIVACY_INDICATORS = {
 
 
 def parse_iso_datetime(date_str: str) -> Optional[datetime]:
-    """Parse various ISO-8601 timestamp formats to timezone-aware UTC datetime."""
+    """Parse various ISO-8601 timestamp formats to timezone-aware UTC datetime.
+    
+    Handles standard Zulu timestamps ("2024-05-01T12:00:00Z") as well as
+    common registrar variants without timezone offsets.
+    """
     if not date_str:
         return None
     try:
@@ -49,7 +74,7 @@ def parse_iso_datetime(date_str: str) -> Optional[datetime]:
     except Exception:
         pass
 
-    # Alternative formats
+    # Fallback formats without 'T' separator
     for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
         try:
             dt = datetime.strptime(date_str, fmt)
@@ -68,8 +93,12 @@ class RegistrationAnalyzer:
     async def analyze(self, domain_name: str) -> DomainRegistrationFeatures:
         """Query RDAP / WHOIS for domain registration metadata.
 
-        Safely handles network errors, rate limits, and missing data without
-        attributing missing data to malicious behavior.
+        Safe Multi-Tier Query Flow:
+        1. Validate domain input string.
+        2. Primary Tier: Query public RESTful RDAP gateway (standard JSON).
+        3. Secondary Tier: Fallback to socket WHOIS query if RDAP failed.
+        4. Fallback: If both fail or time out, return an 'unavailable' status
+           with is_data_available=False without assigning any risk penalty.
         """
         clean_domain = domain_name.strip().lower()
         if not clean_domain:
@@ -86,7 +115,7 @@ class RegistrationAnalyzer:
             if whois_result.is_data_available:
                 return whois_result
 
-        # Return unavailable structure without penalty
+        # Return unavailable structure without penalty (triggers dynamic renormalization)
         return self._unavailable_result(clean_domain)
 
     async def _query_rdap(self, domain: str) -> DomainRegistrationFeatures:

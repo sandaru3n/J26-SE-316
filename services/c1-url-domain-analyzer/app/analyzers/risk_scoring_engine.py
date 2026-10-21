@@ -1,25 +1,49 @@
 """Explainable Risk-Scoring Engine for Intelligent URL and Domain Analyzer (Component C1).
 
-This engine combines available evidence across 8 distinct intelligence channels:
-1. URL lexical and structural analysis
-2. Entropy and obfuscation analysis
-3. Homoglyph and lookalike-domain indicators
-4. Domain registration age and registrar metadata
-5. DNS and reputation intelligence
-6. DGA (Domain Generation Algorithm) classification
-7. Shortened URL destinations and redirect-chain indicators
-8. Machine-learning predictions
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - EXPLAINABLE RISK ENGINE
+=============================================================================
+This engine is the central analytical brain of Component C1. It implements
+two of the project's primary research contributions:
+1. Core Research Contribution 3: Availability-Aware Dynamic Weight Renormalization
+2. Core Research Contribution 4: Explainable Multi-Modal Risk Scoring & Factor Attribution
 
-Key architectural capabilities:
-- Normalized risk score from 0.0 to 100.0.
-- Configurable scoring weights with explicit documented rationale.
-- Dynamic weight renormalization for missing features and unavailable external services.
-- Collinearity dampening to avoid double-counting correlated signals (e.g. entropy vs DGA,
-  homoglyphs vs keywords, ML probabilities vs lexical features, Punycode vs homoglyphs).
-- Strict epistemological tier separation (Observed Facts vs Heuristic Indicators vs Model Predictions).
-- Main contributing indicators with impact deltas and empirical evidence strings.
-- Explicit documentation of analysis limitations and service fallbacks.
-- Mitigating factors for established domains (>2 years, DNSSEC) to prevent false positives.
+How It Works (High-Level Overview):
+- Multi-Channel Fusion: Instead of relying on a single signal (which attackers can evade),
+  this engine analyzes 8 distinct intelligence channels:
+    Channel 1: URL Lexical & Structural Analysis (path depth, query complexity, keywords)
+    Channel 2: Shannon Entropy & Evasion Obfuscation (hex IPs, percent-encoding, char randomness)
+    Channel 3: Homoglyphs & Confusable Lookalike Domains (Punycode xn--, Cyrillic spoofing)
+    Channel 4: Domain Registration Age & WHOIS/RDAP (Newly Registered Domains <= 30 days)
+    Channel 5: DNS Infrastructure & Reputation (fast-flux turnover, threat feed hits)
+    Channel 6: Domain Generation Algorithms / DGA (botnet C2 procedural labels)
+    Channel 7: Shortened URLs & HTTP Redirect Chains (SSRF defense, cloaked targets)
+    Channel 8: Supervised Machine Learning Classifier (Random Forest inference)
+
+Key Research Capabilities Explained Simply:
+- Availability-Aware Dynamic Renormalization (Contribution 3):
+  In the real world, external network services (like WHOIS or DNS) often time out,
+  are blocked by privacy guards, or hit rate limits. Traditional security engines
+  either fail completely or falsely assume missing data means the site is benign (false negative).
+  Our engine detects which channels are actively available and dynamically recalculates
+  the mathematical weights so active channels always sum to 100%. Missing data never suppresses risk!
+
+- Collinearity Dampening:
+  When the Machine Learning model is active, it already evaluates lexical features. If we
+  also applied 100% of the manual lexical rules, lexical features would be double-counted.
+  We mathematically dampen the lexical rule weight by 40% when ML is active to maintain independence.
+
+- Strict Epistemological Separation (Contribution 4):
+  Every piece of evidence is categorized into one of three rigorous tiers:
+  1. Observed Facts: Empirically verified ground truths (DNS records, creation date, HTTP status).
+  2. Heuristic Indicators: Rule-based expert patterns (keywords, entropy thresholds, homoglyphs).
+  3. Model Predictions: Probabilistic statistical inferences (ML classifier, DGA likelihood).
+
+- Final Operational Verdict Rules:
+  - If Risk Score > 80%: Verdict is never SAFE. It is classified as MALICIOUS (malware/C2),
+    PHISHING (credential theft), or SUSPICIOUS based on empirical indicators.
+  - If Risk Score = 80%: Threshold boundary logic is applied.
+  - If Risk Score < 80%: Deterministic rule and threshold evaluation determines SAFE, SUSPICIOUS, or elevated risk.
 """
 
 from __future__ import annotations
@@ -47,7 +71,6 @@ from app.schemas.url_schema import (
 
 class ExplainableRiskScoringEngine:
     """Multi-channel explainable risk-scoring engine with dynamic weight renormalization
-
     and collinearity dampening.
     """
 
@@ -62,13 +85,25 @@ class ExplainableRiskScoringEngine:
         infra_report: ThreatInfrastructureReport,
         ml_res: Optional[MlPredictionResult] = None,
     ) -> ExplainableRiskAssessment:
-        """Execute full explainable risk evaluation across all available intelligence channels."""
+        """Execute full explainable risk evaluation across all available intelligence channels.
+        
+        The Evaluation Pipeline runs in 5 distinct phases:
+        Phase 1: Epistemic Evidence Collection (segregates facts, heuristics, predictions).
+        Phase 2: Compute individual channel sub-scores (0-100) across all 8 security dimensions.
+        Phase 3: Availability-Aware Dynamic Weight Renormalization (Contribution 3) & Collinearity Dampening.
+        Phase 4: Contextual compound threat boosts (NRD + credential keywords) and mitigating sanity caps.
+        Phase 5: Operational Verdict Determination applying the >80%, =80%, <80% decision matrix.
+        """
         timestamp_utc = datetime.now(timezone.utc).isoformat()
         analysis_limitations: List[str] = []
 
         # ---------------------------------------------------------------------
-        # 1. Epistemological Evidence Collection
+        # Phase 1: Epistemological Evidence Collection (Research Contribution 4)
         # ---------------------------------------------------------------------
+        # We partition all observations into three distinct confidence tiers:
+        # 1. observed_facts: empirical measurements (DNS records, registration date, HTTP status)
+        # 2. heuristic_indicators: expert cybersecurity rules (keyword matches, entropy thresholds)
+        # 3. model_predictions: statistical AI model outputs (Random Forest probability, DGA score)
         observed_facts: List[str] = []
         heuristic_indicators: List[str] = []
         model_predictions: List[str] = []
@@ -87,18 +122,20 @@ class ExplainableRiskScoringEngine:
         )
 
         # ---------------------------------------------------------------------
-        # 2. Compute Individual Channel Sub-Scores (0.0 to 100.0)
+        # Phase 2: Compute Individual Channel Sub-Scores (0.0 to 100.0)
         # ---------------------------------------------------------------------
+        # Each channel produces an independent score from 0.0 (benign) to 100.0 (critical threat).
+        # We also track which channels are 'active' (successful data retrieval) vs 'inactive' (timeout/blocked).
         channel_scores: Dict[str, float] = {}
         channel_active: Dict[str, bool] = {}
 
-        # Channel 1: Lexical & Structural
+        # Channel 1: Lexical & Structural (always active, static analysis)
         score_lex, lex_factors = self._evaluate_lexical_structural(lexical_features)
         channel_scores["lexical_structural"] = score_lex
         channel_active["lexical_structural"] = True
         contributing_factors.extend(lex_factors)
 
-        # Channel 2: Entropy & Obfuscation
+        # Channel 2: Entropy & Obfuscation (always active, static analysis)
         score_ent, ent_factors = self._evaluate_entropy_obfuscation(
             lexical_features, infra_report.dga
         )
@@ -106,13 +143,13 @@ class ExplainableRiskScoringEngine:
         channel_active["entropy_obfuscation"] = True
         contributing_factors.extend(ent_factors)
 
-        # Channel 3: Homoglyph & Lookalike
+        # Channel 3: Homoglyph & Lookalike (always active, static analysis)
         score_homo, homo_factors = self._evaluate_homoglyph_lookalike(lexical_features)
         channel_scores["homoglyph_lookalike"] = score_homo
         channel_active["homoglyph_lookalike"] = True
         contributing_factors.extend(homo_factors)
 
-        # Channel 4: Domain Registration
+        # Channel 4: Domain Registration (active only if RDAP/WHOIS returned data)
         score_reg, reg_factors, reg_active, reg_limitation = self._evaluate_domain_registration(
             lexical_features, domain_report.registration
         )
@@ -122,7 +159,7 @@ class ExplainableRiskScoringEngine:
             analysis_limitations.append(reg_limitation)
         contributing_factors.extend(reg_factors)
 
-        # Channel 5: DNS & Reputation
+        # Channel 5: DNS & Reputation (active only if DNS resolved or reputation was checked)
         score_dns, dns_factors, dns_active, dns_limitation = self._evaluate_dns_reputation(
             lexical_features, domain_report.dns, domain_report.reputation
         )
@@ -132,7 +169,7 @@ class ExplainableRiskScoringEngine:
             analysis_limitations.append(dns_limitation)
         contributing_factors.extend(dns_factors)
 
-        # Channel 6: DGA Classification
+        # Channel 6: DGA Classification (evaluates domain label randomness)
         score_dga, dga_factors, dga_active, dga_limitation = self._evaluate_dga(
             lexical_features, infra_report.dga
         )
@@ -142,7 +179,7 @@ class ExplainableRiskScoringEngine:
             analysis_limitations.append(dga_limitation)
         contributing_factors.extend(dga_factors)
 
-        # Channel 7: Shorteners & Redirect Chains
+        # Channel 7: Shorteners & Redirect Chains (evaluates redirect hops and SSRF safety)
         score_redir, redir_factors, redir_active = self._evaluate_shortener_redirect(
             infra_report.redirect_chain
         )
@@ -150,7 +187,7 @@ class ExplainableRiskScoringEngine:
         channel_active["shortener_redirect"] = redir_active
         contributing_factors.extend(redir_factors)
 
-        # Channel 8: Machine Learning Classifier
+        # Channel 8: Machine Learning Classifier (active only if trained model is loaded)
         score_ml, ml_factors, ml_active, ml_limitation = self._evaluate_machine_learning(ml_res)
         channel_scores["machine_learning"] = score_ml
         channel_active["machine_learning"] = ml_active
@@ -159,11 +196,14 @@ class ExplainableRiskScoringEngine:
         contributing_factors.extend(ml_factors)
 
         # ---------------------------------------------------------------------
-        # 3. Dynamic Weight Renormalization & Collinearity Dampening
+        # Phase 3: Dynamic Weight Renormalization & Collinearity Dampening (Contribution 3)
         # ---------------------------------------------------------------------
+        # If an external channel is inactive (e.g. WHOIS timed out), its weight is set to 0.0,
+        # and the remaining active weights are scaled up proportionally so they sum to 1.00 (100%).
+        # If the ML model is active, we also dampen lexical heuristic weight by 40% to prevent double-counting.
         active_weights = self._calculate_renormalized_weights(channel_active, ml_active)
 
-        # Compute base composite score
+        # Compute base composite score: Sum of (renormalized_weight * channel_subscore)
         composite_score = sum(
             active_weights[ch] * channel_scores[ch]
             for ch in active_weights
@@ -171,8 +211,11 @@ class ExplainableRiskScoringEngine:
         )
 
         # ---------------------------------------------------------------------
-        # 4. Contextual Synergy Boosts and Mitigating Factor Sanity Caps
+        # Phase 4: Contextual Synergy Boosts and Mitigating Factor Sanity Caps
         # ---------------------------------------------------------------------
+        # High-confidence synergies (e.g. Newly Registered Domain + Banking Login Keyword)
+        # receive multiplicative threat boosts.
+        # Conversely, established domains (>2 years old with valid DNSSEC) receive mitigating caps.
         composite_score, contextual_factors = self._apply_contextual_rules(
             composite_score=composite_score,
             lexical_features=lexical_features,
@@ -183,7 +226,7 @@ class ExplainableRiskScoringEngine:
         contributing_factors.extend(contextual_factors)
 
         # ---------------------------------------------------------------------
-        # 4b. Effective Risk Score & ML Alignment
+        # Phase 4b: Effective Risk Score & ML Alignment
         # ---------------------------------------------------------------------
         ml_prob_pct = (ml_res.malicious_probability * 100.0) if (ml_res and ml_res.is_model_loaded) else None
         
@@ -197,8 +240,9 @@ class ExplainableRiskScoringEngine:
         final_risk_score = round(min(max(effective_score, 0.0), 100.0), 1)
 
         # ---------------------------------------------------------------------
-        # 5. Final Verdict Determination (>80%, =80%, <80% Rules)
+        # Phase 5: Final Verdict Determination (>80%, =80%, <80% Decision Rules)
         # ---------------------------------------------------------------------
+        # Detect whether concrete phishing or malware indicators are present
         has_phishing = self._detect_phishing_evidence(
             raw_url=raw_url,
             lexical_features=lexical_features,
@@ -212,6 +256,7 @@ class ExplainableRiskScoringEngine:
             infra_report=infra_report,
         )
 
+        # Determine final verdict (SAFE, SUSPICIOUS, PHISHING, MALICIOUS)
         verdict = self._determine_final_verdict(
             effective_score=final_risk_score,
             has_phishing=has_phishing,
@@ -1029,17 +1074,32 @@ class ExplainableRiskScoringEngine:
         return sub_score, factors, True, None
 
     # =========================================================================
-    # Weight Renormalization & Collinearity Dampening
+    # CORE RESEARCH CONTRIBUTION 3: Dynamic Weight Renormalization
     # =========================================================================
 
     def _calculate_renormalized_weights(
         self, channel_active: Dict[str, bool], ml_active: bool
     ) -> Dict[str, float]:
-        """Dynamically renormalize weights over active channels.
+        """Dynamically renormalize weights over active channels (Research Contribution 3).
 
-        Applies collinearity dampening to lexical heuristic channel when the ML model
-        is active, because the ML model already captures lexical and structural features.
+        Mathematical Principle:
+        - When all 8 channels are active, nominal weights sum to exactly 1.00:
+          Sum(W_nominal) = 0.15 + 0.10 + 0.10 + 0.20 + 0.15 + 0.05 + 0.10 + 0.15 = 1.00
+        
+        - If external channels are unavailable (e.g. WHOIS privacy blocks creation date,
+          or public DNS rate-limits query), treating missing data as 0 would artificially
+          lower the risk score (False Negative).
+        
+        - Renormalization Solution:
+          Step 1: Set W_i = 0 for any inactive channel i.
+          Step 2: If ML is active, apply Collinearity Dampening to W_lexical (scale by 0.6)
+                  because the Random Forest model already evaluates lexical features.
+          Step 3: Calculate Total Active Weight = Sum(W_active).
+          Step 4: Renormalize each active channel: W_effective_i = W_i / Total Active Weight.
+          
+          This guarantees: Sum(W_effective_i) == 1.00 (100%) at all times!
         """
+        # Nominal baseline prior weights configured in app/config.py
         nominal_weights: Dict[str, float] = {
             "lexical_structural": self.settings.weight_lexical_structural,
             "entropy_obfuscation": self.settings.weight_entropy_obfuscation,
@@ -1051,26 +1111,28 @@ class ExplainableRiskScoringEngine:
             "machine_learning": self.settings.weight_machine_learning,
         }
 
-        # Collinearity Dampening: If ML model is active, scale lexical heuristic weight down
-        # by 40% to prevent double-counting lexical signals already internalized by ML.
+        # Step 2: Collinearity Dampening
+        # If ML model is active, scale lexical heuristic weight down by 40% (multiply by 0.6)
+        # to prevent double-counting lexical signals already internalized by the Random Forest.
         if ml_active:
             nominal_weights["lexical_structural"] *= 0.6
 
-        # Zero out inactive channels
+        # Step 3: Zero out any inactive channels (where external services were unreachable)
         active_nominal: Dict[str, float] = {
             ch: (nominal_weights[ch] if channel_active.get(ch, False) else 0.0)
             for ch in nominal_weights
         }
 
+        # Compute sum of active weights
         total_active_weight = sum(active_nominal.values())
         if total_active_weight <= 0.0:
-            # Fallback uniform distribution over active channels
+            # Extreme fallback: uniform distribution over whichever channels are active
             active_count = sum(1 for ch in channel_active if channel_active[ch])
             if active_count == 0:
                 return {ch: 0.0 for ch in nominal_weights}
             return {ch: (1.0 / active_count if channel_active.get(ch, False) else 0.0) for ch in nominal_weights}
 
-        # Normalize so sum of active weights == 1.00
+        # Step 4: Renormalize so the sum of all active effective weights == 1.00 (100%)
         return {ch: active_nominal[ch] / total_active_weight for ch in nominal_weights}
 
     # =========================================================================
