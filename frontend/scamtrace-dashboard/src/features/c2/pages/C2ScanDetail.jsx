@@ -18,7 +18,7 @@ export default function C2ScanDetail() {
       const { details } = await loadDemo()
       const found = details[scanId]
       if (!found) throw new Error('This scan is not part of the bundled demo set.')
-      return found
+      return { ...found, demo: true }
     }
     return getScan(scanId, { signal })
   }, `${demo}|${scanId}`)

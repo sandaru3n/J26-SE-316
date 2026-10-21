@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { feedStreamUrl, getScans } from '../api/c2Api.js'
-import { loadDemo } from '../demo/demoData.js'
+import { loadDemo, replayRow } from '../demo/demoData.js'
 
 const POLL_MS = 10000
 const DEMO_STEP_MS = 3500
@@ -31,7 +31,8 @@ function merge(fresh, current) {
  * Live list of finished scans.
  * - live: last 25 from /api/v1/scans, then one row per SSE `scan` event (GET /api/v1/feed/stream);
  *   if the stream keeps failing, falls back to polling /api/v1/scans every 10 s.
- * - demo: the bundled scans, replayed one by one as a scripted feed.
+ * - demo: the bundled scans (v0.3 test pages), replayed one by one as a scripted feed; each row
+ *   is marked replayed, created_at = replayed at, recorded_at = when C2 really analysed it.
  * Returns { items, mode: 'connecting'|'live'|'polling'|'demo'|'error', error, freshIds, lastEventAt }.
  */
 export function useLiveFeed(demo) {
@@ -59,13 +60,13 @@ export function useLiveFeed(demo) {
         const withDetail = scans.items.filter((item) => details[String(item.id)])
         const pool = withDetail.length ? withDetail : scans.items
         const now = Date.now()
-        const initial = pool.slice(0, 10).map((item, index) => ({ ...item, created_at: new Date(now - (index + 1) * 95000).toISOString() }))
+        const initial = pool.slice(0, 10).map((item, index) => replayRow(item, new Date(now - (index + 1) * 95000)))
         update({ items: initial, mode: 'demo', error: null, freshIds: new Set() })
         let next = 10
         const id = setInterval(() => {
           const item = pool[next % pool.length]
           next += 1
-          push([{ ...item, created_at: new Date().toISOString() }])
+          push([replayRow(item)])
         }, DEMO_STEP_MS)
         timers.current.push(id)
       })

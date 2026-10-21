@@ -4,10 +4,14 @@ summary (read-only, from the reports earlier Parts already wrote).
 Part 9: Batch B-2 - read APIs for the team frontend.
 
 - ``overview``: counts in a time window (24h / 7d / 30d): by verdict, status, threat
-  class, source, language; the most targeted (registrable) domains and imitated brands of
-  FLAGGED scans; a time series; queue depth, review queue and worker state. Aggregated in
-  Python over the window's rows - a few thousand rows a day is far below where SQL
-  tuning would matter, and the code stays readable.
+  class, source, language; the most flagged HOSTS (full host name, so docs.google.com and
+  drive.usercontent.google.com stay apart) and imitated brands of FLAGGED scans; a time
+  series; queue depth, review queue and worker state. Aggregated in Python over the
+  window's rows - a few thousand rows a day is far below where SQL tuning would matter,
+  and the code stays readable.
+- Hosting platforms (``configs/hosting_platforms.yaml``): a flagged host on Google /
+  GitHub / Dropbox / free hosting gets ``hosted_on`` - the malicious thing is the document
+  or the subdomain, not the platform, and the dashboard must not show it as a scam domain.
 - Imitated brand: ThreatRadar's own ``brand_mimicry:<brand>`` reason if present, else
   a brand of configs/threatradar_rules.yaml found inside the host (``paypal-verify.xyz``
   -> paypal), allow-listed (real) brand sites excluded.
@@ -22,20 +26,21 @@ import csv
 import json
 from collections import Counter
 from datetime import UTC, datetime, timedelta
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from c2_analyzer.config import project_root
+from c2_analyzer.config import load_yaml_config, project_root
 from c2_analyzer.dataset.feeds import is_allow_listed, load_threatradar_rules
 from c2_analyzer.schemas.ingest import (
     CountItem,
+    DomainCount,
     SeriesPoint,
     StatsOverview,
     WorkerStatus,
 )
 from c2_analyzer.store.repository import ResultsStore, iso, parse_iso
 from c2_analyzer.utils.defang import defang_host
-from c2_analyzer.utils.url import domain_of_host
 
 WINDOWS = {"24h": timedelta(hours=24), "7d": timedelta(days=7), "30d": timedelta(days=30)}
 FLAGGED = ("Suspicious", "Malicious")
@@ -50,6 +55,26 @@ def _brand(row: dict, brands: tuple[str, ...], allow_list: tuple[str, ...]) -> s
     if not host or is_allow_listed(f"https://{host}/", allow_list):
         return None
     return next((brand for brand in brands if brand in host), None)
+
+
+@lru_cache
+def hosting_platforms() -> tuple[tuple[str, str], ...]:
+    """(suffix, platform) pairs, longest suffix first, from configs/hosting_platforms.yaml."""
+    pairs = [
+        (str(suffix).lower().strip("."), str(name))
+        for name, suffixes in (load_yaml_config("hosting_platforms").get("platforms") or {}).items()
+        for suffix in suffixes or []
+    ]
+    return tuple(sorted(pairs, key=lambda pair: -len(pair[0])))
+
+
+def hosted_on(host: str | None) -> str | None:
+    """Platform name if ``host`` is a shared hosting platform or a subdomain of one."""
+    host = (host or "").lower().rstrip(".").replace("[.]", ".")
+    for suffix, platform in hosting_platforms():
+        if host == suffix or host.endswith("." + suffix):
+            return platform
+    return None
 
 
 def _bucket_start(moment: datetime, bucket: str) -> datetime:
@@ -72,6 +97,7 @@ def overview(
     by_verdict: Counter = Counter({"Legitimate": 0, "Suspicious": 0, "Malicious": 0})
     by_status, by_class, by_source, by_language = Counter(), Counter(), Counter(), Counter()
     domains, brands = Counter(), Counter()
+    worst: dict[str, int] = {}  # host -> highest risk score (tie-break: worst first)
     bucket = "day" if window == "30d" else "hour"
     step = timedelta(days=1) if bucket == "day" else timedelta(hours=1)
     series: dict[datetime, list[int]] = {}
@@ -90,7 +116,9 @@ def overview(
             by_class[row["threat_class"]] += 1
         flagged = verdict in FLAGGED
         if flagged and row["final_url_domain"]:
-            domains[domain_of_host(row["final_url_domain"])] += 1
+            host = row["final_url_domain"].lower().rstrip(".")
+            domains[host] += 1
+            worst[host] = max(worst.get(host, 0), row["risk_score"] or 0)
             brand = _brand(row, rules.brands, rules.allow_list)
             if brand:
                 brands[brand] += 1
@@ -111,8 +139,10 @@ def overview(
         by_source=dict(by_source.most_common()),
         by_language=dict(by_language.most_common()),
         top_domains=[
-            CountItem(key=defang_host(key) or key, count=count)
-            for key, count in domains.most_common(top_n)
+            DomainCount(key=defang_host(key) or key, count=count, hosted_on=hosted_on(key))
+            for key, count in sorted(
+                domains.items(), key=lambda item: (-item[1], -worst[item[0]], item[0])
+            )[:top_n]
         ],
         top_brands=[CountItem(key=key, count=count) for key, count in brands.most_common(top_n)],
         series_bucket=bucket,

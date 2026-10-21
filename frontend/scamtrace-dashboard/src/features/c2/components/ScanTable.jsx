@@ -2,8 +2,9 @@ import { useNavigate } from 'react-router-dom'
 import { ChevronRight } from 'lucide-react'
 import { defangHost, defangUrl } from '../api/defang.js'
 import { CLASSES, CLASS_LABELS, LANGUAGE_LABELS, SOURCE_LABELS, formatTime } from '../constants.js'
+import { DEMO_REPLAY_TOOLTIP } from '../demo/demoData.js'
 import VerdictBadge from './VerdictBadge.jsx'
-import { CopyButton, SelectField } from './ui.jsx'
+import { Chip, CopyButton, SelectField } from './ui.jsx'
 
 const shortTime = (iso) =>
   new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
@@ -35,7 +36,10 @@ export default function ScanTable({ items, highlightIds, compact = false }) {
                 onClick={() => navigate(`/c2/scans/${item.id}`)}
                 className={`cursor-pointer align-middle hover:bg-[color:var(--c2-row-hover)] ${highlightIds?.has(item.id) ? 'c2-enter bg-[color:var(--c2-accent-tint-faint)]' : ''}`}
               >
-                <td className="whitespace-nowrap border-b border-[color:var(--c2-border-soft)] px-2 py-2 font-mono text-xs text-[color:var(--c2-fg-muted)]" title={formatTime(item.created_at)}>
+                <td
+                  className="whitespace-nowrap border-b border-[color:var(--c2-border-soft)] px-2 py-2 font-mono text-xs text-[color:var(--c2-fg-muted)]"
+                  title={item.replayed ? `replayed at ${formatTime(item.created_at)} · recorded ${formatTime(item.recorded_at)}` : formatTime(item.created_at)}
+                >
                   {compact ? new Date(item.created_at).toLocaleTimeString() : shortTime(item.created_at)}
                 </td>
                 <td className="border-b border-[color:var(--c2-border-soft)] px-2 py-2">
@@ -57,7 +61,11 @@ export default function ScanTable({ items, highlightIds, compact = false }) {
                 {!compact && <td className="border-b border-[color:var(--c2-border-soft)] px-2 py-2 font-mono text-xs text-[color:var(--c2-fg-2)]">{LANGUAGE_LABELS[item.language] || item.language || '—'}</td>}
                 <td className="whitespace-nowrap border-b border-[color:var(--c2-border-soft)] px-2 py-2 text-xs text-[color:var(--c2-fg-2)]">
                   {SOURCE_LABELS[item.source] || item.source}
-                  {item.demo && <span className="ml-1 font-mono text-[color:var(--c2-sus)]">demo</span>}
+                  {item.demo && (
+                    <Chip tone="amber" className="ml-1.5 uppercase" title={item.replayed ? DEMO_REPLAY_TOOLTIP : 'demo scan: a v0.3 test page analysed offline (html mode)'}>
+                      demo
+                    </Chip>
+                  )}
                 </td>
                 <td className="border-b border-[color:var(--c2-border-soft)] px-2 py-2 text-right">
                   <button

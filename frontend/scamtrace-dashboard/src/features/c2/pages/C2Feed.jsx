@@ -71,12 +71,18 @@ function Stats({ demo, period }) {
         </Panel>
       </div>
       {data.top_domains?.length > 0 && (
-        <Panel title="Most flagged domains (defanged)" icon={Globe2}>
+        <Panel title="Most flagged hosts (defanged)" icon={Globe2}>
+          <p className="mb-3 text-xs text-[color:var(--c2-fg-muted)]">
+            Full host names of Suspicious / Malicious scans. “hosted on” = a page on a shared platform: the document or subdomain was flagged, not the platform itself.
+          </p>
           <ul className="flex flex-wrap gap-2">
             {data.top_domains.map((domain) => (
               <li key={domain.key}>
-                <Chip>
+                <Chip title={domain.hosted_on ? `Flagged content hosted on ${domain.hosted_on} - ${domain.hosted_on} itself is not malicious` : undefined}>
                   {domain.key} <span className="text-[color:var(--c2-fg-muted)]">×{domain.count}</span>
+                  {domain.hosted_on && (
+                    <span className="ml-1 rounded bg-[color:var(--c2-accent-tint)] px-1 text-[color:var(--c2-accent-hi)]">hosted on {domain.hosted_on}</span>
+                  )}
                 </Chip>
               </li>
             ))}

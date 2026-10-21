@@ -66,6 +66,13 @@ function Header({ result }) {
           )}
         </div>
         <DefangedUrl url={result.input?.final_url || result.input?.submitted_url} />
+        {result.demo && (
+          <p>
+            <Chip tone="amber" title="Demo mode: this answer was recorded from a v0.3 test-set page and is replayed, not analysed now">
+              Recorded result · analysed {formatTime(result.analyzed_at)} · demo
+            </Chip>
+          </p>
+        )}
         <div className="flex flex-wrap gap-2">
           <Chip tone="cyan">mode: {result.input?.mode}</Chip>
           {language && <Chip>language: {LANGUAGE_LABELS[language] || language}</Chip>}

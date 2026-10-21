@@ -1,0 +1,31 @@
+# Shared hosting platforms for the dashboard's "Most flagged domains" panel (Part 9 B-2).
+#
+# Why: a flagged page on docs.google.com or drive.usercontent.google.com is a malicious
+# DOCUMENT on a trusted platform, not a malicious domain. The stats overview therefore
+# counts the full host name and, when the host belongs to one of these platforms, adds
+# a "hosted on <platform>" tag so the UI does not present Google / GitHub / Dropbox ... as
+# scam domains. Display only: nothing here changes a verdict or a feature.
+#
+# platform name -> domain suffixes (a host matches the suffix itself or any subdomain).
+# Free hosting used by phishing kits is listed too (the subdomain is the attacker's, the
+# platform is not); keep in step with js_rules.yaml lists.free_hosting where it overlaps.
+platforms:
+  Google: [google.com, googleusercontent.com, googleapis.com, gstatic.com, goo.gl, forms.gle,
+           blogspot.com, appspot.com, google]  # "google" = the .google brand TLD (domains.google)
+  Firebase (Google): [web.app, firebaseapp.com]
+  GitHub: [github.com, github.io, githubusercontent.com]
+  GitBook: [gitbook.io]
+  Dropbox: [dropbox.com, dropboxusercontent.com]
+  Microsoft: [onedrive.live.com, 1drv.ms, sharepoint.com, azurewebsites.net, windows.net]
+  Amazon AWS: [amazonaws.com, cloudfront.net]
+  Cloudflare: [pages.dev, workers.dev, r2.dev, trycloudflare.com]
+  Netlify: [netlify.app, netlify.com]
+  Vercel: [vercel.app]
+  Wix: [wixsite.com]
+  Weebly: [weebly.com]
+  Webflow: [webflow.io]
+  000webhost: [000webhostapp.com]
+  Glitch: [glitch.me]
+  Heroku: [herokuapp.com]
+  Render: [onrender.com]
+  IPFS gateway: [ipfs.io, dweb.link]

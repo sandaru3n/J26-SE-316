@@ -39,7 +39,7 @@ from c2_analyzer.ingest.events import EventBus, format_sse, sse_stream
 from c2_analyzer.ingest.pull import pull_threatradar
 from c2_analyzer.ingest.review import export_confirmed, export_row
 from c2_analyzer.ingest.service import IngestService, UrlItem, review_reason
-from c2_analyzer.ingest.stats import research_summary
+from c2_analyzer.ingest.stats import hosted_on, research_summary
 from c2_analyzer.ingest.worker import IngestWorker, is_transient
 from c2_analyzer.schemas.analysis import (
     AnalysisFinding,
@@ -635,6 +635,40 @@ def fill_history(service: IngestService, clock: Clock) -> dict[str, int]:
     return ids
 
 
+def test_top_domains_keep_the_full_host_and_tag_hosting_platforms():
+    clock = Clock()
+    service = make_service(clock)
+    for url, risk in (
+        ("https://bad-shop.xyz/", 60),
+        ("https://docs.google.com/document/d/e/1/pub", 99),
+        ("https://drive.usercontent.google.com/download?id=1", 94),
+        ("https://it-corp.netlify.app/", 90),
+        ("https://it-corp.netlify.app/login", 90),
+    ):
+        service.record_finished(url, phishing(url, risk), "threatradar_push")
+        clock.advance(minutes=1)
+    stats = api(service).get("/api/v1/stats/overview", params={"window": "24h"}).json()
+    rows = [(d["key"], d["count"], d["hosted_on"]) for d in stats["top_domains"]]
+    # two Google documents are NOT merged into one "google.com" scam domain; ties by count
+    # are ordered by the host's highest risk score
+    assert rows == [
+        ("it-corp[.]netlify[.]app", 2, "Netlify"),
+        ("docs[.]google[.]com", 1, "Google"),
+        ("drive[.]usercontent[.]google[.]com", 1, "Google"),
+        ("bad-shop[.]xyz", 1, None),
+    ]
+
+
+def test_hosted_on_matches_whole_labels_only():
+    assert hosted_on("docs.google.com") == "Google"
+    assert hosted_on("domains[.]google") == "Google"  # defanged input, .google brand TLD
+    assert hosted_on("user.github.io") == "GitHub"
+    assert hosted_on("dl.dropboxusercontent.com") == "Dropbox"
+    assert hosted_on("evilgoogle.com") is None  # suffix must start at a label boundary
+    assert hosted_on("google.com.evil.xyz") is None
+    assert hosted_on(None) is None
+
+
 def test_scans_list_filters_and_pagination():
     clock = Clock()
     service = make_service(clock)
@@ -713,9 +747,9 @@ def test_stats_overview_numbers():
     assert stats["by_threat_class"] == {"phishing": 1, "crypto_scam": 1}
     assert stats["by_source"] == {"threatradar_push": 4, "user": 1}
     assert stats["by_language"]["si"] == 1 and stats["by_language"]["en"] == 3
-    assert {d["key"] for d in stats["top_domains"]} == {
-        "paypal-secure-login[.]com",
-        "usdt-bonus[.]xyz",
+    assert {(d["key"], d["hosted_on"]) for d in stats["top_domains"]} == {
+        ("paypal-secure-login[.]com", None),
+        ("usdt-bonus[.]xyz", None),
     }
     assert stats["top_brands"] == [{"key": "paypal", "count": 1}]
     assert stats["series_bucket"] == "hour" and len(stats["series"]) in (24, 25)

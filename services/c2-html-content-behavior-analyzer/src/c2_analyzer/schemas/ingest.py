@@ -146,6 +146,12 @@ class CountItem(BaseModel):
     count: int
 
 
+class DomainCount(CountItem):
+    """A flagged host; ``hosted_on`` names the shared platform it lives on (else None)."""
+
+    hosted_on: str | None = None
+
+
 class SeriesPoint(BaseModel):
     t: str  # bucket start (UTC, ISO)
     total: int
@@ -165,7 +171,7 @@ class StatsOverview(BaseModel):
     by_threat_class: dict[str, int]
     by_source: dict[str, int]
     by_language: dict[str, int]
-    top_domains: list[CountItem]  # flagged scans, registrable domain (defanged)
+    top_domains: list[DomainCount]  # flagged scans, full host name (defanged) + hosted_on
     top_brands: list[CountItem]  # brand imitated by flagged scans
     series_bucket: Literal["hour", "day"]
     series: list[SeriesPoint]

@@ -32,5 +32,10 @@
   "fusion": "weighted@2026-10-16T23:19:15+05:30",
   "verdict_thresholds": "2026-10-17T21:04:36+05:30"
  },
- "load_ms": 8071.5
+ "load_ms": 6650.5,
+ "results_store": {
+  "backend": "sqlite",
+  "ok": true,
+  "error": null
+ }
 }

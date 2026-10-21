@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link2, Play, ScanLine, Square } from 'lucide-react'
+import { Info, Link2, Play, ScanLine, Square } from 'lucide-react'
 import { analyze } from '../api/c2Api.js'
 import PipelineCard from '../components/PipelineCard.jsx'
 import ResultView from '../components/ResultView.jsx'
@@ -47,7 +47,7 @@ export default function C2Scan() {
     let target
     if (mode === 'url') {
       if (demo) {
-        target = urlText.trim() || DEMO_EXAMPLES[1].input
+        target = urlText.trim() || DEMO_EXAMPLES.find((example) => example.key === 'phishing').input
         body = { url: target }
       } else {
         const checked = normalizeUrl(urlText)
@@ -69,7 +69,9 @@ export default function C2Scan() {
     setRun({ state: 'running', result: null, error: null, startedAt: Date.now(), target })
     try {
       const result = demo ? await demoAnalyze(body.url || 'html', { signal }) : await analyze(body, { signal })
-      setRun((previous) => ({ ...previous, state: 'done', result }))
+      // Demo mode with an input that is not a recorded example: a notice, never another page's verdict.
+      if (result.notice) setRun((previous) => ({ ...previous, state: 'notice', result: null, notice: result.notice }))
+      else setRun((previous) => ({ ...previous, state: 'done', result }))
     } catch (error) {
       if (error?.name === 'AbortError' || error?.kind === 'cancelled') {
         setRun((previous) => ({ ...previous, state: 'idle' }))
@@ -120,7 +122,7 @@ export default function C2Scan() {
                   spellCheck="false"
                   value={urlText}
                   onChange={(event) => setUrlText(event.target.value)}
-                  placeholder={demo ? 'Pick a demo example below, or type anything' : 'https://suspicious-site.example/login'}
+                  placeholder={demo ? 'Pick a demo example below (live scanning is off)' : 'https://suspicious-site.example/login'}
                   aria-invalid={Boolean(inputError)}
                   aria-describedby={inputError ? 'c2-input-error' : undefined}
                   className="w-full rounded-lg border border-[color:var(--c2-border-strong)] bg-[color:var(--c2-field-deep)] py-3.5 pl-11 pr-3 font-mono text-base text-[color:var(--c2-fg-strong)] placeholder:text-[color:var(--c2-fg-faint)] focus:border-[color:var(--c2-accent-solid)]"
@@ -182,7 +184,14 @@ export default function C2Scan() {
         </form>
       </Panel>
 
-      {run.state !== 'idle' && (
+      {run.state === 'notice' && (
+        <div role="status" className="flex items-start gap-3 rounded-lg border border-[color:var(--c2-sus-line)] bg-[color:var(--c2-sus-tint)] px-4 py-3 text-sm text-[color:var(--c2-sus-ink)]">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--c2-sus)]" aria-hidden="true" />
+          {run.notice}
+        </div>
+      )}
+
+      {run.state !== 'idle' && run.state !== 'notice' && (
         <PipelineCard
           running={running}
           startedAt={run.startedAt}

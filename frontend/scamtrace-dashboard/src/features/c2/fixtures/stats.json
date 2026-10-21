@@ -1,77 +1,92 @@
 {
  "24h": {
   "window": "24h",
-  "since": "2026-10-17T02:31:44.664441Z",
-  "generated_at": "2026-10-18T02:31:44.664441Z",
-  "total": 46,
+  "since": "2026-10-20T03:07:33.215491Z",
+  "generated_at": "2026-10-21T03:07:33.215491Z",
+  "total": 68,
   "duplicates_skipped": 0,
   "by_verdict": {
-   "Legitimate": 12,
-   "Suspicious": 8,
+   "Legitimate": 28,
+   "Suspicious": 14,
    "Malicious": 26
   },
   "by_status": {
-   "ok": 46
+   "ok": 68
   },
   "by_threat_class": {
-   "phishing": 14,
-   "benign": 12,
+   "benign": 28,
+   "phishing": 18,
+   "crypto_scam": 8,
    "fake_ecommerce": 8,
-   "crypto_scam": 7,
-   "malware_delivery": 5
+   "malware_delivery": 6
   },
   "by_source": {
-   "threatradar_push": 46
+   "threatradar_push": 68
   },
   "by_language": {
-   "en": 36,
-   "other": 8,
+   "en": 51,
+   "other": 14,
+   "ta": 1,
    "si": 1,
    "mixed": 1
   },
   "top_domains": [
    {
-    "key": "google[.]com",
-    "count": 2
+    "key": "docs[.]google[.]com",
+    "count": 1,
+    "hosted_on": "Google"
    },
    {
-    "key": "spahotel[.]guru",
-    "count": 2
+    "key": "harmonious-marzipan-3f75d2[.]netlify[.]app",
+    "count": 1,
+    "hosted_on": "Netlify"
    },
    {
-    "key": "hnb[.]lk",
-    "count": 1
+    "key": "apollonnutritionstore[.]shop",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "mygretchen[.]com",
-    "count": 1
+    "key": "organization-teams-009[.]github[.]io",
+    "count": 1,
+    "hosted_on": "GitHub"
    },
    {
-    "key": "thefuntasy[.]ai",
-    "count": 1
+    "key": "drive[.]usercontent[.]google[.]com",
+    "count": 1,
+    "hosted_on": "Google"
    },
    {
-    "key": "digitalapexminingtech[.]com",
-    "count": 1
+    "key": "airbackusastyle[.]shop",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "cryptoswap[.]website",
-    "count": 1
+    "key": "australiansportsnutritionshop[.]shop",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "cryptovolatilityindex[.]net",
-    "count": 1
+    "key": "mail[.]intomahost2[.]com",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "albertaferrettifashion[.]shop",
-    "count": 1
+    "key": "admin[.]byte[.]in[.]ua",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "antoniamilanoedit[.]shop",
-    "count": 1
+    "key": "metamaskuxlogen[.]gitbook[.]io",
+    "count": 1,
+    "hosted_on": "GitBook"
    }
   ],
   "top_brands": [
+   {
+    "key": "google",
+    "count": 1
+   },
    {
     "key": "hnb",
     "count": 1
@@ -84,127 +99,127 @@
   "series_bucket": "hour",
   "series": [
    {
-    "t": "2026-10-17T02:00:00.000000Z",
-    "total": 2,
-    "flagged": 1
-   },
-   {
-    "t": "2026-10-17T03:00:00.000000Z",
-    "total": 2,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-17T04:00:00.000000Z",
-    "total": 3,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-17T05:00:00.000000Z",
+    "t": "2026-10-20T03:00:00.000000Z",
     "total": 3,
     "flagged": 1
    },
    {
-    "t": "2026-10-17T06:00:00.000000Z",
+    "t": "2026-10-20T04:00:00.000000Z",
+    "total": 2,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T05:00:00.000000Z",
     "total": 3,
     "flagged": 1
    },
    {
-    "t": "2026-10-17T07:00:00.000000Z",
+    "t": "2026-10-20T06:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T07:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T08:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T09:00:00.000000Z",
+    "total": 3,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T10:00:00.000000Z",
+    "total": 2,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T11:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T12:00:00.000000Z",
+    "total": 3,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T13:00:00.000000Z",
+    "total": 3,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T14:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T15:00:00.000000Z",
     "total": 3,
     "flagged": 3
    },
    {
-    "t": "2026-10-17T08:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
-   },
-   {
-    "t": "2026-10-17T09:00:00.000000Z",
+    "t": "2026-10-20T16:00:00.000000Z",
     "total": 2,
     "flagged": 2
    },
    {
-    "t": "2026-10-17T10:00:00.000000Z",
+    "t": "2026-10-20T17:00:00.000000Z",
     "total": 3,
     "flagged": 3
    },
    {
-    "t": "2026-10-17T11:00:00.000000Z",
-    "total": 3,
-    "flagged": 2
-   },
-   {
-    "t": "2026-10-17T12:00:00.000000Z",
-    "total": 3,
-    "flagged": 2
-   },
-   {
-    "t": "2026-10-17T13:00:00.000000Z",
+    "t": "2026-10-20T18:00:00.000000Z",
     "total": 3,
     "flagged": 3
    },
    {
-    "t": "2026-10-17T14:00:00.000000Z",
+    "t": "2026-10-20T19:00:00.000000Z",
     "total": 3,
     "flagged": 3
    },
    {
-    "t": "2026-10-17T15:00:00.000000Z",
+    "t": "2026-10-20T20:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T21:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-20T22:00:00.000000Z",
     "total": 2,
     "flagged": 2
    },
    {
-    "t": "2026-10-17T16:00:00.000000Z",
+    "t": "2026-10-20T23:00:00.000000Z",
     "total": 3,
     "flagged": 3
    },
    {
-    "t": "2026-10-17T17:00:00.000000Z",
+    "t": "2026-10-21T00:00:00.000000Z",
     "total": 3,
     "flagged": 3
    },
    {
-    "t": "2026-10-17T18:00:00.000000Z",
-    "total": 2,
-    "flagged": 2
+    "t": "2026-10-21T01:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
    },
    {
-    "t": "2026-10-17T19:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
+    "t": "2026-10-21T02:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
    },
    {
-    "t": "2026-10-17T20:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-17T21:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-17T22:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-17T23:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-18T00:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-18T01:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-18T02:00:00.000000Z",
+    "t": "2026-10-21T03:00:00.000000Z",
     "total": 0,
     "flagged": 0
    }
@@ -237,8 +252,8 @@
  },
  "7d": {
   "window": "7d",
-  "since": "2026-10-11T02:31:44.679321Z",
-  "generated_at": "2026-10-18T02:31:44.679321Z",
+  "since": "2026-10-14T03:07:33.234202Z",
+  "generated_at": "2026-10-21T03:07:33.234202Z",
   "total": 68,
   "duplicates_skipped": 0,
   "by_verdict": {
@@ -268,44 +283,54 @@
   },
   "top_domains": [
    {
-    "key": "google[.]com",
-    "count": 3
+    "key": "docs[.]google[.]com",
+    "count": 1,
+    "hosted_on": "Google"
    },
    {
-    "key": "spahotel[.]guru",
-    "count": 2
+    "key": "harmonious-marzipan-3f75d2[.]netlify[.]app",
+    "count": 1,
+    "hosted_on": "Netlify"
    },
    {
-    "key": "youtube[.]com",
-    "count": 1
+    "key": "apollonnutritionstore[.]shop",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "jquery[.]com",
-    "count": 1
+    "key": "organization-teams-009[.]github[.]io",
+    "count": 1,
+    "hosted_on": "GitHub"
    },
    {
-    "key": "domains[.]google",
-    "count": 1
+    "key": "drive[.]usercontent[.]google[.]com",
+    "count": 1,
+    "hosted_on": "Google"
    },
    {
-    "key": "sportfilm800[.]com",
-    "count": 1
+    "key": "airbackusastyle[.]shop",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "weibo[.]cn",
-    "count": 1
+    "key": "australiansportsnutritionshop[.]shop",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "hnb[.]lk",
-    "count": 1
+    "key": "mail[.]intomahost2[.]com",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "mygretchen[.]com",
-    "count": 1
+    "key": "admin[.]byte[.]in[.]ua",
+    "count": 1,
+    "hosted_on": null
    },
    {
-    "key": "thefuntasy[.]ai",
-    "count": 1
+    "key": "metamaskuxlogen[.]gitbook[.]io",
+    "count": 1,
+    "hosted_on": "GitBook"
    }
   ],
   "top_brands": [
@@ -324,371 +349,6 @@
   ],
   "series_bucket": "hour",
   "series": [
-   {
-    "t": "2026-10-11T02:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T03:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T04:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T05:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T06:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T07:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T08:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T09:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T10:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T11:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T12:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T13:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T14:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T15:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T16:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T17:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T18:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T19:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T20:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T21:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T22:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-11T23:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T00:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T01:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T02:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T03:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T04:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T05:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T06:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T07:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T08:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T09:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T10:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T11:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T12:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T13:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T14:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T15:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T16:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T17:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T18:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T19:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T20:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T21:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T22:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-12T23:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T00:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T01:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T02:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T03:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T04:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T05:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T06:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T07:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T08:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T09:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T10:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T11:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T12:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T13:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T14:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T15:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T16:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T17:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T18:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T19:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T20:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T21:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T22:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-13T23:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-14T00:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-14T01:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
-   {
-    "t": "2026-10-14T02:00:00.000000Z",
-    "total": 0,
-    "flagged": 0
-   },
    {
     "t": "2026-10-14T03:00:00.000000Z",
     "total": 0,
@@ -1006,128 +666,128 @@
    },
    {
     "t": "2026-10-16T18:00:00.000000Z",
-    "total": 1,
+    "total": 0,
     "flagged": 0
    },
    {
     "t": "2026-10-16T19:00:00.000000Z",
-    "total": 3,
-    "flagged": 1
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-16T20:00:00.000000Z",
-    "total": 3,
-    "flagged": 2
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-16T21:00:00.000000Z",
-    "total": 2,
-    "flagged": 1
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-16T22:00:00.000000Z",
-    "total": 3,
+    "total": 0,
     "flagged": 0
    },
    {
     "t": "2026-10-16T23:00:00.000000Z",
-    "total": 3,
-    "flagged": 1
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T00:00:00.000000Z",
-    "total": 3,
-    "flagged": 1
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T01:00:00.000000Z",
-    "total": 3,
+    "total": 0,
     "flagged": 0
    },
    {
     "t": "2026-10-17T02:00:00.000000Z",
-    "total": 3,
-    "flagged": 1
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T03:00:00.000000Z",
-    "total": 2,
+    "total": 0,
     "flagged": 0
    },
    {
     "t": "2026-10-17T04:00:00.000000Z",
-    "total": 3,
+    "total": 0,
     "flagged": 0
    },
    {
     "t": "2026-10-17T05:00:00.000000Z",
-    "total": 3,
-    "flagged": 1
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T06:00:00.000000Z",
-    "total": 3,
-    "flagged": 1
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T07:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T08:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T09:00:00.000000Z",
-    "total": 2,
-    "flagged": 2
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T10:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T11:00:00.000000Z",
-    "total": 3,
-    "flagged": 2
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T12:00:00.000000Z",
-    "total": 3,
-    "flagged": 2
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T13:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T14:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T15:00:00.000000Z",
-    "total": 2,
-    "flagged": 2
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T16:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T17:00:00.000000Z",
-    "total": 3,
-    "flagged": 3
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T18:00:00.000000Z",
-    "total": 2,
-    "flagged": 2
+    "total": 0,
+    "flagged": 0
    },
    {
     "t": "2026-10-17T19:00:00.000000Z",
@@ -1166,6 +826,371 @@
    },
    {
     "t": "2026-10-18T02:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T03:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T04:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T05:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T06:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T07:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T08:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T09:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T10:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T11:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T12:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T13:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T14:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T15:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T16:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T17:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T18:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T19:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T20:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T21:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T22:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-18T23:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T00:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T01:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T02:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T03:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T04:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T05:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T06:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T07:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T08:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T09:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T10:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T11:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T12:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T13:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T14:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T15:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T16:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T17:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T18:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T19:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T20:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T21:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T22:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-19T23:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T00:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T01:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T02:00:00.000000Z",
+    "total": 0,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T03:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T04:00:00.000000Z",
+    "total": 2,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T05:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T06:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T07:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T08:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T09:00:00.000000Z",
+    "total": 3,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T10:00:00.000000Z",
+    "total": 2,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T11:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T12:00:00.000000Z",
+    "total": 3,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T13:00:00.000000Z",
+    "total": 3,
+    "flagged": 0
+   },
+   {
+    "t": "2026-10-20T14:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T15:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-20T16:00:00.000000Z",
+    "total": 2,
+    "flagged": 2
+   },
+   {
+    "t": "2026-10-20T17:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-20T18:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-20T19:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-20T20:00:00.000000Z",
+    "total": 3,
+    "flagged": 1
+   },
+   {
+    "t": "2026-10-20T21:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-20T22:00:00.000000Z",
+    "total": 2,
+    "flagged": 2
+   },
+   {
+    "t": "2026-10-20T23:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-21T00:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-21T01:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-21T02:00:00.000000Z",
+    "total": 3,
+    "flagged": 3
+   },
+   {
+    "t": "2026-10-21T03:00:00.000000Z",
     "total": 0,
     "flagged": 0
    }
