@@ -50,7 +50,12 @@ KEYWORDS = {
                           r"work from home", r"(crypto|bitcoin|forex) (trading|signals?|investment)"),
     "DATA_THEFT": _rx(r"\b(cvv|cvc)\b", r"card number", r"\b(otp|one[- ]time (password|code))\b", r"\bpin (number|code)\b",
                       r"(nic|passport|national id|ssn|social security) (number|copy|details)", r"(send|share|upload) (your|a) (id|selfie|passport|nic)",
-                      r"bank (account )?(login|credentials|details)"),
+                      r"bank (account )?(login|credentials|details)",
+                      # Survey / eligibility gift-card lures harvest personal details on the linked form
+                      r"\b(customer )?(rewards? )?survey\b", r"answer \d+ (simple )?questions?",
+                      r"complete (the |our |this )?(quick |short |\d+[- ]second )?survey",
+                      r"verify (your )?eligibility", r"claim (your )?(exclusive )?reward",
+                      r"(enter|provide|fill (in|out)|submit) (your )?(details|information|personal (info|information|details))"),
     "MALWARE": _rx(r"download (the |our |this )?(app|apk|file|update|installer)", r"install (the |this )?(apk|app from)",
                    r"(flash|chrome|browser|security) update (required|needed)", r"enable (macros|content)"),
     "BROWSER_ABUSE": _rx(r"(click|press|tap) ['\"]?allow['\"]?", r"allow notifications?", r"(your )?(computer|pc|device|phone|browser) (is|has been) (infected|locked|blocked|compromised)",
@@ -65,10 +70,42 @@ _PROMOTIONAL = re.compile(
     r"cashback|free|sign ?up|register|order now|shop now|buy now|apply now|claim|reward|bonus|airdrop|"
     r"usdt|rs\.?\s?\d|lkr\s?\d)\b|[$€£]\s?\d", re.IGNORECASE)
 
+# Brand marketing / thought-leadership posts (not Fakeddit-style news claims).
+_BRAND_MARKETING = re.compile(
+    r"\b(we('re| are) excited|excited about|what are your thoughts|see all our|check out our|"
+    r"predicted .+ trends?|design trends?|learn more (here|at|about)|read (our|the) (blog|article)|"
+    r"follow us|subscribe (to|for)|our (blog|newsletter|webinar))\b",
+    re.IGNORECASE,
+)
+
 
 def looks_promotional(text: str) -> bool:
     """Promotions, ads and offer/scam lures: outside the news-headline domain the misinformation model was trained on."""
     return bool(_PROMOTIONAL.search(text or ""))
+
+
+def looks_brand_marketing(text: str) -> bool:
+    """Engagement / trend / blog-style brand posts that the Fakeddit misinformation model mislabels."""
+    return bool(_BRAND_MARKETING.search(text or ""))
+
+
+def misinformation_skip_reason(text: str, consistency: dict | None = None) -> str | None:
+    """Why the misinformation model should not score this post, or None to run it.
+
+    The DistilBERT misinfo model was trained on short Fakeddit headlines. Real brand Facebook posts
+    (official domain + marketing copy) are outside that domain and produce false positives.
+    """
+    if looks_promotional(text):
+        return "promotional / offer post, outside the news-headline data the misinformation model was trained on"
+    if looks_brand_marketing(text):
+        return "brand marketing / engagement post, outside the news-headline data the misinformation model was trained on"
+    consistency = consistency or {}
+    domain_status = (consistency.get("domain_check") or {}).get("status")
+    mismatch = (consistency.get("brand_identity_mismatch") or {}).get("detected")
+    if domain_status == "official" and not mismatch:
+        return ("destination matches the claimed brand's official domain "
+                "(misinformation model is for news-headline claims, not verified brand posts)")
+    return None
 
 
 def _hits(category: str, texts: list[tuple[str, str]]) -> list[str]:
@@ -109,10 +146,18 @@ def classify(*, category_probs: dict[str, float] | None, misinformation_prob: fl
             evidence[category].append(f"text model {base * 100:.0f}%")
         evidence[category] += hits
         scores[category] = min(1.0, base + min(KEYWORD_CAP, KEYWORD_STEP * len(hits)))
-    # data_theft has only 10 labelled samples; asking for two or more kinds of credentials is data theft by definition.
+    # data_theft has few labelled samples; compound cues are stronger than a single keyword.
     distinct = {p.pattern for p in KEYWORDS["DATA_THEFT"] for _, t in texts if p.search(t or "")}
     if len(distinct) >= 2:
         scores["DATA_THEFT"] = max(scores["DATA_THEFT"], RULE_MEDIUM)
+        evidence["DATA_THEFT"].append("multiple personal-data / survey harvest cues in the text")
+    combined_text = " ".join(t for _, t in texts if t)
+    survey_lure = re.search(r"\b(survey|eligibility|answer .{0,40}questions?)\b", combined_text, re.I)
+    reward_lure = re.search(r"\b(gift ?cards?|exclusive reward|customer rewards?)\b|\$\s?\d[\d,]*", combined_text, re.I)
+    if survey_lure and reward_lure:
+        scores["DATA_THEFT"] = max(scores["DATA_THEFT"], RULE_MEDIUM)
+        evidence["DATA_THEFT"].append(
+            "gift/reward lure that asks for a survey or eligibility check (typical personal-data harvest)")
     if probs:
         scores["LEGITIMATE"] = probs.get("LEGITIMATE", 0.0)
         evidence["LEGITIMATE"].append(f"text model {scores['LEGITIMATE'] * 100:.0f}%")

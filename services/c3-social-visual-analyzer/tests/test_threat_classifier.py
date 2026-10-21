@@ -34,6 +34,27 @@ def test_data_theft_from_several_credential_requests():
     assert "DATA_THEFT" in detected(result)
 
 
+def test_gift_card_survey_lure_is_data_theft_and_brand_impersonation():
+    """Apple gift-card survey scams: brand mismatch is primary; data theft co-detects."""
+    post = (
+        "CONGRATULATIONS! YOU COULD WIN A $1,000 APPLE GIFT CARD! "
+        "Apple customers have a chance to receive an exclusive $1,000 gift card through our special "
+        "customer rewards survey! Answer 4 simple questions. Complete the 60-second survey. "
+        "Verify your eligibility. Claim your exclusive reward. Claim Your $1,000 Gift Card Now!"
+    )
+    consistency = {
+        "flags": [{"code": "BRAND_DOMAIN_MISMATCH", "severity": "high",
+                   "detail": "Apple is presented but the link goes to a non-Apple domain"}],
+        "brand_identity_mismatch": {"detected": True, "strength": "strong"},
+    }
+    result = run(post_text=post, consistency=consistency, misinformation_prob=None)
+    assert result["primary"] == "BRAND_IMPERSONATION"
+    assert "DATA_THEFT" in detected(result)
+    data = next(c for c in result["categories"] if c["category"] == "DATA_THEFT")
+    assert data["score"] >= 0.5
+    assert any("survey" in e.lower() or "harvest" in e.lower() for e in data["evidence"])
+
+
 def test_brand_impersonation_from_lookalike_domain():
     consistency = {"flags": [{"code": "LOOKALIKE_DOMAIN", "severity": "high", "detail": "paypa1.com imitates paypal.com"}],
                    "brand_identity_mismatch": {"detected": True, "strength": "strong"}}
@@ -65,11 +86,29 @@ def test_misinformation_co_occurs():
 
 
 def test_promotional_posts_are_outside_the_misinformation_domain():
-    from app.services.threat_classifier import looks_promotional
+    from app.services.threat_classifier import looks_brand_marketing, looks_promotional, misinformation_skip_reason
 
     assert looks_promotional("Shop now at our Amazon store - 20% discount this week!")
     assert looks_promotional("Get a $500 Kroger Gift Card! USA Citizen only")
     assert not looks_promotional("Scientists confirm the moon is slowly turning into cheese, NASA hides the truth")
+
+    ionos = (
+        'We\'re excited about this maximalism trend, and we\'ve got a hunch you\'ll be seeing much more of it in 2024. '
+        'What are your thoughts on this trend? See all our predicted web design trends here.'
+    )
+    assert looks_brand_marketing(ionos)
+    assert misinformation_skip_reason(ionos)
+    assert misinformation_skip_reason(
+        "Nice day at the office.",
+        {"domain_check": {"status": "official"}, "brand_identity_mismatch": {"detected": False}},
+    )
+    assert not misinformation_skip_reason(
+        "Scientists confirm the moon is slowly turning into cheese, NASA hides the truth",
+    )
+    assert not misinformation_skip_reason(
+        "Your PayPal account is locked",
+        {"domain_check": {"status": "lookalike"}, "brand_identity_mismatch": {"detected": True}},
+    )
 
 
 def test_rules_still_work_without_text_models():
