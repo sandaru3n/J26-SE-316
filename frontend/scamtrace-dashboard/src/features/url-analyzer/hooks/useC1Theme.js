@@ -1,14 +1,40 @@
+/**
+ * Theme State Management Hook & Context for Component C1 (URL Analyzer).
+ *
+ * ============================================================================
+ * COMPONENT 1: FRONTEND UI - SOC THEME SWITCHER HOOK (useC1Theme)
+ * ============================================================================
+ * This module provides dark/light theme switching specifically calibrated for
+ * the Security Operations Center (SOC) dashboard of Component C1.
+ *
+ * How it works:
+ * 1. Persistent Storage: Saves the user's selected theme ('dark' or 'light')
+ *    in the browser's localStorage under the key 'c1.theme'.
+ * 2. System Preference Detection: On first visit, checks the operating system's
+ *    preferred color scheme via window.matchMedia('(prefers-color-scheme: light)').
+ * 3. DOM Syncing: Sets 'data-c1-theme' and toggles the '.dark' CSS class on the
+ *    root <html> element (document.documentElement), ensuring all Tailwind styles
+ *    and custom cyber-glow borders immediately adapt.
+ * 4. React Context Provider: Exports <C1ThemeProvider> so any nested card, tab,
+ *    or chart can read the current theme without prop-drilling.
+ */
+
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
+// Browser localStorage key for theme persistence
 const STORAGE_KEY = 'c1.theme';
 
+/**
+ * Read initial theme from localStorage or OS preferences.
+ * Defaults to 'dark' (the classic SOC cybersecurity operational palette).
+ */
 function readInitialTheme() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'light' || saved === 'dark') {
       return saved;
     }
-    // Respect OS preference on first visit
+    // Respect OS preference on first visit if no explicit setting was saved
     if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
       return 'light';
     }

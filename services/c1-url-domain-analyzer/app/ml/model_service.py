@@ -1,4 +1,28 @@
-"""Inference service for loading trained Machine Learning models without retraining on requests."""
+"""Inference service for loading trained Machine Learning models without retraining on requests.
+
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - MACHINE LEARNING SERVICE
+=============================================================================
+This module handles production Machine Learning (ML) inference for Component C1.
+
+Why We Decouple Training from Inference:
+- Model training takes minutes/hours over large datasets (tens of thousands of URLs).
+- Web users expect scan responses within milliseconds (<50ms).
+- Therefore, training scripts (train.py / pipeline.py) run offline and serialize the
+  trained classifier and preprocessing pipeline into `.joblib` files.
+- This `MlInferenceService` loads the pre-trained model once into memory on startup,
+  allowing lightning-fast predictions on live user requests without retraining!
+
+Inference Pipeline (Step-by-Step):
+1. User provides a raw URL.
+2. `MlFeatureExtractor` extracts numerical and boolean features into a structured dictionary.
+3. Features are formatted into a DataFrame matching the exact `FEATURE_NAMES` column order.
+4. The serialized Scikit-Learn `preprocessor.joblib` applies feature scaling and imputation.
+5. The fitted model (Random Forest / LightGBM) calls `predict_proba()` to compute the
+   malicious probability (0.0 to 1.0).
+6. The probability is compared against the calibrated `optimal_threshold` (e.g. 0.50)
+   to assign the predicted label ("legitimate" or "malicious").
+"""
 
 from __future__ import annotations
 
@@ -18,6 +42,9 @@ from app.schemas.url_schema import MlPredictionResult, UrlLexicalFeatures
 logger = logging.getLogger(__name__)
 
 
+SERVICE_ROOT: Path = Path(__file__).resolve().parent.parent.parent
+
+
 class MlInferenceService:
     """Production inference engine loading pre-trained classifiers into memory."""
 
@@ -25,13 +52,21 @@ class MlInferenceService:
         self,
         model_dir: Union[str, Path] = "models",
     ) -> None:
-        self.model_dir = Path(model_dir)
+        p = Path(model_dir)
+        # If relative path is not present in working directory, resolve relative to service root
+        if not p.is_absolute():
+            if not (p / "best_model.joblib").exists() and (SERVICE_ROOT / p / "best_model.joblib").exists():
+                p = SERVICE_ROOT / p
+            elif not p.exists() and (SERVICE_ROOT / p).exists():
+                p = SERVICE_ROOT / p
+        self.model_dir = p
         self.feature_extractor = MlFeatureExtractor()
         self.model: Optional[Any] = None
         self.preprocessor: Optional[Any] = None
         self.metadata: Dict[str, Any] = {}
         self.is_loaded: bool = False
 
+        # Attempt to load model artifacts on instantiation
         self.load_model()
 
     def load_model(self) -> bool:
@@ -210,9 +245,11 @@ class MlInferenceService:
 _ml_service_instance: Optional[MlInferenceService] = None
 
 
-def get_ml_service(model_dir: Union[str, Path] = "models") -> MlInferenceService:
+def get_ml_service(model_dir: Optional[Union[str, Path]] = None) -> MlInferenceService:
     """Return process-wide singleton for ML inference service."""
     global _ml_service_instance
     if _ml_service_instance is None:
-        _ml_service_instance = MlInferenceService(model_dir=model_dir)
+        from app.config import get_settings
+        resolved_dir = model_dir or get_settings().model_dir
+        _ml_service_instance = MlInferenceService(model_dir=resolved_dir)
     return _ml_service_instance

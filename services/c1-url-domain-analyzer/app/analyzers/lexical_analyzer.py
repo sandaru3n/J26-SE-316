@@ -1,7 +1,25 @@
 """Modular URL Feature Extraction & Lexical Analysis Engine.
 
-Extracts comprehensive structural, lexical, entropy, homoglyph, obfuscation,
-and IP-address features from URLs without executing or rendering destination webpages.
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - LAYER 1: LEXICAL ENGINE
+=============================================================================
+This module implements Layer 1 of the C1 Security Intelligence Pipeline.
+It extracts a comprehensive 57-dimensional vector of structural, lexical,
+entropy, homoglyph, obfuscation, and IP-address features from raw URLs.
+
+Safety Principle:
+All analysis here is strictly STATIC. The URL string is parsed mathematically
+without sending HTTP requests to the destination or executing scripts. This prevents
+drive-by malware downloads or browser-exploit attacks against the scanner.
+
+Key Research Capabilities in this File:
+1. Shannon Entropy Analysis: Measures character unpredictability to detect encrypted or obfuscated tokens.
+2. Tracking Token Disambiguation (Novelty 1): Distinguishes legitimate marketing click IDs
+   (gclid, srsltid, utm_*) from malicious query obfuscation to prevent false positives.
+3. Homoglyph & Punycode Detection: Detects visual deception where Cyrillic or Greek characters
+   (like Cyrillic 'а') look identical to Latin 'a' to spoof famous brand names.
+4. Non-Standard IP Representations: Identifies evasion attempts using Hex (0x7F000001),
+   Octal (0177.0.0.1), or Decimal Integer formats to bypass simple hostname filters.
 """
 
 from __future__ import annotations
@@ -23,7 +41,12 @@ except ImportError:  # pragma: no cover
 from app.config import get_settings
 from app.schemas.url_schema import Layer1LexicalAnalysisResult, UrlLexicalFeatures
 
-# Confusable character mapping for basic homoglyph detection (Cyrillic, Greek, etc. lookalikes)
+# =============================================================================
+# CONFUSABLE HOMOGLYPH MAPPING
+# =============================================================================
+# In Unicode, many characters from different scripts (Cyrillic, Greek, Armenian)
+# share identical glyph shapes with standard Latin characters.
+# Attackers register domains like 'pаypаl.com' (using Cyrillic 'а' U+0430) to deceive users.
 CONFUSABLE_MAP: Dict[str, str] = {
     '\u0430': 'a', '\u0441': 'c', '\u0435': 'e', '\u043e': 'o',
     '\u0440': 'p', '\u0445': 'x', '\u0443': 'y', '\u0456': 'i',
@@ -31,13 +54,20 @@ CONFUSABLE_MAP: Dict[str, str] = {
     '\u03bf': 'o', '\u03c5': 'y', '\u03b1': 'a', '\u03c1': 'p',
 }
 
-ENCODED_PATTERN = re.compile(r'%[0-9a-fA-F]{2}')
-DOUBLE_ENCODED_PATTERN = re.compile(r'%25[0-9a-fA-F]{2}')
+# Regex patterns for detecting obfuscated and encoded representations
+ENCODED_PATTERN = re.compile(r'%[0-9a-fA-F]{2}')          # Standard percent-encoding (e.g. %20 for space)
+DOUBLE_ENCODED_PATTERN = re.compile(r'%25[0-9a-fA-F]{2}') # Double percent-encoding (%25 is '%')
 HEX_IP_PATTERN = re.compile(r'^(0x[0-9a-fA-F]+(\.0x[0-9a-fA-F]+){3}|0x[0-9a-fA-F]{8})$', re.IGNORECASE)
 OCTAL_IP_PATTERN = re.compile(r'^0[0-7]+(\.0[0-7]+){3}$')
 DECIMAL_INT_IP_PATTERN = re.compile(r'^\d{8,11}$')
 
-# Marketing and analytics tracking parameter keys commonly causing entropy spikes
+# =============================================================================
+# NOVELTY 1: MARKETING & ANALYTICS TRACKING PARAMETERS
+# =============================================================================
+# Legitimate platforms (Google Shopping, Facebook Ads, MailChimp) append high-entropy
+# tokens to query strings (e.g. ?gclid=EAIaIQobChMI...).
+# Naive entropy analyzers flag these as malicious. Our system isolates these tracking keys
+# to eliminate false positives on benign e-commerce and marketing links.
 TRACKING_PARAM_KEYS = {
     "srsltid", "gclid", "fbclid", "msclkid", "yclid", "dclid",
     "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
@@ -45,16 +75,25 @@ TRACKING_PARAM_KEYS = {
 }
 
 
+# =============================================================================
+# MATHEMATICAL & STRUCTURAL UTILITY FUNCTIONS
+# =============================================================================
 def calculate_shannon_entropy(text: str) -> float:
     """Calculate the Shannon entropy of a string (in bits per character).
 
+    Shannon Entropy measures information density and unpredictability:
     Formula: H(S) = - sum(p(x) * log2(p(x)))
-    Higher values indicate greater randomness or information density.
+    
+    Interpretation for Beginners:
+    - Low entropy (~1.5 - 2.5): Repeated or simple text (e.g., "login", "aaaaaa").
+    - Natural language text (~2.5 - 3.5): Standard dictionary English words (e.g., "account-update").
+    - High entropy (> 3.6): Random character sequences, base64 payloads, or encryption keys (e.g., "q8z!9x#p").
     """
     if not text:
         return 0.0
     length = len(text)
     counts = Counter(text)
+    # Sum -p(x) * log2(p(x)) for each unique character
     entropy = -sum((count / length) * math.log2(count / length) for count in counts.values())
     return round(entropy, 4)
 
@@ -198,6 +237,10 @@ class UrlLexicalAnalyzer:
             return self._empty_features()
 
         # Safe URL normalization for parsing
+        # =====================================================================
+        # Step 1: Input Sanitization & URL Normalization
+        # =====================================================================
+        # Prepend 'http://' if missing so Python's urlsplit can correctly isolate netloc from path
         normalized_url = original_url
         if not (normalized_url.startswith("http://") or normalized_url.startswith("https://") or normalized_url.startswith("ftp://")):
             normalized_url = "http://" + normalized_url
@@ -205,7 +248,7 @@ class UrlLexicalAnalyzer:
         try:
             parsed = urlsplit(normalized_url)
         except Exception:
-            # Handle malformed URL parsing gracefully
+            # Handle malformed URL parsing gracefully without crashing
             parsed = urlsplit("http://malformed.local")
 
         scheme = parsed.scheme.lower() if parsed.scheme else "http"
@@ -214,7 +257,10 @@ class UrlLexicalAnalyzer:
         query = parsed.query
         fragment = parsed.fragment
 
-        # Handle username/password in netloc (e.g. user:pass@hostname)
+        # =====================================================================
+        # Step 2: Authority & Port Extraction (Handling '@' credentials evasion)
+        # =====================================================================
+        # Attackers sometimes use 'http://legitimate.com@evil.com' where browsers connect to evil.com
         has_at_symbol = "@" in netloc
         if "@" in netloc:
             netloc_parts = netloc.rsplit("@", 1)
@@ -222,7 +268,7 @@ class UrlLexicalAnalyzer:
         else:
             hostname_with_port = netloc
 
-        # Separate port from hostname
+        # Separate explicit port (e.g. evil.com:8080) from hostname
         if ":" in hostname_with_port and not hostname_with_port.endswith("]"):
             host_parts = hostname_with_port.rsplit(":", 1)
             hostname = host_parts[0]
@@ -236,16 +282,28 @@ class UrlLexicalAnalyzer:
 
         hostname = hostname.strip("[]").lower()
 
-        # Extract TLD structure
+        # =====================================================================
+        # Step 3: Domain Structure Breakdown (tldextract)
+        # =====================================================================
+        # Decomposes host into: subdomain ('login.secure'), registered_domain ('paypal.com'), and tld ('com')
         registered_domain, subdomain, tld, domain_depth = extract_tld_structure(hostname)
 
-        # IP address evaluation
+        # =====================================================================
+        # Step 4: IP Address & Alternative Notation Check
+        # =====================================================================
+        # Direct IP usage (e.g. http://192.168.1.1) or hex/octal forms bypass DNS and hide domain ownership
         is_ip_address, ip_type, is_private_ip = parse_ip_address(hostname)
 
-        # Homoglyphs, IDN, Punycode
+        # =====================================================================
+        # Step 5: Confusable Homoglyphs, IDN, and Punycode
+        # =====================================================================
+        # Detects internationalized character spoofing (e.g. Cyrillic 'а' replacing Latin 'a')
         is_punycode, is_idn, has_homoglyphs, homoglyph_details = detect_homoglyphs_and_unicode(hostname)
 
-        # Length metrics
+        # =====================================================================
+        # Step 6: Structural Length Metrics
+        # =====================================================================
+        # Unusually long URLs (>120 chars) are frequently observed in phishing links hiding encoded payloads
         url_length = len(normalized_url)
         hostname_length = len(hostname)
         path_length = len(path)
@@ -253,7 +311,9 @@ class UrlLexicalAnalyzer:
         tld_length = len(tld)
         subdomain_length = len(subdomain)
 
-        # Character counts
+        # =====================================================================
+        # Step 7: Delimiter & Character Frequency Counting
+        # =====================================================================
         num_dots = normalized_url.count('.')
         num_dots_hostname = hostname.count('.')
         num_hyphens = normalized_url.count('-')
@@ -263,20 +323,24 @@ class UrlLexicalAnalyzer:
         num_digits_hostname = sum(c.isdigit() for c in hostname)
         num_letters = sum(c.isalpha() for c in normalized_url)
 
-        # Special characters
+        # Special characters frequently used in obfuscation (@, ?, =, %, _, /, :, &, +, -, .)
         special_chars = set("@?=%_/:&+-.#")
         num_special_chars = sum(c in special_chars for c in normalized_url)
 
-        # Subdomains count
+        # Subdomain label depth (excessive subdomains like a.b.c.d.com indicate domain stuffing)
         subdomain_labels = [s for s in subdomain.split('.') if s]
         num_subdomains = len(subdomain_labels)
 
-        # Path depth & query parameters
+        # Path directory depth and query parameter counts
         path_segments = [p for p in path.split('/') if p]
         path_depth = len(path_segments)
         num_query_params = len(query.split('&')) if query else 0
 
-        # Keyword matching (Avoid false positives when legitimate domain owner matches brand keyword)
+        # =====================================================================
+        # Step 8: Suspicious Brand & Security Keyword Matching
+        # =====================================================================
+        # False Positive Guard: If the registered domain owner IS the legitimate brand (e.g. paypal.com),
+        # do not flag 'paypal' as a phishing keyword! Only flag when 'paypal' appears on an unrelated domain.
         lower_url = normalized_url.lower()
         domain_base = registered_domain.split('.')[0].lower() if registered_domain else ""
         brand_names = {
@@ -286,30 +350,36 @@ class UrlLexicalAnalyzer:
         found_keywords = []
         for kw in self.settings.suspicious_keywords:
             if kw in lower_url:
-                # If brand keyword matches the registered apex domain base, don't flag as spoofing
                 if kw in brand_names and kw == domain_base:
-                    continue
+                    continue  # Legitimate brand owner: skip
                 found_keywords.append(kw)
         suspicious_keyword_count = len(found_keywords)
         has_suspicious_keyword = suspicious_keyword_count > 0
 
-        # Repetition & Consecutive Digits
+        # =====================================================================
+        # Step 9: Digit Ratios & Character Repetition
+        # =====================================================================
         digit_runs = re.findall(r'\d+', hostname or normalized_url)
         max_consecutive_digits = max((len(run) for run in digit_runs), default=0)
         digit_ratio = round(num_digits / url_length, 4) if url_length > 0 else 0.0
 
-        # Max consecutive character repetition
         char_runs = [len(m.group(0)) for m in re.finditer(r'(.)\1+', normalized_url)]
         max_character_repetition = max(char_runs, default=1)
         has_excessive_repetition = max_character_repetition >= 4
 
-        # Shannon Entropy
+        # =====================================================================
+        # Step 10: Shannon Entropy Across URL Segments
+        # =====================================================================
+        # Evaluates entropy on individual segments to pinpoint WHERE randomness lives
         url_entropy = calculate_shannon_entropy(normalized_url)
         hostname_entropy = calculate_shannon_entropy(hostname)
         path_entropy = calculate_shannon_entropy(path)
         query_entropy = calculate_shannon_entropy(query)
 
-        # Obfuscation & Encoding
+        # =====================================================================
+        # Step 11: Obfuscation, Encoding, and Evasion Checks
+        # =====================================================================
+        # %20 is normal, but double encoding (%2520) or excessive encoding suggests web-filter evasion
         encoded_matches = ENCODED_PATTERN.findall(original_url)
         encoded_char_count = len(encoded_matches)
         is_encoded = encoded_char_count > 0
@@ -320,15 +390,18 @@ class UrlLexicalAnalyzer:
 
         is_suspicious_tld = tld.lower() in self.settings.suspicious_tlds
 
-        # Base URL entropy (scheme + authority + path without query string)
+        # =====================================================================
+        # Step 12: Novelty 1 - False Positive Reduction via Token Isolation
+        # =====================================================================
+        # Calculate base URL entropy excluding the query string
         base_url_str = f"{scheme}://{netloc}{path}"
         base_url_entropy = calculate_shannon_entropy(base_url_str)
 
-        # Tracking parameter indicator
+        # Detect tracking parameter keys (utm_*, gclid, etc.) to discount query entropy
         query_keys = set(re.findall(r'(?:^|[&?])([^=&#]+)=', query.lower())) if query else set()
         has_tracking_param = bool(query_keys & TRACKING_PARAM_KEYS)
 
-        # URL Shortener indicator
+        # URL Shortener detection
         is_shortened_url = False
         if registered_domain in self.settings.known_shorteners or hostname in self.settings.known_shorteners:
             is_shortened_url = True
@@ -338,10 +411,7 @@ class UrlLexicalAnalyzer:
                     is_shortened_url = True
                     break
 
-        # Path to URL ratio
         path_to_url_ratio = round(path_length / url_length, 4) if url_length > 0 else 0.0
-
-        # Standard port indicator
         is_standard_port = port is None or port in (80, 443)
 
         return UrlLexicalFeatures(

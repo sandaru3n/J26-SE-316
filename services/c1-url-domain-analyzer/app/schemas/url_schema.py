@@ -1,4 +1,31 @@
-"""Pydantic schemas for URL feature extraction and analysis response models."""
+"""Pydantic schemas for URL feature extraction and analysis response models.
+
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - DATA CONTRACT SCHEMAS
+=============================================================================
+This file defines the structured data contracts (Pydantic models) used across
+Component C1's backend services, API endpoints, and React frontend dashboard.
+
+Why Pydantic models are used:
+1. Strict Type Validation: Guarantees that every incoming request and outgoing response
+   adheres to explicit types (int, float, str, bool, list, dict).
+2. Auto Serialization: Converts Python objects into standard JSON for the API responses.
+3. Interactive API Docs: Automatically generates OpenAPI (Swagger) documentation at `/docs`.
+
+Data Hierarchy Across the 4 Intelligence Layers:
+- Layer 1: `UrlLexicalFeatures`
+  57-dimensional vector extracted purely through static text parsing (entropy, keywords,
+  homoglyphs, IP encodings, delimiters) without visiting the site.
+- Layer 2: `DomainRegistrationFeatures`, `DnsIntelligenceFeatures`, `DomainReputationFeatures`
+  Network intelligence: RDAP/WHOIS domain age (NRD detection), DNS records, fast-flux botnets.
+- Layer 3: `DgaAnalysisFeatures`, `RedirectChainFeatures`, `ThreatInfrastructureReport`
+  Threat infrastructure: DGA random algorithmic labels and SSRF-safe redirect tracking.
+- Layer 4: `MlPredictionResult`, `ContributingRiskFactor`, `ExplainableRiskAssessment`
+  Explainable risk scoring, dynamic weight renormalization (Contribution 3), and epistemic
+  evidence separation (Contribution 4).
+- Master Output: `CompleteUrlDomainAnalysisResult`
+  Unifies all layers into a complete audit response.
+"""
 
 from __future__ import annotations
 
@@ -6,16 +33,25 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
 
 
+# =============================================================================
+# INCOMING REQUEST SCHEMA
+# =============================================================================
 class UrlAnalysisRequest(BaseModel):
-    """Input payload containing target URL for static intelligence analysis."""
+    """Input payload containing target URL for static intelligence analysis.
+    
+    The user or API gateway posts this JSON payload: {"url": "https://example.com"}
+    """
     url: str = Field(..., description="Target URL or domain to analyze", json_schema_extra={"example": "https://login.paypal.verify-account.com/security/login.php?user=123"})
 
 
+# =============================================================================
+# LAYER 1: 57-DIMENSIONAL URL LEXICAL & STRUCTURAL FEATURES
+# =============================================================================
 class UrlLexicalFeatures(BaseModel):
     """Structured features extracted from URL for machine learning inference and heuristic analysis.
 
-    All features are derived purely via static parsing and lexical analysis without executing or rendering
-    the destination webpage.
+    All 57 features are derived purely via static parsing and lexical analysis without executing or rendering
+    the destination webpage (defending against zero-day browser exploits).
     """
     # URL components & normalization
     original_url: str = Field(..., description="Original raw URL input provided by user")
@@ -99,8 +135,15 @@ class UrlLexicalFeatures(BaseModel):
     is_standard_port: bool = Field(True, description="True if standard port (80, 443, or default)")
 
 
+# =============================================================================
+# LAYER 2: DOMAIN INTELLIGENCE (WHOIS/RDAP, DNS, & REPUTATION)
+# =============================================================================
 class DomainRegistrationFeatures(BaseModel):
-    """Structured registration and WHOIS/RDAP intelligence features."""
+    """Structured registration and WHOIS/RDAP intelligence features (Research Contribution 2).
+    
+    Evaluates domain creation dates to catch Newly Registered Domains (NRDs <= 30 days)
+    while granting mitigating credits for established domains (> 2 years old).
+    """
     domain_name: str = Field(..., description="Apex or target registered domain name")
     creation_date: Optional[str] = Field(None, description="ISO timestamp of initial registration")
     expiration_date: Optional[str] = Field(None, description="ISO timestamp of registration expiration")
@@ -155,8 +198,15 @@ class DomainIntelligenceReport(BaseModel):
     domain_risk_indicators: List[str] = Field(default_factory=list, description="Observed domain risk indicators")
 
 
+# =============================================================================
+# LAYER 3: THREAT INFRASTRUCTURE (DGA & REDIRECT RESOLUTION)
+# =============================================================================
 class DgaAnalysisFeatures(BaseModel):
-    """Structured Domain Generation Algorithm (DGA) statistical features and indicators."""
+    """Structured Domain Generation Algorithm (DGA) statistical features (Research Contribution 2).
+    
+    Evaluates algorithmic label randomness (vowel ratios, entropy, bigram rarity)
+    to identify malware botnet Command & Control (C2) rendezvous points.
+    """
     domain_name: str = Field(..., description="Apex or target domain name evaluated")
     label: str = Field(..., description="Specific domain label analyzed (SLD or subdomain)")
     label_length: int = Field(..., description="Character length of analyzed label")
@@ -225,8 +275,17 @@ class Layer1LexicalAnalysisResult(BaseModel):
     explanation: str = Field(..., description="Summary narrative explaining feature analysis results")
 
 
+# =============================================================================
+# LAYER 4: MACHINE LEARNING & EXPLAINABLE RISK ASSESSMENT (Contributions 3 & 4)
+# =============================================================================
 class MlPredictionResult(BaseModel):
-    """Machine learning classifier prediction and inference telemetry."""
+    """Machine learning classifier prediction and inference telemetry.
+    
+    Contains the Random Forest model's output:
+    - malicious_probability: 0.0 (safe) to 1.0 (malicious)
+    - predicted_label: "legitimate" or "malicious"
+    - top_risk_features: top feature names driving this specific classification
+    """
     is_model_loaded: bool = Field(False, description="True if trained ML model is loaded and active")
     model_name: Optional[str] = Field(None, description="Active classifier algorithm name")
     malicious_probability: float = Field(0.0, description="Predicted probability of being malicious (0.0 to 1.0)")
@@ -241,7 +300,11 @@ class MlPredictionResult(BaseModel):
 
 
 class ContributingRiskFactor(BaseModel):
-    """Specific evidence-backed factor contributing to the overall risk assessment."""
+    """Specific evidence-backed factor contributing to the overall risk assessment.
+    
+    Provides XAI (Explainable Artificial Intelligence) factor attribution:
+    Every factor has an impact score (points added or subtracted) and verifiable evidence.
+    """
     factor_id: str = Field(..., description="Unique technical identifier for the contributing risk factor")
     title: str = Field(..., description="Human-readable title describing the observed factor")
     category: str = Field(..., description="Analysis channel (e.g. lexical, registration, dns, dga, ml, redirect)")
@@ -252,7 +315,13 @@ class ContributingRiskFactor(BaseModel):
 
 
 class EpistemicEvidenceBreakdown(BaseModel):
-    """Strict epistemological separation between observed facts, heuristics, and model predictions."""
+    """Strict epistemological separation between observed facts, heuristics, and model predictions (Contribution 4).
+    
+    Why this separation is vital:
+    - Observed Facts: Empirically verifiable ground truths (e.g. "Domain registered 4 days ago").
+    - Heuristics: Rule-based threat intelligence patterns (e.g. "Contains keyword 'login' in subdomain").
+    - Model Predictions: Probabilistic inferences (e.g. "Random Forest predicts 91.2% malicious").
+    """
     observed_facts: List[str] = Field(
         default_factory=list,
         description="Deterministic, empirically verified measurements (DNS records, registration dates, HTTP status)",
@@ -268,7 +337,15 @@ class EpistemicEvidenceBreakdown(BaseModel):
 
 
 class ExplainableRiskAssessment(BaseModel):
-    """Comprehensive explainable audit trail detailing multi-channel risk scoring."""
+    """Comprehensive explainable audit trail detailing multi-channel risk scoring.
+    
+    Implements Research Contribution 3 & 4:
+    - active_weights: Dynamically renormalized weights summing to exactly 1.00 (100%).
+    - channel_scores: Individual sub-scores (0-100) for each of the 8 intelligence channels.
+    - contributing_factors: Ranked list of positive risk penalties and mitigating credits.
+    - epistemic_breakdown: Three-tier evidence categorization (facts, heuristics, predictions).
+    - analysis_limitations: Explicitly documented missing channels (e.g. RDAP timeout).
+    """
     risk_score: float = Field(..., ge=0.0, le=100.0, description="Normalized multi-channel risk score (0-100)")
     classification: str = Field(..., description="Categorical risk classification (Low Risk, Suspicious, Medium Risk, High Risk Scam)")
     risk_level: str = Field(..., description="Standardized risk level compatible with gateway")
@@ -298,8 +375,15 @@ class ExplainableRiskAssessment(BaseModel):
     )
 
 
+# =============================================================================
+# MASTER MULTI-LAYER RESPONSE MODEL (Full Analysis Output)
+# =============================================================================
 class CompleteUrlDomainAnalysisResult(BaseModel):
-    """Integrated multi-layer result containing URL Lexical, Domain Intelligence, Threat Infrastructure, and ML."""
+    """Integrated multi-layer result containing URL Lexical, Domain Intelligence, Threat Infrastructure, and ML.
+    
+    This is the complete output returned to the frontend dashboard and API gateway.
+    It encapsulates the full intelligence fusion across all 4 research contributions.
+    """
     component: str = "C1_URL_DOMAIN"
     layer: str = "Multi_Layer_URL_and_Domain_Intelligence"
     status: str = "success"

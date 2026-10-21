@@ -1,9 +1,23 @@
 """Threat-Infrastructure Analysis Orchestrator.
 
-Combines DGA statistical analysis, URL shortener resolution, and controlled HTTP
-redirect-chain tracking to identify evasive and procedurally generated attack infrastructure.
+=============================================================================
+COMPONENT 1: INTELLIGENT URL & DOMAIN ANALYZER (C1) - LAYER 3: THREAT INFRA
+=============================================================================
+This module orchestrates Layer 3 of the C1 Security Intelligence Pipeline.
+It investigates the backend technical infrastructure of suspicious links:
+1. Domain Generation Algorithms (DGA): Detects procedural, randomly generated
+   domain labels used by malware families and botnet Command-and-Control (C2) servers.
+2. Controlled HTTP Redirect Resolution: Traces cloaked redirect hops and unshortens
+   URL shortener links (e.g. bit.ly, tinyurl.com) to reveal the true final destination.
 
-Strictly adheres to passive non-rendering inspection, SSRF prevention, and hop bounds.
+Strict Defense & Safety Controls:
+- SSRF Prevention: Before making any HTTP request to follow a redirect, the destination
+  IP address is verified against private, loopback, and link-local ranges (RFC 1918, RFC 3927).
+  If a destination points to 127.0.0.1, 10.x.x.x, 192.168.x.x, or 169.254.169.254 (cloud metadata),
+  the scan is immediately ABORTED to protect internal infrastructure.
+- Hop Limit: Capped at 8 redirect hops to prevent cyclic redirect denial-of-service loops.
+- Static Inspection: Only HTTP response status codes and Location headers are evaluated;
+  webpage contents are NEVER downloaded, rendered, or executed.
 """
 
 from __future__ import annotations
@@ -32,14 +46,19 @@ class ThreatInfrastructureAnalyzer:
         self.redirect_resolver = ControlledRedirectResolver()
 
     async def analyze(self, url: str, domain_name: str) -> ThreatInfrastructureReport:
-        """Execute DGA statistical analysis and controlled redirect-chain resolution."""
-        # 1. Run DGA statistical analysis on domain label
+        """Execute DGA statistical analysis and controlled redirect-chain resolution.
+        
+        Step 1: Compute statistical randomness and bigram perplexity on domain label.
+        Step 2: Safely trace HTTP redirection hops (with SSRF firewall).
+        Step 3: Synthesize infrastructure indicators and sub-score.
+        """
+        # Step 1: Run DGA statistical analysis on domain label (SLD or subdomain)
         dga_features = self.dga_analyzer.analyze(domain_name)
 
-        # 2. Run controlled redirect resolution
+        # Step 2: Run controlled redirect resolution with SSRF defense
         redirect_features = await self.redirect_resolver.resolve(url)
 
-        # 3. Compute consolidated infrastructure risk sub-score
+        # Step 3: Compute consolidated infrastructure risk sub-score
         infra_score, infra_indicators = self._compute_infrastructure_risk(
             dga_features=dga_features,
             redirect_features=redirect_features,
